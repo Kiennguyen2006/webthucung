@@ -1,0 +1,415 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Nhập mã xác nhận</title>
+
+    <style>
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background: #fffaf0;
+                min-height: 100vh;
+                color: #40352f;
+            }
+
+            .container {
+                min-height: 100vh;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* LOGO */
+
+            .logo {
+                position: absolute;
+                top: 35px;
+                left: 70px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                z-index: 2;
+            }
+
+            .logo-paw {
+                font-size: 45px;
+            }
+
+            .logo-text {
+                font-size: 32px;
+                font-weight: bold;
+                color: #f5a900;
+            }
+
+                .logo-text span {
+                    color: #4b403a;
+                }
+
+
+            /* NỘI DUNG */
+
+            .main {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 100px 20px 50px;
+            }
+
+
+            /* KHUNG */
+
+            .verify-box {
+                width: 580px;
+                background: white;
+                padding: 45px 55px;
+                border-radius: 22px;
+                box-shadow: 0 10px 35px rgba(120, 90, 30, 0.12);
+                position: relative;
+                z-index: 2;
+            }
+
+
+            /* QUAY LẠI */
+
+            .back-link {
+                display: inline-block;
+                text-decoration: none;
+                color: #8d8d9b;
+                font-size: 16px;
+                margin-bottom: 35px;
+            }
+
+                .back-link:hover {
+                    color: #f5a900;
+                }
+
+
+            /* PAW */
+
+            .paw-title {
+                text-align: center;
+                font-size: 48px;
+                margin-bottom: 12px;
+            }
+
+
+            /* TIÊU ĐỀ */
+
+            .title {
+                text-align: center;
+                font-size: 36px;
+                margin-bottom: 15px;
+            }
+
+
+            .description {
+                text-align: center;
+                color: #9292a3;
+                font-size: 16px;
+                line-height: 1.6;
+                margin-bottom: 32px;
+            }
+
+            .email-text {
+                text-align: center;
+                color: #f0a600;
+                font-weight: bold;
+                margin-bottom: 25px;
+                word-break: break-word;
+            }
+
+
+            /* INPUT */
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-weight: bold;
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+
+            .otp-input {
+                width: 100%;
+                height: 65px;
+                border: 1px solid #dedee5;
+                border-radius: 13px;
+                outline: none;
+                text-align: center;
+                font-size: 28px;
+                letter-spacing: 10px;
+                color: #40352f;
+                transition: 0.2s;
+            }
+
+                .otp-input:focus {
+                    border-color: #f5b21b;
+                    box-shadow: 0 0 0 3px rgba(245, 178, 27, 0.12);
+                }
+
+
+            /* NÚT */
+
+            .btn-submit {
+                width: 100%;
+                height: 60px;
+                border: none;
+                border-radius: 13px;
+                background: linear-gradient(90deg, #ffb511, #ffbd25);
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: 0.2s;
+            }
+
+                .btn-submit:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 20px rgba(245, 175, 20, 0.25);
+                }
+
+            .message {
+                text-align: center;
+                color: #e05252;
+                margin-bottom: 20px;
+                font-size: 15px;
+            }
+
+
+            /* CHƯA NHẬN ĐƯỢC */
+
+            .resend {
+                text-align: center;
+                margin-top: 25px;
+                color: #9292a3;
+                font-size: 15px;
+            }
+
+                .resend a {
+                    color: #f0a600;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+
+                    .resend a:hover {
+                        text-decoration: underline;
+                    }
+
+
+            .paw {
+                position: absolute;
+                color: #f5b21b;
+                opacity: 0.15;
+                font-size: 60px;
+            }
+
+            .paw-1 {
+                top: 140px;
+                right: 100px;
+                transform: rotate(20deg);
+            }
+
+            .paw-2 {
+                bottom: 100px;
+                left: 80px;
+                transform: rotate(-20deg);
+            }
+
+            .paw-3 {
+                top: 50%;
+                right: 35px;
+                font-size: 35px;
+                transform: rotate(-20deg);
+            }
+
+            .yellow-bg {
+                position: absolute;
+                width: 550px;
+                height: 250px;
+                right: -150px;
+                bottom: -80px;
+                background: #fff0bc;
+                border-radius: 50%;
+            }
+
+            .yellow-bg-2 {
+                position: absolute;
+                width: 350px;
+                height: 180px;
+                left: -170px;
+                top: -80px;
+                background: #ffecb2;
+                border-radius: 50%;
+            }
+
+
+            @@media (max-width: 600px) {
+
+                .logo {
+                    top: 20px;
+                    left: 25px;
+                }
+
+                .logo-text {
+                    font-size: 25px;
+                }
+
+                .logo-paw {
+                    font-size: 35px;
+                }
+
+                .verify-box {
+                    width: 100%;
+                    padding: 35px 25px;
+                }
+
+                .title {
+                    font-size: 29px;
+                }
+
+                .otp-input {
+                    height: 58px;
+                    font-size: 24px;
+                }
+            }
+
+    </style>
+</head>
+
+<body>
+    @{
+            if (ViewBag.tb != "" && ViewBag.tb != null)
+            {
+                <p>@ViewBag.tb</p>
+            }
+        }
+    <div class="container">
+
+        <div class="yellow-bg"></div>
+        <div class="yellow-bg-2"></div>
+
+        <div class="logo">
+
+            <div class="logo-paw">
+                🐾
+            </div>
+
+            <div class="logo-text">
+                Pet<span>Care</span>
+            </div>
+
+        </div>
+
+
+        <div class="paw paw-1">
+            🐾
+        </div>
+
+        <div class="paw paw-2">
+            🐾
+        </div>
+
+        <div class="paw paw-3">
+            🐾
+        </div>
+
+        <div class="main">
+
+            <div class="verify-box">
+
+
+                <a href="/Kiemtrathongtin/Khoiphuc"
+                   class="back-link">
+
+                    ← Quay lại nhập email
+
+                </a>
+                <div class="paw-title">
+                    🐾
+                </div>
+                <h1 class="title">
+                    Nhập mã xác nhận
+                </h1>
+
+
+                <p class="description">
+
+                    Chúng tôi đã gửi mã xác nhận gồm 6 chữ số
+                    <br />
+                    đến email của bạn.
+
+                </p>
+                @if (ViewBag.tb != null && ViewBag.tb != "")
+                {
+                    <p class="message">
+                        @ViewBag.tb
+                    </p>
+                }
+                <form method="post"
+                      action="/Kiemtrathongtin/Nhapma">
+
+
+                    <div class="form-group">
+
+                        <label for="ma">
+                            Mã xác nhận
+                        </label>
+
+
+                        <input type="text"
+                               id="ma"
+                               name="ma"
+                               class="otp-input"
+                               maxlength="6"
+                               minlength="6"
+                               placeholder="••••••"
+                               required />
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn-submit">
+
+                        Xác nhận mã
+
+                    </button>
+
+
+                </form>
+                <div class="resend">
+
+                    Chưa nhận được mã?
+
+                    <a href="/Kiemtrathongtin/Khoiphuc">
+                        Gửi lại mã
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KMNA - Chào mừng</title>
+    <link rel="stylesheet" href="~/css/intro.css" asp-append-version="true" />
+</head>
+<body class="intro-body">
+    <div id="intro-world"
+         class="intro-world"
+         data-home-url="@Url.Action("Index", "Home")">
+
+        <div class="intro-sky" aria-hidden="true">
+            <div class="intro-sun-wrap">
+                <div class="intro-sun-glow"></div>
+                <div class="intro-sun-rays"></div>
+                <div class="intro-sun"></div>
+            </div>
+
+            <div class="intro-cloud-layer intro-cloud-layer-far">
+                <span class="intro-cloud c1"></span>
+                <span class="intro-cloud c2"></span>
+            </div>
+            <div class="intro-cloud-layer intro-cloud-layer-mid">
+                <span class="intro-cloud c3"></span>
+                <span class="intro-cloud c4"></span>
+                <span class="intro-cloud c5"></span>
+            </div>
+            <div class="intro-cloud-layer intro-cloud-layer-near">
+                <span class="intro-cloud c6"></span>
+                <span class="intro-cloud c7"></span>
+            </div>
+        </div>
+
+        <div class="intro-field" aria-hidden="true">
+            <div class="intro-hill intro-hill-far"></div>
+            <div class="intro-hill intro-hill-mid"></div>
+
+            <div class="intro-grass intro-grass-far"></div>
+            <div class="intro-grass intro-grass-mid"></div>
+            <div class="intro-grass intro-grass-near"></div>
+
+            <svg class="intro-grass-tufts" viewBox="0 0 1440 180" preserveAspectRatio="none">
+                <g class="tuft tuft-a">
+                    <path d="M80 180 C78 120 40 90 30 40 C90 90 92 140 96 180 Z" />
+                    <path d="M110 180 C120 110 150 80 170 30 C140 90 130 140 124 180 Z" />
+                    <path d="M100 180 C102 100 90 70 88 20 C118 80 118 140 112 180 Z" />
+                </g>
+                <g class="tuft tuft-b">
+                    <path d="M420 180 C410 115 380 85 360 35 C430 90 438 140 444 180 Z" />
+                    <path d="M450 180 C470 100 510 70 530 18 C490 90 478 140 468 180 Z" />
+                </g>
+                <g class="tuft tuft-c">
+                    <path d="M780 180 C770 120 740 90 720 40 C800 95 808 145 812 180 Z" />
+                    <path d="M800 180 C808 105 840 75 860 22 C830 90 824 140 818 180 Z" />
+                    <path d="M830 180 C850 110 890 80 910 28 C870 95 858 145 848 180 Z" />
+                </g>
+                <g class="tuft tuft-d">
+                    <path d="M1180 180 C1170 118 1140 88 1125 38 C1200 95 1208 145 1212 180 Z" />
+                    <path d="M1210 180 C1230 108 1265 78 1288 24 C1248 95 1238 145 1228 180 Z" />
+                </g>
+            </svg>
+
+            <span class="intro-bloom b1"></span>
+            <span class="intro-bloom b2"></span>
+            <span class="intro-bloom b3"></span>
+            <span class="intro-bloom b4"></span>
+        </div>
+
+        <div class="intro-actors" aria-hidden="true">
+            <div class="actor actor-dog">
+                <div class="actor-motion">
+                    <div class="pet dog">
+                        <span class="dog-tail"></span>
+                        <span class="dog-body"></span>
+                        <span class="dog-spot"></span>
+                        <span class="leg leg-fl"></span>
+                        <span class="leg leg-bl"></span>
+                        <span class="leg leg-fr"></span>
+                        <span class="leg leg-br"></span>
+                        <span class="dog-head">
+                            <span class="ear ear-l"></span>
+                            <span class="ear ear-r"></span>
+                            <span class="snout"></span>
+                            <span class="eye e-l"></span>
+                            <span class="eye e-r"></span>
+                            <span class="cheek"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actor actor-cat">
+                <div class="actor-motion">
+                    <div class="pet cat">
+                        <span class="cat-tail"></span>
+                        <span class="cat-body"></span>
+                        <span class="leg leg-fl"></span>
+                        <span class="leg leg-bl"></span>
+                        <span class="leg leg-fr"></span>
+                        <span class="leg leg-br"></span>
+                        <span class="cat-head">
+                            <span class="ear ear-l"></span>
+                            <span class="ear ear-r"></span>
+                            <span class="eye e-l"></span>
+                            <span class="eye e-r"></span>
+                            <span class="nose"></span>
+                            <span class="stripe"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actor actor-bunny">
+                <div class="actor-motion">
+                    <div class="pet bunny">
+                        <span class="bunny-body"></span>
+                        <span class="bunny-head">
+                            <span class="ear ear-l"></span>
+                            <span class="ear ear-r"></span>
+                            <span class="eye e-l"></span>
+                            <span class="eye e-r"></span>
+                            <span class="nose"></span>
+                        </span>
+                        <span class="paw"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actor actor-butterfly bf-1">
+                <div class="actor-motion">
+                    <div class="butterfly">
+                        <span class="wing wing-l"></span>
+                        <span class="wing wing-r"></span>
+                        <span class="bf-body"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="actor actor-butterfly bf-2">
+                <div class="actor-motion">
+                    <div class="butterfly pink">
+                        <span class="wing wing-l"></span>
+                        <span class="wing wing-r"></span>
+                        <span class="bf-body"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="actor actor-butterfly bf-3">
+                <div class="actor-motion">
+                    <div class="butterfly gold">
+                        <span class="wing wing-l"></span>
+                        <span class="wing wing-r"></span>
+                        <span class="bf-body"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro-door-scene" aria-hidden="true">
+            <div class="door-inner-light"></div>
+            <div class="door-frame">
+                <div class="door-leaf">
+                    <span class="door-panel"></span>
+                    <span class="door-knob"></span>
+                </div>
+            </div>
+            <div class="door-sign">
+                <svg class="bone-sign" viewBox="0 0 280 120" role="img">
+                    <title>KMNA</title>
+                    <path class="bone-shape" d="M38 40
+                        C18 18 8 42 28 58
+                        C10 78 28 102 48 84
+                        L232 84
+                        C252 102 270 78 252 58
+                        C272 42 262 18 242 40
+                        C258 22 230 8 220 28
+                        L60 28
+                        C50 8 22 22 38 40 Z" />
+                    <text x="140" y="72" text-anchor="middle">KMNA</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="intro-light-wash"></div>
+
+        <button type="button" class="intro-skip" id="intro-skip">Bỏ qua</button>
+    </div>
+
+    <script src="~/js/intro.js" asp-append-version="true"></script>
+</body>
+</html>

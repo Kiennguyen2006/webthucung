@@ -1,0 +1,154 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\views\\kiemtrathongtin\\khoiphuc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\views\\kiemtrathongtin\\khoiphuc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\controllers\\kiemtrathongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\controllers\\kiemtrathongtincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\views\\kiemtrathongtin\\nhapma.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\views\\kiemtrathongtin\\nhapma.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\views\\kiemtrathongtin\\taolaimk.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\views\\kiemtrathongtin\\taolaimk.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\controllers\\quanlycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\controllers\\quanlycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|c:\\users\\admin\\documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\d\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\models\\taikhoanmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{58D03926-8854-8923-1CD9-9D9BC354B55C}|thucung\\thucung.csproj|solutionrelative:thucung\\models\\taikhoanmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\appsettings.json",
+              "RelativeDocumentMoniker": "thucung\\appsettings.json",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\appsettings.json",
+              "RelativeToolTip": "thucung\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-27T07:28:19.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TaikhoanModel.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Models\\TaikhoanModel.cs",
+              "RelativeDocumentMoniker": "thucung\\Models\\TaikhoanModel.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Models\\TaikhoanModel.cs",
+              "RelativeToolTip": "thucung\\Models\\TaikhoanModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T11:54:25.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "thucung\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "thucung\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T11:54:15.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "QuanlyController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Controllers\\QuanlyController.cs",
+              "RelativeDocumentMoniker": "thucung\\Controllers\\QuanlyController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Controllers\\QuanlyController.cs",
+              "RelativeToolTip": "thucung\\Controllers\\QuanlyController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T10:50:06.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Taolaimk.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Taolaimk.cshtml",
+              "RelativeDocumentMoniker": "thucung\\Views\\Kiemtrathongtin\\Taolaimk.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Taolaimk.cshtml",
+              "RelativeToolTip": "thucung\\Views\\Kiemtrathongtin\\Taolaimk.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-26T10:50:03.888Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Nhapma.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Nhapma.cshtml",
+              "RelativeDocumentMoniker": "thucung\\Views\\Kiemtrathongtin\\Nhapma.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Nhapma.cshtml",
+              "RelativeToolTip": "thucung\\Views\\Kiemtrathongtin\\Nhapma.cshtml",
+              "ViewState": "AgIAAFUBAAAAAAAAAAAYwIMBAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-26T09:53:14.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KiemtrathongtinController.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Controllers\\KiemtrathongtinController.cs",
+              "RelativeDocumentMoniker": "thucung\\Controllers\\KiemtrathongtinController.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Controllers\\KiemtrathongtinController.cs",
+              "RelativeToolTip": "thucung\\Controllers\\KiemtrathongtinController.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAADwv2cAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-26T09:52:54.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Khoiphuc.cshtml",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Khoiphuc.cshtml",
+              "RelativeDocumentMoniker": "thucung\\Views\\Kiemtrathongtin\\Khoiphuc.cshtml",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\ph\u00E2n t\u00EDch v\u00E0 \u0111\u1EB7c t\u1EA3 y\u00EAu c\u1EA7u ph\u1EA7n m\u1EC1m\\D\u1EF1 \u00E1n qu\u1EA3n li th\u00FA c\u01B0ng\\webthucung\\thucung\\thucung\\Views\\Kiemtrathongtin\\Khoiphuc.cshtml",
+              "RelativeToolTip": "thucung\\Views\\Kiemtrathongtin\\Khoiphuc.cshtml",
+              "ViewState": "AgIAAGkBAAAAAAAAAAAUwHcBAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-26T09:49:43.369Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

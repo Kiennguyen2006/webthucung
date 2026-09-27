@@ -1,0 +1,292 @@
+﻿@model string
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #fff8e7, #ffffff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .login-container {
+        position: relative;
+        width: 420px;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(120, 90, 20, 0.18);
+        text-align: center;
+        border: 2px solid #f6d47a;
+        z-index: 2;
+    }
+
+    .pet-icon {
+        font-size: 55px;
+        margin-bottom: 5px;
+    }
+
+    h1 {
+        margin: 5px 0 8px 0;
+        color: #d89b00;
+        font-size: 32px;
+    }
+
+    p {
+        margin: 0 0 30px 0;
+        color: #777777;
+        font-size: 15px;
+    }
+
+    .input-box {
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+        .input-box label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 48px;
+            padding: 0 15px;
+            border: 1px solid #dddddd;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+            .input-box input:focus {
+                border-color: #f1b82d;
+                box-shadow: 0 0 0 3px rgba(241, 184, 45, 0.15);
+            }
+
+    .login-button {
+        width: 100%;
+        height: 48px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #f1b82d, #d99500);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(217, 149, 0, 0.25);
+        }
+
+    .links {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+    }
+
+        .links a {
+            color: #c88b00;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+            .links a:hover {
+                text-decoration: underline;
+            }
+
+    .message {
+        width: 100%;
+        margin: -12px 0 22px 0;
+        padding: 12px 15px;
+        background: #fff4d6;
+        border: 1px solid #f1b82d;
+        border-radius: 10px;
+        color: #b27600;
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(241, 184, 45, 0.12);
+    }
+
+    .paw {
+        position: absolute;
+        z-index: 1;
+        font-size: 45px;
+        opacity: 0.25;
+    }
+
+    .paw1 {
+        top: 8%;
+        left: 10%;
+        transform: rotate(-25deg);
+    }
+
+    .paw2 {
+        top: 20%;
+        right: 12%;
+        transform: rotate(20deg);
+    }
+
+    .paw3 {
+        bottom: 15%;
+        left: 13%;
+        transform: rotate(15deg);
+    }
+
+    .paw4 {
+        bottom: 8%;
+        right: 10%;
+        transform: rotate(-20deg);
+    }
+
+    .animal {
+        position: absolute;
+        z-index: 1;
+        font-size: 70px;
+        opacity: 0.35;
+    }
+
+    .dog {
+        left: 4%;
+        bottom: 8%;
+    }
+
+    .cat {
+        right: 4%;
+        top: 8%;
+    }
+
+    @@media (max-width: 500px) {
+
+        .login-container {
+            width: 90%;
+            padding: 30px 25px;
+        }
+
+        .links {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .animal {
+            display: none;
+        }
+
+        .paw {
+            font-size: 30px;
+        }
+    }
+</style>
+
+
+<div class="paw paw1">🐾</div>
+
+<div class="paw paw2">🐾</div>
+
+<div class="paw paw3">🐾</div>
+
+<div class="paw paw4">🐾</div>
+
+
+<div class="animal dog">🐶</div>
+
+<div class="animal cat">🐱</div>
+
+
+<div class="login-container">
+
+    @if (Model != null && Model != "")
+    {
+        <div class="message">
+            @Model
+        </div>
+    }
+
+
+    <div class="pet-icon">
+        🐾
+    </div>
+
+
+    <h1>
+        NKK Pet
+    </h1>
+
+
+    <p>
+        Hệ thống quản lý thú cưng
+    </p>
+
+
+    <form method="post">
+
+        <div class="input-box">
+
+            <label>
+                Tài khoản
+            </label>
+
+            <input type="text"
+                   name="tentk"
+                   value=""
+                   placeholder="Nhập tài khoản">
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label>
+                Mật khẩu
+            </label>
+
+            <input type="password"
+                   name="matkhau"
+                   value=""
+                   placeholder="Nhập mật khẩu">
+
+        </div>
+        <button class="login-button"
+                type="submit">
+
+            Đăng nhập
+
+        </button>
+
+    </form>
+
+
+    <div class="links">
+
+        <a href="/Kiemtrathongtin/Khoiphuc">
+            Quên mật khẩu?
+        </a>
+
+        <a href="/Kiemtrathongtin/Taotk">
+            Tạo tài khoản
+        </a>
+
+    </div>
+
+</div>

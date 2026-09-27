@@ -1,0 +1,463 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Quên mật khẩu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf0;
+            min-height: 100vh;
+            color: #40352f;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .logo {
+            position: absolute;
+            top: 35px;
+            left: 70px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .logo-paw {
+            font-size: 45px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: bold;
+            color: #f5a900;
+        }
+
+        .logo-text span {
+            color: #4b403a;
+        }
+
+        .main {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 100vh;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            padding: 120px 50px 60px;
+        }
+
+        .forgot-box {
+            width: 650px;
+            background: white;
+            border-radius: 22px;
+            padding: 45px 60px;
+            box-shadow: 0 10px 35px rgba(120, 90, 30, 0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-login {
+            display: inline-block;
+            color: #8c8c9b;
+            text-decoration: none;
+            font-size: 16px;
+            margin-bottom: 35px;
+        }
+
+        .back-login:hover {
+            color: #f5a900;
+        }
+
+        .paw-title {
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            text-align: center;
+            color: #9292a3;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        /* Label */
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .input-box {
+            width: 100%;
+            height: 62px;
+            border: 1px solid #dedee5;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            transition: 0.2s;
+        }
+
+        .input-box:focus-within {
+            border-color: #f5b21b;
+            box-shadow: 0 0 0 3px rgba(245, 178, 27, 0.12);
+        }
+
+        .email-icon {
+            font-size: 23px;
+            margin-right: 13px;
+            color: #9a9aaa;
+        }
+
+        .input-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 100%;
+            font-size: 17px;
+            color: #40352f;
+        }
+
+        .input-box input::placeholder {
+            color: #a4a4b3;
+        }
+
+
+        .btn-submit {
+            width: 100%;
+            height: 62px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(90deg, #ffb511, #ffbd25);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 175, 20, 0.25);
+        }
+
+        .btn-icon {
+            margin-right: 10px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 35px 0 25px;
+            color: #9999a7;
+            font-size: 16px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e3e3e8;
+        }
+
+
+        .login-link {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #f2a900;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .login-link:hover {
+            color: #d58f00;
+        }
+
+        .pet-image {
+            width: 520px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pet-image img {
+            width: 100%;
+            display: block;
+        }
+
+
+        .paw {
+            position: absolute;
+            font-size: 55px;
+            opacity: 0.15;
+            color: #f5b21b;
+        }
+
+        .paw-1 {
+            top: 120px;
+            right: 100px;
+            transform: rotate(20deg);
+        }
+
+        .paw-2 {
+            bottom: 100px;
+            left: 80px;
+            transform: rotate(-20deg);
+        }
+
+        .paw-3 {
+            top: 45%;
+            right: 30px;
+            font-size: 35px;
+            transform: rotate(-20deg);
+        }
+        .yellow-bg {
+            position: absolute;
+            width: 550px;
+            height: 250px;
+            right: -150px;
+            bottom: -80px;
+            background: #fff0bc;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .yellow-bg-2 {
+            position: absolute;
+            width: 350px;
+            height: 180px;
+            left: -170px;
+            top: -80px;
+            background: #ffecb2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        @@media (max-width: 1000px) {
+
+            .main {
+                padding-top: 120px;
+            }
+
+            .pet-image {
+                width: 400px;
+            }
+
+            .forgot-box {
+                width: 550px;
+                padding: 40px;
+            }
+        }
+
+        @@media (max-width: 800px) {
+
+            .logo {
+                left: 25px;
+                top: 20px;
+            }
+
+            .logo-text {
+                font-size: 25px;
+            }
+
+            .logo-paw {
+                font-size: 35px;
+            }
+
+            .main {
+                padding: 100px 20px 40px;
+            }
+
+            .pet-image {
+                display: none;
+            }
+
+            .forgot-box {
+                width: 100%;
+                max-width: 600px;
+                padding: 35px 25px;
+            }
+
+            .title {
+                font-size: 30px;
+            }
+        }
+
+        @@media (max-width: 450px) {
+
+            .forgot-box {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .title {
+                font-size: 27px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .input-box,
+            .btn-submit {
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    @if (ViewBag.tb != null && ViewBag.tb != "")
+    {
+        <p>@ViewBag.tb</p>
+    }
+    <div class="container">
+
+        <div class="yellow-bg"></div>
+        <div class="yellow-bg-2"></div>
+
+
+        <div class="logo">
+            <div class="logo-paw">🐾</div>
+
+            <div class="logo-text">
+                Pet<span>Care</span>
+            </div>
+        </div>
+
+        <div class="paw paw-1">🐾</div>
+        <div class="paw paw-2">🐾</div>
+        <div class="paw paw-3">🐾</div>
+
+
+        <div class="main">
+
+
+            <div class="forgot-box">
+
+                <a href="/Kiemtrathongtin/DangNhap"
+                   class="back-login">
+                    ← Quay lại đăng nhập
+                </a>
+
+                <div class="paw-title">
+                    🐾
+                </div>
+
+                <h1 class="title">
+                    Quên mật khẩu
+                </h1>
+
+                <p class="description">
+                    Nhập email của bạn để chúng tôi gửi mã xác nhận
+                    <br />
+                    khôi phục mật khẩu.
+                </p>
+
+
+                <form method="post"
+                      action="/Kiemtrathongtin/Khoiphuc">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email của bạn
+                        </label>
+
+                        <div class="input-box">
+
+                            <span class="email-icon">
+                                ✉
+                            </span>
+
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   placeholder="Nhập email của bạn"
+                                   required />
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn-submit">
+
+                        <span class="btn-icon">➤</span>
+
+                        Gửi mã xác nhận
+
+                    </button>
+
+                </form>
+
+
+                <div class="divider">
+                    <span>Hoặc</span>
+                </div>
+
+
+                <a href="/Kiemtrathongtin/DangNhap"
+                   class="login-link">
+
+                    ← Quay lại đăng nhập
+
+                </a>
+
+            </div>
+
+
+            <div class="pet-image">
+
+                <img src="/images/anh1.jpg"
+                     alt="Thú cưng" />
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
