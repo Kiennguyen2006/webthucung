@@ -1,5 +1,6 @@
 (function () {
     var world = document.getElementById("intro-world");
+
     if (!world) {
         return;
     }
@@ -9,6 +10,7 @@
     var timers = [];
     var finished = false;
     var storageKey = "kmna-intro-seen";
+
     var params = new URLSearchParams(window.location.search);
     var forceReplay = params.get("replay") === "1";
 
@@ -16,28 +18,32 @@
         timers.forEach(function (id) {
             window.clearTimeout(id);
         });
+
         timers = [];
+    }
+
+    function later(ms, fn) {
+        timers.push(window.setTimeout(fn, ms));
     }
 
     function goHome() {
         if (finished) {
             return;
         }
+
         finished = true;
         clearTimers();
+
         try {
             sessionStorage.setItem(storageKey, "1");
         } catch (e) {
-            /* ignore private-mode storage errors */
         }
+
         world.classList.add("is-wash");
+
         window.setTimeout(function () {
             window.location.replace(homeUrl);
-        }, 720);
-    }
-
-    function later(ms, fn) {
-        timers.push(window.setTimeout(fn, ms));
+        }, 1400);
     }
 
     if (!forceReplay) {
@@ -47,52 +53,107 @@
                 return;
             }
         } catch (e) {
-            /* continue playing intro */
         }
     }
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        world.classList.add("is-scene", "is-alive", "is-door", "is-open");
-        later(900, goHome);
+        world.classList.add(
+            "is-scene",
+            "is-alive",
+            "is-look",
+            "is-door",
+            "is-running",
+            "is-open",
+            "is-enter",
+            "is-wash"
+        );
+
+        later(1800, goHome);
+
         if (skipButton) {
             skipButton.addEventListener("click", goHome);
         }
+
         return;
     }
 
-    later(40, function () {
+    /*
+        0.0s
+        Bắt đầu dựng thế giới.
+    */
+    later(100, function () {
         world.classList.add("is-scene");
     });
 
-    later(2000, function () {
+    /*
+        3.2s
+        Thú cưng xuất hiện.
+    */
+    later(3200, function () {
         world.classList.add("is-alive");
     });
 
-    later(6000, function () {
+    /*
+        3.2s -> 11.5s
+        Thú cưng chơi đùa khá lâu.
+        Người xem có thời gian nhìn toàn cảnh.
+    */
+
+    /*
+        11.5s
+        Thú cưng bắt đầu chú ý về bên phải.
+    */
+    later(11500, function () {
         world.classList.add("is-look");
     });
 
-    later(6800, function () {
-        world.classList.add("is-running");
-    });
-
-    later(8000, function () {
+    /*
+        14.0s
+        CỬA MỚI XUẤT HIỆN.
+        Không xuất hiện quá sớm.
+    */
+    later(14000, function () {
         world.classList.add("is-door");
     });
 
-    later(9000, function () {
+    /*
+        16.2s
+        Sau khi người xem đã thấy cửa,
+        thú cưng mới bắt đầu chạy.
+    */
+    later(16200, function () {
+        world.classList.add("is-running");
+    });
+
+    /*
+        18.8s
+        Cửa mở chậm.
+    */
+    later(18800, function () {
         world.classList.add("is-open");
     });
 
-    later(9800, function () {
+    /*
+        20.3s
+        Thú cưng chạy qua cửa.
+    */
+    later(20300, function () {
         world.classList.add("is-enter");
     });
 
-    later(11800, function () {
+    /*
+        21500ms
+        Ánh sáng vàng bắt đầu phủ màn hình.
+    */
+    later(21500, function () {
         world.classList.add("is-wash");
     });
 
-    later(13200, goHome);
+    /*
+        22900ms
+        Sang website chính.
+    */
+    later(22900, goHome);
 
     if (skipButton) {
         skipButton.addEventListener("click", goHome);

@@ -7,14 +7,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KMNA - Chào mừng</title>
+    <title>KMNA - Thế giới Thú cưng</title>
     <link rel="stylesheet" href="~/css/intro.css" asp-append-version="true" />
 </head>
 <body class="intro-body">
     <div id="intro-world"
          class="intro-world"
-         data-home-url="@Url.Action("Index", "Home")">
+         data-home-url="@Url.Action("Dangnhap", "Kiemtrathongtin")"
 
+        <!-- Sky & Sun Scene -->
         <div class="intro-sky" aria-hidden="true">
             <div class="intro-sun-wrap">
                 <div class="intro-sun-glow"></div>
@@ -22,173 +23,106 @@
                 <div class="intro-sun"></div>
             </div>
 
+            <!-- Parallax Clouds using cloud.svg -->
             <div class="intro-cloud-layer intro-cloud-layer-far">
-                <span class="intro-cloud c1"></span>
-                <span class="intro-cloud c2"></span>
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c1" alt="Mây" />
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c2" alt="Mây" />
             </div>
             <div class="intro-cloud-layer intro-cloud-layer-mid">
-                <span class="intro-cloud c3"></span>
-                <span class="intro-cloud c4"></span>
-                <span class="intro-cloud c5"></span>
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c3" alt="Mây" />
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c4" alt="Mây" />
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c5" alt="Mây" />
             </div>
             <div class="intro-cloud-layer intro-cloud-layer-near">
-                <span class="intro-cloud c6"></span>
-                <span class="intro-cloud c7"></span>
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c6" alt="Mây" />
+                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c7" alt="Mây" />
             </div>
         </div>
 
+        <!-- Field Scene with multiple grass layers & wildflowers -->
         <div class="intro-field" aria-hidden="true">
             <div class="intro-hill intro-hill-far"></div>
             <div class="intro-hill intro-hill-mid"></div>
 
-            <div class="intro-grass intro-grass-far"></div>
-            <div class="intro-grass intro-grass-mid"></div>
-            <div class="intro-grass intro-grass-near"></div>
+            <div class="intro-grass-band intro-grass-far">
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ xa" />
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ xa" />
+            </div>
+            <div class="intro-grass-band intro-grass-mid">
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ vừa" />
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ vừa" />
+            </div>
+            <div class="intro-grass-band intro-grass-near">
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ gần" />
+                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ gần" />
+            </div>
 
-            <svg class="intro-grass-tufts" viewBox="0 0 1440 180" preserveAspectRatio="none">
-                <g class="tuft tuft-a">
-                    <path d="M80 180 C78 120 40 90 30 40 C90 90 92 140 96 180 Z" />
-                    <path d="M110 180 C120 110 150 80 170 30 C140 90 130 140 124 180 Z" />
-                    <path d="M100 180 C102 100 90 70 88 20 C118 80 118 140 112 180 Z" />
-                </g>
-                <g class="tuft tuft-b">
-                    <path d="M420 180 C410 115 380 85 360 35 C430 90 438 140 444 180 Z" />
-                    <path d="M450 180 C470 100 510 70 530 18 C490 90 478 140 468 180 Z" />
-                </g>
-                <g class="tuft tuft-c">
-                    <path d="M780 180 C770 120 740 90 720 40 C800 95 808 145 812 180 Z" />
-                    <path d="M800 180 C808 105 840 75 860 22 C830 90 824 140 818 180 Z" />
-                    <path d="M830 180 C850 110 890 80 910 28 C870 95 858 145 848 180 Z" />
-                </g>
-                <g class="tuft tuft-d">
-                    <path d="M1180 180 C1170 118 1140 88 1125 38 C1200 95 1208 145 1212 180 Z" />
-                    <path d="M1210 180 C1230 108 1265 78 1288 24 C1248 95 1238 145 1228 180 Z" />
-                </g>
-            </svg>
-
-            <span class="intro-bloom b1"></span>
-            <span class="intro-bloom b2"></span>
-            <span class="intro-bloom b3"></span>
-            <span class="intro-bloom b4"></span>
+            <!-- Sparkling nature particles -->
+            <span class="intro-sparkle sp1"></span>
+            <span class="intro-sparkle sp2"></span>
+            <span class="intro-sparkle sp3"></span>
+            <span class="intro-sparkle sp4"></span>
         </div>
 
+        <!-- Animals / Actors Scene with Cute High Quality SVGs -->
         <div class="intro-actors" aria-hidden="true">
+            <!-- Joyful Corgi / Dog -->
             <div class="actor actor-dog">
                 <div class="actor-motion">
-                    <div class="pet dog">
-                        <span class="dog-tail"></span>
-                        <span class="dog-body"></span>
-                        <span class="dog-spot"></span>
-                        <span class="leg leg-fl"></span>
-                        <span class="leg leg-bl"></span>
-                        <span class="leg leg-fr"></span>
-                        <span class="leg leg-br"></span>
-                        <span class="dog-head">
-                            <span class="ear ear-l"></span>
-                            <span class="ear ear-r"></span>
-                            <span class="snout"></span>
-                            <span class="eye e-l"></span>
-                            <span class="eye e-r"></span>
-                            <span class="cheek"></span>
-                        </span>
-                    </div>
+                    <img src="~/intro/images/dog-running.svg" class="pet-img dog-img" alt="Chú chó tinh nghịch" />
                 </div>
             </div>
 
+            <!-- Cute Ginger Cat -->
             <div class="actor actor-cat">
                 <div class="actor-motion">
-                    <div class="pet cat">
-                        <span class="cat-tail"></span>
-                        <span class="cat-body"></span>
-                        <span class="leg leg-fl"></span>
-                        <span class="leg leg-bl"></span>
-                        <span class="leg leg-fr"></span>
-                        <span class="leg leg-br"></span>
-                        <span class="cat-head">
-                            <span class="ear ear-l"></span>
-                            <span class="ear ear-r"></span>
-                            <span class="eye e-l"></span>
-                            <span class="eye e-r"></span>
-                            <span class="nose"></span>
-                            <span class="stripe"></span>
-                        </span>
-                    </div>
+                    <img src="~/intro/images/cat-running.svg" class="pet-img cat-img" alt="Mèo con vui vẻ" />
                 </div>
             </div>
 
+            <!-- Fluffy White Bunny -->
             <div class="actor actor-bunny">
                 <div class="actor-motion">
-                    <div class="pet bunny">
-                        <span class="bunny-body"></span>
-                        <span class="bunny-head">
-                            <span class="ear ear-l"></span>
-                            <span class="ear ear-r"></span>
-                            <span class="eye e-l"></span>
-                            <span class="eye e-r"></span>
-                            <span class="nose"></span>
-                        </span>
-                        <span class="paw"></span>
-                    </div>
+                    <img src="~/intro/images/rabbit-running.svg" class="pet-img bunny-img" alt="Thỏ con nhảy nhót" />
                 </div>
             </div>
 
+            <!-- Colorful 3D Butterflies -->
             <div class="actor actor-butterfly bf-1">
                 <div class="actor-motion">
-                    <div class="butterfly">
-                        <span class="wing wing-l"></span>
-                        <span class="wing wing-r"></span>
-                        <span class="bf-body"></span>
-                    </div>
+                    <img src="~/intro/images/butterfly.svg" class="butterfly-img" alt="Bướm xanh bay lượn" />
                 </div>
             </div>
             <div class="actor actor-butterfly bf-2">
                 <div class="actor-motion">
-                    <div class="butterfly pink">
-                        <span class="wing wing-l"></span>
-                        <span class="wing wing-r"></span>
-                        <span class="bf-body"></span>
-                    </div>
+                    <img src="~/intro/images/butterfly.svg" class="butterfly-img bf-pink" alt="Bướm hồng bay lượn" />
                 </div>
             </div>
             <div class="actor actor-butterfly bf-3">
                 <div class="actor-motion">
-                    <div class="butterfly gold">
-                        <span class="wing wing-l"></span>
-                        <span class="wing wing-r"></span>
-                        <span class="bf-body"></span>
-                    </div>
+                    <img src="~/intro/images/butterfly.svg" class="butterfly-img bf-gold" alt="Bướm vàng bay lượn" />
                 </div>
             </div>
         </div>
 
+        <!-- 3D Cartoon Magical Door with KMNA Bone Sign -->
         <div class="intro-door-scene" aria-hidden="true">
-            <div class="door-inner-light"></div>
-            <div class="door-frame">
-                <div class="door-leaf">
-                    <span class="door-panel"></span>
-                    <span class="door-knob"></span>
-                </div>
-            </div>
-            <div class="door-sign">
-                <svg class="bone-sign" viewBox="0 0 280 120" role="img">
-                    <title>KMNA</title>
-                    <path class="bone-shape" d="M38 40
-                        C18 18 8 42 28 58
-                        C10 78 28 102 48 84
-                        L232 84
-                        C252 102 270 78 252 58
-                        C272 42 262 18 242 40
-                        C258 22 230 8 220 28
-                        L60 28
-                        C50 8 22 22 38 40 Z" />
-                    <text x="140" y="72" text-anchor="middle">KMNA</text>
-                </svg>
+            <div class="door-light-beam"></div>
+            <div class="door-wrapper">
+                <img src="~/intro/images/door.svg" class="door-img" alt="Cửa hàng thú cưng KMNA" />
             </div>
         </div>
 
+        <!-- Expanding Warm Light Wash -->
         <div class="intro-light-wash"></div>
 
-        <button type="button" class="intro-skip" id="intro-skip">Bỏ qua</button>
+        <!-- Interactive Skip Button -->
+        <button type="button" class="intro-skip" id="intro-skip">
+            <span>Bỏ qua</span>
+            <svg class="skip-arrow" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/>
+            </svg>
+        </button>
     </div>
 
     <script src="~/js/intro.js" asp-append-version="true"></script>

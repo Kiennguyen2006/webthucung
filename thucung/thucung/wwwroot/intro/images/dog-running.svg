@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dogCoat" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffbe6b" />
+      <stop offset="50%" stop-color="#f39c12" />
+      <stop offset="100%" stop-color="#d67b04" />
+    </linearGradient>
+    <linearGradient id="dogChest" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#fff3dc" />
+    </linearGradient>
+    <linearGradient id="dogEar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e67e22" />
+      <stop offset="100%" stop-color="#ba5300" />
+    </linearGradient>
+    <filter id="petShadow" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="3" dy="8" stdDeviation="6" flood-color="#2d5218" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <g id="dog-root" filter="url(#petShadow)">
+    <!-- Back Legs (in background) -->
+    <g id="dog-leg-back-far" class="leg-anim leg-back-far">
+      <path d="M 45,95 Q 35,115 32,135 Q 35,140 44,140 Q 50,135 52,115 Z" fill="#cf7100" />
+      <ellipse cx="38" cy="138" rx="7" ry="4" fill="#cf7100" />
+    </g>
+    <g id="dog-leg-front-far" class="leg-anim leg-front-far">
+      <path d="M 120,95 Q 128,115 130,135 Q 135,140 144,140 Q 148,135 145,115 Z" fill="#cf7100" />
+      <ellipse cx="138" cy="138" rx="7" ry="4" fill="#cf7100" />
+    </g>
+
+    <!-- Tail -->
+    <g id="dog-tail" class="tail-anim">
+      <path d="M 32,75 Q 10,65 5,45 Q 15,40 25,60 Q 30,68 36,74 Z" fill="url(#dogCoat)" />
+      <!-- White tip -->
+      <path d="M 12,50 Q 8,46 5,45 Q 15,40 20,48 Z" fill="#ffffff" />
+    </g>
+
+    <!-- Body -->
+    <g id="dog-body">
+      <ellipse cx="85" cy="85" rx="55" ry="32" fill="url(#dogCoat)" />
+      <!-- Cream Belly / Chest Accent -->
+      <path d="M 65,105 Q 90,115 125,95 Q 115,75 85,85 Z" fill="url(#dogChest)" opacity="0.9" />
+      <!-- Cute spot on back -->
+      <ellipse cx="68" cy="65" rx="14" ry="8" fill="#ffffff" opacity="0.3" transform="rotate(-15, 68, 65)" />
+    </g>
+
+    <!-- Near Front Leg -->
+    <g id="dog-leg-front-near" class="leg-anim leg-front-near">
+      <path d="M 105,95 Q 112,118 115,138 Q 120,143 130,143 Q 134,136 128,115 Z" fill="url(#dogCoat)" />
+      <ellipse cx="123" cy="141" rx="8" ry="4" fill="#fff5e6" />
+    </g>
+
+    <!-- Near Back Leg -->
+    <g id="dog-leg-back-near" class="leg-anim leg-back-near">
+      <path d="M 55,95 Q 45,115 48,138 Q 54,144 64,143 Q 68,136 66,115 Z" fill="url(#dogCoat)" />
+      <ellipse cx="56" cy="141" rx="8" ry="4" fill="#fff5e6" />
+    </g>
+
+    <!-- Head and Face -->
+    <g id="dog-head" class="head-anim">
+      <!-- Back Ear -->
+      <path d="M 130,42 Q 135,15 148,18 Q 155,30 145,50 Z" fill="url(#dogEar)" />
+
+      <!-- Head Base -->
+      <circle cx="142" cy="58" r="30" fill="url(#dogCoat)" />
+      <!-- Cute cheeks -->
+      <ellipse cx="158" cy="68" rx="16" ry="12" fill="url(#dogChest)" />
+
+      <!-- Front Ear -->
+      <g id="dog-ear-front" class="ear-anim">
+        <path d="M 120,45 Q 115,15 132,16 Q 140,28 132,54 Z" fill="url(#dogCoat)" />
+        <path d="M 122,40 Q 120,22 130,22 Q 134,30 129,48 Z" fill="#ffb4a2" opacity="0.75" />
+      </g>
+
+      <!-- Eyes with cartoon sparkles -->
+      <ellipse cx="140" cy="52" rx="5.5" ry="6.5" fill="#2c1a0e" />
+      <circle cx="142" cy="50" r="2.2" fill="#ffffff" />
+      <circle cx="138" cy="54" r="1" fill="#ffffff" />
+
+      <ellipse cx="158" cy="52" rx="5" ry="6" fill="#2c1a0e" />
+      <circle cx="160" cy="50" r="2" fill="#ffffff" />
+
+      <!-- Cute Blushing Cheeks -->
+      <ellipse cx="134" cy="64" rx="6" ry="3.5" fill="#ff7675" opacity="0.45" />
+      <ellipse cx="164" cy="64" rx="6" ry="3.5" fill="#ff7675" opacity="0.45" />
+
+      <!-- Snout & Nose -->
+      <ellipse cx="168" cy="59" rx="12" ry="9" fill="url(#dogChest)" />
+      <path d="M 166,54 Q 172,52 176,56 Q 172,62 166,54 Z" fill="#222222" />
+      <ellipse cx="170" cy="54" rx="2" ry="1" fill="#ffffff" opacity="0.8" />
+
+      <!-- Mouth & Happy Tongue -->
+      <path d="M 165,64 Q 170,68 175,64" stroke="#2c1a0e" stroke-width="2" fill="none" stroke-linecap="round" />
+      <path d="M 168,66 Q 171,76 176,73 Q 178,66 174,65 Z" fill="#ff6b81" />
+    </g>
+  </g>
+</svg>
+

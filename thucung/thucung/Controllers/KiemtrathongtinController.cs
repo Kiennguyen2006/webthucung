@@ -2,6 +2,7 @@
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
+using thucung.Models;
 namespace thucung.Controllers
 {
     public class KiemtrathongtinController : Controller
@@ -15,6 +16,8 @@ namespace thucung.Controllers
 
         public IActionResult Dangnhap(string tentk, string matkhau)
         {
+            
+            TempData["tentk"] = tentk;
             int a = 0;
             string b = "Tên đăng nhập hoặc mật khẩu không tồn tại!!!";
             if (tentk != null && tentk != "" && matkhau != null && matkhau != "")
@@ -138,9 +141,82 @@ namespace thucung.Controllers
                 return View();
             }
         }
-        public IActionResult Taolaimk()
+        public IActionResult Taolaimk(string matkhau, string nhaplaimatkhau)
+        {
+            if (matkhau == null || matkhau == "" || nhaplaimatkhau == null || nhaplaimatkhau == "")
+            {
+                return View();
+            }
+            if (matkhau == nhaplaimatkhau)
+            {
+                var dongmuonsua = _context.TaiKhoan.FirstOrDefault(x => x.Email == TempData["email"]);
+                dongmuonsua.MatKhau = matkhau;
+                _context.SaveChanges();
+                return RedirectToAction("Quanly", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Mật khẩu nhập lại không đúng so với mật khẩu trên!!!";
+            }
+            return View();
+        }
+        public IActionResult Taotk()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Themtk(TaikhoanModel taikhoan)
+        {
+            var dongcuoi = _context.TaiKhoan.OrderByDescending(x => x.MaTaiKhoan).FirstOrDefault();
+
+            string mataikhoan;
+
+            if (dongcuoi == null)
+            {
+                mataikhoan = "TK001";
+            }
+            else
+            {
+                int so = int.Parse(dongcuoi.MaTaiKhoan.Substring(2));
+                so = so + 1;
+
+                mataikhoan = "TK" + so.ToString("D3");
+            }
+            var bangtk = _context.TaiKhoan.ToList();
+            bool a = false;
+            if (ModelState.IsValid)
+            {
+                for(int i = 0; i < bangtk.Count; i++)
+                {
+                    if (taikhoan.TenDangNhap == bangtk[i].TenDangNhap)
+                    {
+                        a = false;
+                        break;
+                    }
+                    else
+                    {
+                        a = true;
+                    }
+                }
+                if (a == true)
+                {
+                    taikhoan.MaTaiKhoan = mataikhoan;
+                    taikhoan.NgayTao = DateTime.Now;
+                    _context.TaiKhoan.Add(taikhoan);
+                    _context.SaveChanges();
+                    return RedirectToAction("Quanly", "Quanly");
+                }
+                else
+                {
+                    ViewBag.tb = "Tên tài khoản đã tồn tại";
+                }
+            }
+            else
+            {
+                ViewBag.tb = "vui lòng nhập dữ liệu!!!";
+            }
+            return View("Taotk");
+        }
+
     }
 }

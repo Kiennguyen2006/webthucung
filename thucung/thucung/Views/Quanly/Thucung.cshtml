@@ -1,0 +1,426 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .pet-page {
+        width: 100%;
+    }
+
+    .pet-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .pet-header-left h1 {
+        margin: 0;
+        font-size: 28px;
+        color: #4b3a16;
+    }
+
+    .pet-header-left p {
+        margin: 7px 0 0 0;
+        color: #8b8b8b;
+        font-size: 14px;
+    }
+
+    .pet-add {
+        text-decoration: none;
+        background: linear-gradient(135deg, #f7d15b, #efb92d);
+        color: #4d3a08;
+        padding: 12px 18px;
+        border-radius: 11px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        border: none;
+    }
+
+    .pet-add:hover {
+        background: linear-gradient(135deg, #ffdd70, #f5c53e);
+    }
+
+    .pet-search-box {
+        background: #fffaf0;
+        border: 1px solid #eee1bd;
+        border-radius: 15px;
+        padding: 16px;
+        margin-bottom: 22px;
+    }
+
+    .pet-search-form {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .pet-search-input {
+        flex: 1;
+        height: 45px;
+        border: 1px solid #ddd2b5;
+        border-radius: 10px;
+        padding: 0 15px;
+        font-size: 14px;
+        outline: none;
+        background: white;
+    }
+
+    .pet-search-input:focus {
+        border-color: #e6bb45;
+        box-shadow: 0 0 0 3px rgba(230,187,69,.12);
+    }
+
+    .pet-search-button {
+        height: 45px;
+        padding: 0 22px;
+        border: none;
+        border-radius: 10px;
+        background: #5d4920;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .pet-search-button:hover {
+        background: #765f2c;
+    }
+
+    .pet-refresh {
+        height: 45px;
+        padding: 0 18px;
+        border-radius: 10px;
+        border: 1px solid #ddd2b5;
+        background: white;
+        color: #66552e;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pet-table-box {
+        background: white;
+        border: 1px solid #eee1bd;
+        border-radius: 15px;
+        overflow-x: auto;
+    }
+
+    .pet-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 850px;
+    }
+
+    .pet-table th {
+        background: #fff4cc;
+        color: #604d1b;
+        padding: 15px 13px;
+        text-align: left;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .pet-table td {
+        padding: 13px;
+        border-top: 1px solid #f1ead8;
+        font-size: 14px;
+        color: #555;
+        vertical-align: middle;
+    }
+
+    .pet-table tr:hover td {
+        background: #fffdf7;
+    }
+
+    .pet-photo {
+        width: 55px;
+        height: 55px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #eee0bb;
+    }
+
+    .pet-no-photo {
+        width: 55px;
+        height: 55px;
+        border-radius: 10px;
+        background: #fff5d4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .pet-name {
+        font-weight: bold;
+        color: #4d3b12;
+        margin-bottom: 4px;
+    }
+
+    .pet-code {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .pet-gender {
+        display: inline-block;
+        padding: 5px 9px;
+        border-radius: 7px;
+        background: #f5f1df;
+        color: #6d5c31;
+        font-size: 12px;
+    }
+
+    .pet-actions {
+        display: flex;
+        gap: 7px;
+        white-space: nowrap;
+    }
+
+    .pet-action {
+        text-decoration: none;
+        padding: 8px 11px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .pet-detail {
+        background: #edf5ff;
+        color: #3970a7;
+    }
+
+    .pet-edit {
+        background: #fff4d8;
+        color: #98731c;
+    }
+
+    .pet-delete {
+        background: #ffe9e7;
+        color: #b54d46;
+    }
+
+    .pet-action:hover {
+        opacity: .8;
+    }
+
+    .pet-empty {
+        text-align: center;
+        padding: 55px 20px !important;
+        color: #999;
+    }
+
+    .pet-empty-icon {
+        font-size: 42px;
+        margin-bottom: 10px;
+    }
+
+    .pet-empty-text {
+        font-size: 15px;
+    }
+
+    @@media (max-width: 700px) {
+        .pet-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .pet-add {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .pet-search-form {
+            flex-direction: column;
+        }
+
+        .pet-search-button,
+        .pet-refresh {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="pet-page">
+
+    <div class="pet-header">
+
+        <div class="pet-header-left">
+
+            <h1>
+                🐾 Quản lý thú cưng
+            </h1>
+
+            <p>
+                Quản lý thông tin thú cưng của khách hàng
+            </p>
+
+        </div>
+
+        <a href="@Url.Action("Create", "Thucung")"
+           class="pet-add">
+            ＋ Thêm thú cưng
+        </a>
+
+    </div>
+
+    <div class="pet-search-box">
+
+        <form method="get"
+              action="@Url.Action("Thucung", "Quanly")"
+              class="pet-search-form">
+
+            <input type="text"
+                   name="timkiem"
+                   value="@Context.Request.Query["search"]"
+                   class="pet-search-input"
+                   placeholder="Nhập mã hoặc tên thú cưng cần tìm..." />
+
+            <button type="submit"
+                    class="pet-search-button">
+                🔍 Tìm kiếm
+            </button>
+
+            <a href="@Url.Action("Quanly", "Thucung")"
+               class="pet-refresh">
+                Làm mới
+            </a>
+
+        </form>
+
+    </div>
+
+    <div class="pet-table-box">
+
+        <table class="pet-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Ảnh</th>
+
+                    <th>Thú cưng</th>
+
+                    <th>Loài</th>
+
+                    <th>Giống</th>
+
+                    <th>Giới tính</th>
+
+                    <th>Thao tác</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @if (ViewBag.bangthucung != null && ViewBag.bangthucung.Count > 0)
+                {
+                    foreach (var item in ViewBag.bangthucung)
+                    {
+                        <tr>
+
+                            <td>
+
+                                @if (!string.IsNullOrEmpty(item.Anh))
+                                {
+                                    <img src="@item.Anh"
+                                         class="pet-photo"
+                                         alt="@item.TenThuCung" />
+                                }
+                                else
+                                {
+                                    <div class="pet-no-photo">
+                                        🐶
+                                    </div>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                <div class="pet-name">
+                                    @item.TenThuCung
+                                </div>
+
+                                <div class="pet-code">
+                                    @item.MaThuCung
+                                </div>
+
+                            </td>
+
+                            <td>
+                                @item.LoaiThuCung
+                            </td>
+
+                            <td>
+                                @item.GiongThuCung
+                            </td>
+
+                            <td>
+
+                                <span class="pet-gender">
+                                    @item.GioiTinh
+                                </span>
+
+                            </td>
+
+                            <td>
+
+                                <div class="pet-actions">
+
+                                    <a href="@Url.Action("Details", "Thucung", new { id = item.MaThuCung })"
+                                       class="pet-action pet-detail">
+                                        Xem chi tiết
+                                    </a>
+
+                                    <a href="@Url.Action("Edit", "Thucung", new { id = item.MaThuCung })"
+                                       class="pet-action pet-edit">
+                                        Sửa
+                                    </a>
+
+                                    <a href="@Url.Action("Delete", "Thucung", new { id = item.MaThuCung })"
+                                       class="pet-action pet-delete">
+                                        Xóa
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+
+                        <td colspan="6"
+                            class="pet-empty">
+
+                            <div class="pet-empty-icon">
+                                🐾
+                            </div>
+
+                            <div class="pet-empty-text">
+                                Chưa có dữ liệu thú cưng
+                            </div>
+
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

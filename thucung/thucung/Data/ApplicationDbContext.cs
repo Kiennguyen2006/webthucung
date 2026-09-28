@@ -9,4 +9,5 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<TaikhoanModel> TaiKhoan { get; set; }
+    public DbSet<ThucungModel> ThuCung { get; set; }
 }

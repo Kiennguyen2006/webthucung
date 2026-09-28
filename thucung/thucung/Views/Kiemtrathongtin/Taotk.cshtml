@@ -1,0 +1,227 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Tạo tài khoản";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tạo tài khoản - NKK Pet</title>
+
+    <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background: #fff8dc;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .container {
+                width: 450px;
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            }
+
+            .logo {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+
+                .logo span {
+                    color: #f5b400;
+                    font-size: 32px;
+                    font-weight: bold;
+                }
+
+            .logo-icon {
+                color: #4b356b;
+                font-size: 25px;
+                margin-right: 8px;
+            }
+
+            h2 {
+                text-align: center;
+                color: #222;
+                font-size: 32px;
+                font-weight: 400;
+                margin-bottom: 12px;
+            }
+
+            .description {
+                text-align: center;
+                color: #777;
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+                .form-group label {
+                    display: block;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #222;
+                    margin-bottom: 8px;
+                }
+
+                .form-group input {
+                    width: 100%;
+                    height: 48px;
+                    padding: 0 14px;
+                    border: 1px solid #ddd;
+                    border-radius: 9px;
+                    font-size: 16px;
+                    outline: none;
+                }
+
+                    .form-group input:focus {
+                        border-color: #f5b400;
+                        box-shadow: 0 0 0 2px rgba(245, 180, 0, 0.12);
+                    }
+
+                    .form-group input::placeholder {
+                        color: #999;
+                    }
+
+            .btn {
+                width: 100%;
+                height: 52px;
+                border: none;
+                border-radius: 9px;
+                background: #f5b400;
+                color: white;
+                font-size: 17px;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: 5px;
+            }
+
+                .btn:hover {
+                    background: #e0a400;
+                }
+
+            .message {
+                width: 100%;
+                padding: 12px 15px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                background: #fff0f0;
+                border: 1px solid #ffcaca;
+                color: #d60000;
+                text-align: center;
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .back {
+                text-align: center;
+                margin-top: 24px;
+            }
+
+                .back a {
+                    color: #d99d00;
+                    font-size: 16px;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+
+                    .back a:hover {
+                        text-decoration: underline;
+                    }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            <span class="logo-icon">🐾</span>
+            <span>PetCare</span>
+        </div>
+
+        <h2>Tạo tài khoản</h2>
+
+        <p class="description">
+            Nhập thông tin để tạo tài khoản mới
+        </p>
+
+        @if (ViewBag.tb != null && ViewBag.tb != "")
+        {
+            <p class="message">
+                @ViewBag.tb
+            </p>
+        }
+
+        <form asp-controller="Kiemtrathongtin" asp-action="Themtk" method="POST">
+
+            <div class="form-group">
+                <label for="tendangnhap">
+                    Tên đăng nhập
+                </label>
+
+                <input type="text"
+                       id="tendangnhap"
+                       name="TenDangNhap"
+                       value=""
+                       placeholder="Nhập tên đăng nhập"
+                       required />
+            </div>
+
+            <div class="form-group">
+                <label for="matkhau">
+                    Mật khẩu
+                </label>
+
+                <input type="password"
+                       id="matkhau"
+                       name="MatKhau"
+                       value=""
+                       placeholder="Nhập mật khẩu"
+                       required />
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">
+                    Email
+                </label>
+
+                <input type="email"
+                       id="email"
+                       name="Email"
+                       value=""
+                       placeholder="Nhập địa chỉ email"
+                       required />
+            </div>
+            <button type="submit" class="btn">
+                Tạo tài khoản
+            </button>
+
+        </form>
+
+        <div class="back">
+            <a href="/Kiemtrathongtin/Dangnhap">
+                Quay lại đăng nhập
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>

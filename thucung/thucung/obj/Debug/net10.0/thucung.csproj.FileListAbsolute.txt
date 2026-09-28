@@ -289,7 +289,6 @@ C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\D�
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\thucung.csproj.Up2Date
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\thucung.dll
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\refint\thucung.dll
@@ -299,3 +298,14 @@ C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\D�
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\bin\Debug\net10.0\BouncyCastle.Cryptography.dll
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\bin\Debug\net10.0\MailKit.dll
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\bin\Debug\net10.0\MimeKit.dll
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\thucung.sourcelink.json
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\izbvj9blpm-{0}-nxag96ie78-nxag96ie78.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\rp0yktuxy2-{0}-z5n2t061vs-z5n2t061vs.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\16pm6lb670-{0}-91x5hoxnqy-91x5hoxnqy.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\s277chhzbs-{0}-tsccf33s32-tsccf33s32.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\1a2ziea9zx-{0}-4awz276zox-4awz276zox.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\mujzxc3zlk-{0}-scf6n3f59z-scf6n3f59z.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\e6jpwcx5mz-{0}-btnflnim0l-btnflnim0l.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\u0pfapph71-{0}-ne2huxuvw9-ne2huxuvw9.gz
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\obj\Debug\net10.0\compressed\8rqf2ci06y-{0}-z32yv5e978-z32yv5e978.gz

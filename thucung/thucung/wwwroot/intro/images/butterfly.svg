@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bfWingBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#74b9ff" />
+      <stop offset="50%" stop-color="#0984e3" />
+      <stop offset="100%" stop-color="#6c5ce7" />
+    </linearGradient>
+    <linearGradient id="bfWingPink" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeaa7" />
+      <stop offset="50%" stop-color="#fd79a8" />
+      <stop offset="100%" stop-color="#e84393" />
+    </linearGradient>
+    <filter id="bfGlow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#74b9ff" flood-opacity="0.6" />
+    </filter>
+  </defs>
+
+  <g id="butterfly-root" filter="url(#bfGlow)">
+    <!-- Left Wing -->
+    <g class="wing-left">
+      <path d="M 48,36 C 30,12 8,18 10,38 C 12,50 30,52 48,46 Z" fill="url(#bfWingBlue)" />
+      <path d="M 48,44 C 32,46 18,58 24,68 C 30,76 44,65 48,50 Z" fill="url(#bfWingBlue)" opacity="0.9" />
+      <!-- Wing spots -->
+      <circle cx="24" cy="34" r="5" fill="#ffffff" opacity="0.75" />
+      <circle cx="32" cy="60" r="3.5" fill="#ffeaa7" opacity="0.8" />
+    </g>
+
+    <!-- Right Wing -->
+    <g class="wing-right">
+      <path d="M 52,36 C 70,12 92,18 90,38 C 88,50 70,52 52,46 Z" fill="url(#bfWingBlue)" />
+      <path d="M 52,44 C 68,46 82,58 76,68 C 70,76 56,65 52,50 Z" fill="url(#bfWingBlue)" opacity="0.9" />
+      <!-- Wing spots -->
+      <circle cx="76" cy="34" r="5" fill="#ffffff" opacity="0.75" />
+      <circle cx="68" cy="60" r="3.5" fill="#ffeaa7" opacity="0.8" />
+    </g>
+
+    <!-- Butterfly Body & Antennae -->
+    <g class="bf-body">
+      <!-- Antennae -->
+      <path d="M 49,24 Q 44,12 38,14" stroke="#2d3436" stroke-width="1.8" fill="none" stroke-linecap="round" />
+      <circle cx="38" cy="14" r="2" fill="#fdcb6e" />
+      <path d="M 51,24 Q 56,12 62,14" stroke="#2d3436" stroke-width="1.8" fill="none" stroke-linecap="round" />
+      <circle cx="62" cy="14" r="2" fill="#fdcb6e" />
+
+      <!-- Head and Thorax -->
+      <ellipse cx="50" cy="25" rx="3.5" ry="3.5" fill="#2d3436" />
+      <ellipse cx="50" cy="42" rx="3" ry="14" fill="#2d3436" />
+      <!-- Subtle body segments -->
+      <line x1="48" y1="36" x2="52" y2="36" stroke="#ffeaa7" stroke-width="1" />
+      <line x1="48" y1="42" x2="52" y2="42" stroke="#ffeaa7" stroke-width="1" />
+      <line x1="48" y1="48" x2="52" y2="48" stroke="#ffeaa7" stroke-width="1" />
+    </g>
+  </g>
+</svg>
+

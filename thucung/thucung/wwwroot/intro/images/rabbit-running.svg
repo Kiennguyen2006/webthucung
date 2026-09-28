@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 130" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bunnyFur" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#f8f9fa" />
+      <stop offset="100%" stop-color="#e9ecef" />
+    </linearGradient>
+    <linearGradient id="bunnyPink" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb8c6" />
+      <stop offset="100%" stop-color="#ff8fab" />
+    </linearGradient>
+    <filter id="bunnyShadow" x="-10%" y="-10%" width="130%" height="140%">
+      <feDropShadow dx="2" dy="6" stdDeviation="5" flood-color="#2d5218" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <g id="bunny-root" filter="url(#bunnyShadow)">
+    <!-- Fluffy Cotton Tail -->
+    <circle cx="24" cy="78" r="12" fill="#ffffff" stroke="#e9ecef" stroke-width="1.5" />
+
+    <!-- Back Paws (Far) -->
+    <ellipse cx="36" cy="112" rx="14" ry="7" fill="#dee2e6" transform="rotate(-15, 36, 112)" />
+
+    <!-- Bunny Body -->
+    <ellipse cx="60" cy="80" rx="36" ry="26" fill="url(#bunnyFur)" />
+    <!-- Chest Fluff -->
+    <path d="M 68,74 Q 85,82 82,98 Q 65,96 68,74 Z" fill="#ffffff" />
+
+    <!-- Back Paws (Near) -->
+    <ellipse cx="48" cy="114" rx="16" ry="8" fill="url(#bunnyFur)" transform="rotate(-10, 48, 114)" stroke="#e9ecef" stroke-width="1" />
+    <!-- Front Paws (Near) -->
+    <ellipse cx="92" cy="112" rx="10" ry="6" fill="url(#bunnyFur)" stroke="#e9ecef" stroke-width="1" />
+
+    <!-- Head and Ears -->
+    <g id="bunny-head" class="head-anim">
+      <!-- Back Ear -->
+      <g transform="rotate(12, 94, 25)">
+        <path d="M 88,40 Q 82,10 94,5 Q 106,10 100,40 Z" fill="#f1f3f5" />
+        <path d="M 90,36 Q 86,14 94,10 Q 102,14 98,36 Z" fill="url(#bunnyPink)" opacity="0.8" />
+      </g>
+
+      <!-- Head Base -->
+      <circle cx="95" cy="56" r="22" fill="url(#bunnyFur)" />
+
+      <!-- Front Ear -->
+      <g transform="rotate(-8, 86, 25)">
+        <path d="M 80,42 Q 74,8 88,4 Q 98,8 92,42 Z" fill="url(#bunnyFur)" stroke="#e9ecef" stroke-width="1" />
+        <path d="M 82,38 Q 78,12 87,8 Q 94,12 90,38 Z" fill="url(#bunnyPink)" />
+      </g>
+
+      <!-- Big Sparkling Eye -->
+      <ellipse cx="102" cy="52" rx="4.5" ry="5.5" fill="#2d3436" />
+      <circle cx="104" cy="50" r="1.8" fill="#ffffff" />
+      <circle cx="101" cy="53" r="0.8" fill="#ffffff" />
+
+      <!-- Cute Pink Nose -->
+      <ellipse cx="114" cy="58" rx="2.5" ry="2" fill="#ff7675" />
+      <!-- Mouth -->
+      <path d="M 112,62 Q 114,64 116,62" stroke="#2d3436" stroke-width="1.2" fill="none" stroke-linecap="round" />
+
+      <!-- Blushing Cheeks -->
+      <ellipse cx="98" cy="60" rx="5" ry="3.5" fill="#ff7675" opacity="0.5" />
+    </g>
+  </g>
+</svg>
+
