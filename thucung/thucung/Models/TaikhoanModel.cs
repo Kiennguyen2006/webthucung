@@ -10,5 +10,6 @@ namespace thucung.Models
         public string MatKhau { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public DateTime NgayTao { get; set; }
+        public string PhanQuyen { get; set; }
     }
 }

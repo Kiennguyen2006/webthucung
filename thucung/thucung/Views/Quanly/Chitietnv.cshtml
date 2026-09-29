@@ -1,0 +1,348 @@
+﻿@model thucung.Models.NhanVienModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .nhanvien-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .nhanvien-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nhanvien-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-back {
+        background: #8d6e63;
+        color: white;
+    }
+
+    .btn-edit {
+        background: #f4b942;
+        color: white;
+    }
+
+    .detail-box {
+        width: 100%;
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .detail-content {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 18px 25px;
+    }
+
+    .detail-label {
+        color: #5d4037;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 11px 0;
+    }
+
+    .detail-value {
+        min-height: 42px;
+        padding: 11px 13px;
+        background: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 9px;
+        font-size: 14px;
+        color: #3f3f3f;
+    }
+
+    .detail-image {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .detail-image img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+    }
+
+    .no-image {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+        border-radius: 12px;
+        color: #888;
+        font-size: 14px;
+        border: 1px solid #ddd;
+    }
+
+    .description {
+        min-height: 100px;
+        white-space: pre-wrap;
+    }
+
+    .not-found {
+        padding: 20px;
+        background: #ffebee;
+        border-radius: 9px;
+        color: #c62828;
+    }
+
+    @@media (max-width: 700px) {
+        .nhanvien-page {
+            padding: 15px;
+        }
+
+        .nhanvien-title {
+            font-size: 23px;
+        }
+
+        .detail-content {
+            grid-template-columns: 1fr;
+            gap: 7px;
+        }
+
+        .detail-label {
+            padding-bottom: 0;
+        }
+
+        .header-actions {
+            width: 100%;
+        }
+
+        .header-actions .btn {
+            flex: 1;
+        }
+    }
+</style>
+
+<div class="nhanvien-page">
+
+    <div class="nhanvien-header">
+
+        <h2 class="nhanvien-title">
+            <span>👨‍💼</span> Chi tiết nhân viên
+        </h2>
+
+        <div class="header-actions">
+
+            @@if (Model != null)
+{
+    <div class="warning">
+        Bạn có chắc chắn muốn xóa nhân viên này không?
+    </div>
+}
+
+            <a href="@Url.Action("Nhanvien", "Quanly")"
+               class="btn btn-back">
+                ← Quay lại
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="detail-box">
+
+        @if (Model != null)
+        {
+            <div class="detail-content">
+
+                <div class="detail-label">
+                    Mã nhân viên
+                </div>
+
+                <div class="detail-value">
+                    @Model.MaNhanVien
+                </div>
+
+
+                <div class="detail-label">
+                    Họ tên
+                </div>
+
+                <div class="detail-value">
+                    @Model.HoTen
+                </div>
+
+
+                <div class="detail-label">
+                    Ngày sinh
+                </div>
+
+                <div class="detail-value">
+                    @if (Model.NgaySinh.HasValue)
+                    {
+                        @Model.NgaySinh.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <span>Chưa có</span>
+                    }
+                </div>
+
+
+                <div class="detail-label">
+                    Giới tính
+                </div>
+
+                <div class="detail-value">
+                    @Model.GioiTinh
+                </div>
+
+
+                <div class="detail-label">
+                    Số điện thoại
+                </div>
+
+                <div class="detail-value">
+                    @Model.SoDienThoai
+                </div>
+
+
+                <div class="detail-label">
+                    Email
+                </div>
+
+                <div class="detail-value">
+                    @Model.Email
+                </div>
+
+
+                <div class="detail-label">
+                    Địa chỉ
+                </div>
+
+                <div class="detail-value">
+                    @Model.DiaChi
+                </div>
+
+
+                <div class="detail-label">
+                    Chuyên môn
+                </div>
+
+                <div class="detail-value">
+                    @Model.ChuyenMon
+                </div>
+
+
+                <div class="detail-label">
+                    Bằng cấp
+                </div>
+
+                <div class="detail-value">
+                    @Model.BangCap
+                </div>
+
+
+                <div class="detail-label">
+                    Ngày vào làm
+                </div>
+
+                <div class="detail-value">
+                    @if (Model.NgayVaoLam.HasValue)
+                    {
+                        @Model.NgayVaoLam.Value.ToString("dd/MM/yyyy")
+                    }
+                    else
+                    {
+                        <span>Chưa có</span>
+                    }
+                </div>
+
+
+                <div class="detail-label">
+                    Ảnh
+                </div>
+
+                <div class="detail-value">
+
+                    @if (Model.Anh != null && Model.Anh != "")
+                    {
+                        <div class="detail-image">
+
+                            <img src="~/images/@Model.Anh"
+                                 alt="Ảnh nhân viên" />
+
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="no-image">
+                            Chưa có ảnh
+                        </div>
+                    }
+
+                </div>
+
+
+                <div class="detail-label">
+                    Mô tả
+                </div>
+
+                <div class="detail-value description">
+                    @Model.MoTa
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <div class="not-found">
+                Không tìm thấy thông tin nhân viên.
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,7 +1,13 @@
 wwwroot\css\intro.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\4a49ce6c-c02f-49e3-8234-3239fd3e3128.jpg
+wwwroot\images\4ae08e40-fd0c-4765-8d47-4a31266d41e9.jpg
+wwwroot\images\894ab536-a6ab-40fc-9a85-d39cd6872b0d.jpg
 wwwroot\images\anh1.jpg
+wwwroot\images\b164b696-0ee1-44fd-8361-beb6198f8fb8.jpg
+wwwroot\images\cc350580-4a90-44a5-94e4-e6eba98b619f.jpg
+wwwroot\images\f36cfa1a-6f1a-44e1-809e-03b11042624c.jpg
 wwwroot\intro\images\butterfly.svg
 wwwroot\intro\images\cat-running.svg
 wwwroot\intro\images\cloud.svg
@@ -71,14 +77,12 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\css\intro.css
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\css\site.css
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\favicon.ico
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\cloud.svg
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\cat-running.svg
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.min.js
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.min.map
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\butterfly.svg
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\cat-running.svg
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\cloud.svg
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\dog-running.svg
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\door.svg
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\intro\images\grass.svg
@@ -135,10 +139,12 @@ C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\D�
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery-validation\dist\additional-methods.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\css\intro.css
-C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery-validation\LICENSE.md
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.min.js
 C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.min.js
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\Admin\Documents\phân tích và đặc tả yêu cầu phần mềm\Dự án quản li thú cưng\webthucung\thucung\thucung\wwwroot\lib\jquery\LICENSE.txt

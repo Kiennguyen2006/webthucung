@@ -1,0 +1,355 @@
+﻿@model thucung.Models.NhanVienModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .nhanvien-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .nhanvien-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nhanvien-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-save {
+        background: #f4b942;
+        color: white;
+    }
+
+    .btn-back {
+        background: #8d6e63;
+        color: white;
+    }
+
+    .form-box {
+        width: 100%;
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .error-message {
+        margin-bottom: 18px;
+        padding: 12px 15px;
+        background: #ffebee;
+        border-radius: 9px;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .form-group.full {
+        grid-column: 1 / -1;
+    }
+
+    .form-group label {
+        color: #5d4037;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #3f3f3f;
+        background: white;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 42px;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #f4b942;
+    }
+
+    .form-group input[readonly] {
+        background: #f8f8f8;
+        color: #777;
+        cursor: not-allowed;
+    }
+
+    .form-submit {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .image-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .image-box input {
+        padding: 9px 10px;
+    }
+
+    @@media (max-width: 700px) {
+        .nhanvien-page {
+            padding: 15px;
+        }
+
+        .nhanvien-title {
+            font-size: 23px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+            grid-column: auto;
+        }
+
+        .form-submit {
+            flex-direction: column;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="nhanvien-page">
+
+    <div class="nhanvien-header">
+
+        <h2 class="nhanvien-title">
+            <span>👨‍💼</span> Thêm nhân viên
+        </h2>
+
+        <a href="@Url.Action("Nhanvien", "Quanly")"
+           class="btn btn-back">
+            ← Quay lại
+        </a>
+
+    </div>
+
+    <div class="form-box">
+
+        @if (ViewBag.tb != null)
+        {
+            <div class="error-message">
+                @ViewBag.tb
+            </div>
+        }
+
+        <form action="@Url.Action("Themnhanvien", "Quanly")"
+              method="post"
+              enctype="multipart/form-data">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Mã nhân viên</label>
+
+                    <input type="text"
+                           value="Tự động tạo"
+                           readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Họ tên</label>
+
+                    <input type="text"
+                           name="HoTen"
+                           value="@Model?.HoTen"
+                           placeholder="Nhập họ tên nhân viên" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày sinh</label>
+
+                    <input type="date"
+                           name="NgaySinh"
+                           value="@(Model?.NgaySinh?.ToString("yyyy-MM-dd"))" />
+                </div>
+
+                <div class="form-group">
+                    <label>Giới tính</label>
+
+                    <select name="GioiTinh">
+
+                        @if (Model?.GioiTinh == "Nam")
+                        {
+                            <option value="Nam" selected>Nam</option>
+                        }
+                        else
+                        {
+                            <option value="Nam">Nam</option>
+                        }
+
+                        @if (Model?.GioiTinh == "Nữ")
+                        {
+                            <option value="Nữ" selected>Nữ</option>
+                        }
+                        else
+                        {
+                            <option value="Nữ">Nữ</option>
+                        }
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+
+                    <input type="text"
+                           name="SoDienThoai"
+                           value="@Model?.SoDienThoai"
+                           placeholder="Nhập số điện thoại" />
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+
+                    <input type="email"
+                           name="Email"
+                           value="@Model?.Email"
+                           placeholder="Nhập email" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày vào làm</label>
+
+                    <input type="date"
+                           name="NgayVaoLam"
+                           value="@(Model?.NgayVaoLam?.ToString("yyyy-MM-dd"))" />
+                </div>
+
+                <div class="form-group">
+                    <label>Chuyên môn</label>
+
+                    <input type="text"
+                           name="ChuyenMon"
+                           value="@Model?.ChuyenMon"
+                           placeholder="Nhập chuyên môn" />
+                </div>
+
+                <div class="form-group">
+                    <label>Bằng cấp</label>
+
+                    <input type="text"
+                           name="BangCap"
+                           value="@Model?.BangCap"
+                           placeholder="Nhập bằng cấp" />
+                </div>
+
+                <div class="form-group">
+                    <label>Ảnh nhân viên</label>
+
+                    <div class="image-box">
+                        <input type="file"
+                               name="anhFile"
+                               accept="image/*" />
+                    </div>
+                </div>
+
+                <div class="form-group full">
+                    <label>Địa chỉ</label>
+
+                    <input type="text"
+                           name="DiaChi"
+                           value="@Model?.DiaChi"
+                           placeholder="Nhập địa chỉ nhân viên" />
+                </div>
+
+                <div class="form-group full">
+                    <label>Mô tả</label>
+
+                    <textarea name="MoTa"
+                              placeholder="Nhập mô tả">@Model?.MoTa</textarea>
+                </div>
+
+            </div>
+
+            <div class="form-submit">
+
+                <a href="@Url.Action("Nhanvien", "Quanly")"
+                   class="btn btn-back">
+                    Hủy
+                </a>
+
+                <button type="submit"
+                        class="btn btn-save">
+                    💾 Thêm nhân viên
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

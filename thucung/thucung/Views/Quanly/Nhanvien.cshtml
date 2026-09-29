@@ -1,0 +1,301 @@
+﻿@model List<thucung.Models.NhanVienModel>
+
+@{
+    Layout = null;
+}
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .nhanvien-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .nhanvien-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .nhanvien-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .nhanvien-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-add {
+        background: #f4b942;
+        color: white;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-box input {
+        flex: 1;
+        height: 42px;
+        padding: 0 13px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .search-box input:focus {
+        border-color: #f4b942;
+    }
+
+    .btn-search {
+        background: #8d6e63;
+        color: white;
+    }
+
+    .table-box {
+        width: 100%;
+        overflow-x: auto;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .nhanvien-table {
+        width: 100%;
+        min-width: 900px;
+        border-collapse: collapse;
+    }
+
+    .nhanvien-table th {
+        padding: 14px 12px;
+        background: #f8d477;
+        color: #5d4037;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .nhanvien-table td {
+        padding: 13px 12px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+
+    .nhanvien-table tr:hover td {
+        background: #fffaf0;
+    }
+
+    .action-list {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 11px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .detail-btn {
+        background: #81d4fa;
+        color: #17445b;
+    }
+
+    .edit-btn {
+        background: #ffe082;
+        color: #5d4037;
+    }
+
+    .delete-btn {
+        background: #ef9a9a;
+        color: #7f1d1d;
+    }
+
+    .empty-box {
+        padding: 30px;
+        text-align: center;
+        color: #777;
+        font-size: 15px;
+    }
+
+    @@media (max-width: 700px) {
+        .nhanvien-page {
+            padding: 15px;
+        }
+
+        .nhanvien-title {
+            font-size: 23px;
+        }
+
+        .search-box {
+            flex-direction: column;
+        }
+
+        .search-box .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="nhanvien-page">
+
+    <div class="nhanvien-header">
+
+        <h2 class="nhanvien-title">
+            <span>👨‍💼</span> Quản lý nhân viên
+        </h2>
+
+        <div class="nhanvien-actions">
+
+            <a href="@Url.Action("Themnv", "Quanly")"
+               class="btn btn-add">
+                ＋ Thêm nhân viên
+            </a>
+
+        </div>
+
+    </div>
+
+    <form action="@Url.Action("Nhanvien", "Quanly")"
+          method="get"
+          class="search-box">
+
+        <input type="text"
+               name="timkiem"
+               placeholder="Nhập mã nhân viên để tìm kiếm..." />
+
+        <button type="submit" class="btn btn-search">
+            🔍 Tìm kiếm
+        </button>
+
+    </form>
+
+    <div class="table-box">
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="nhanvien-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Mã nhân viên</th>
+                        <th>Họ tên</th>
+                        <th>Giới tính</th>
+                        <th>Số điện thoại</th>
+                        <th>Thao tác</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.MaNhanVien
+                            </td>
+
+                            <td>
+                                @item.HoTen
+                            </td>
+
+                            <td>
+                                @item.GioiTinh
+                            </td>
+
+                            <td>
+                                @item.SoDienThoai
+                            </td>
+
+                            <td>
+
+                                <div class="action-list">
+
+                                    <a href="@Url.Action("Chitietnv", "Quanly", new { id = item.MaNhanVien })"
+                                       class="action-btn detail-btn">
+                                        👁 Chi tiết
+                                    </a>
+
+                                    <a href="@Url.Action("Suanv", "Quanly", new { id = item.MaNhanVien })"
+                                       class="action-btn edit-btn">
+                                        ✏ Sửa
+                                    </a>
+
+                                    <a href="@Url.Action("Xoanv", "Quanly", new { id = item.MaNhanVien })"
+                                       class="action-btn delete-btn">
+                                        🗑 Xóa
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <div class="empty-box">
+                Không tìm thấy nhân viên.
+            </div>
+        }
+
+    </div>
+
+</div>

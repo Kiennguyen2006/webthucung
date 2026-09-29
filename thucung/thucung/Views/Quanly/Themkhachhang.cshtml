@@ -1,0 +1,293 @@
+﻿@model thucung.Models.KhachhangModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .khachhang-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .khachhang-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .khachhang-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .khachhang-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-save {
+        background: #f4b942;
+        color: white;
+    }
+
+    .btn-back {
+        background: #8d6e63;
+        color: white;
+    }
+
+    .form-box {
+        width: 100%;
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .form-group.full {
+        grid-column: 1 / -1;
+    }
+
+    .form-group label {
+        color: #5d4037;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        color: #3f3f3f;
+        background: white;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 42px;
+    }
+
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #f4b942;
+    }
+
+    .form-note {
+        margin-top: 20px;
+        padding: 12px 15px;
+        background: #fffaf0;
+        border-radius: 9px;
+        color: #8d6e63;
+        font-size: 13px;
+    }
+
+    .form-submit {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .error-message {
+        margin-bottom: 18px;
+        padding: 12px 15px;
+        background: #ffebee;
+        border-radius: 9px;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    @@media (max-width: 700px) {
+        .khachhang-page {
+            padding: 15px;
+        }
+
+        .khachhang-title {
+            font-size: 23px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+            grid-column: auto;
+        }
+
+        .form-submit {
+            flex-direction: column;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="khachhang-page">
+
+    <div class="khachhang-header">
+        <h2 class="khachhang-title">
+            <span>👤</span> Thêm khách hàng
+        </h2>
+
+        <div class="khachhang-actions">
+            <a href="@Url.Action("Khachhang", "Quanly")" class="btn btn-back">
+                ← Quay lại
+            </a>
+        </div>
+    </div>
+
+    <div class="form-box">
+
+        @if (ViewBag.tb != null)
+        {
+            <div class="error-message">
+                @ViewBag.tb
+            </div>
+        }
+
+        <form action="@Url.Action("Themkh", "Quanly")" method="post">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Họ tên</label>
+                    <input type="text"
+                           name="HoTen"
+                           value="@Model?.HoTen"
+                           placeholder="Nhập họ tên khách hàng" />
+                </div>
+
+                <div class="form-group">
+                    <label>Giới tính</label>
+                    <select name="GioiTinh">
+                        <option value="">-- Chọn giới tính --</option>
+
+                        @if (Model?.GioiTinh == "Nam")
+                        {
+                            <option value="Nam" selected>Nam</option>
+                        }
+                        else
+                        {
+                            <option value="Nam">Nam</option>
+                        }
+
+                        @if (Model?.GioiTinh == "Nữ")
+                        {
+                            <option value="Nữ" selected>Nữ</option>
+                        }
+                        else
+                        {
+                            <option value="Nữ">Nữ</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text"
+                           name="SoDienThoai"
+                           value="@Model?.SoDienThoai"
+                           placeholder="Nhập số điện thoại" />
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email"
+                           name="Email"
+                           value="@Model?.Email"
+                           placeholder="Nhập email" />
+                </div>
+
+                <div class="form-group full">
+                    <label>Địa chỉ</label>
+                    <input type="text"
+                           name="DiaChi"
+                           value="@Model?.DiaChi"
+                           placeholder="Nhập địa chỉ khách hàng" />
+                </div>
+
+                <div class="form-group full">
+                    <label>Ghi chú</label>
+                    <textarea name="GhiChu"
+                              placeholder="Nhập ghi chú">@Model?.GhiChu</textarea>
+                </div>
+
+            </div>
+
+            <div class="form-note">
+                💡 Mã khách hàng và ngày tạo có thể để hệ thống tự tạo khi lưu.
+            </div>
+
+            <div class="form-submit">
+                <a href="@Url.Action("Khachhang", "Quanly")" class="btn btn-back">
+                    Hủy
+                </a>
+
+                <button type="submit" class="btn btn-save">
+                    💾 Lưu khách hàng
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

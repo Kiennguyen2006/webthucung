@@ -1,0 +1,220 @@
+﻿@model thucung.Models.KhachhangModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .khachhang-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .khachhang-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .khachhang-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .form-box {
+        width: 100%;
+        max-width: 700px;
+        background: white;
+        padding: 25px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .warning-box {
+        padding: 15px;
+        margin-bottom: 20px;
+        background: #fff3cd;
+        border-radius: 9px;
+        color: #856404;
+        font-size: 14px;
+    }
+
+    .info-box {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .info-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .info-label {
+        width: 130px;
+        font-weight: bold;
+        color: #5d4037;
+    }
+
+    .info-value {
+        color: #555;
+    }
+
+    .form-submit {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .btn-back {
+        background: #8d6e63;
+        color: white;
+    }
+
+    @@media (max-width: 700px) {
+        .khachhang-page {
+            padding: 15px;
+        }
+
+        .khachhang-title {
+            font-size: 23px;
+        }
+
+        .info-row {
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            width: auto;
+        }
+
+        .form-submit {
+            flex-direction: column;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="khachhang-page">
+
+    <div class="khachhang-header">
+        <h2 class="khachhang-title">
+            <span>🗑️</span> Xóa khách hàng
+        </h2>
+    </div>
+
+    <div class="form-box">
+
+        @if (Model != null)
+        {
+            <div class="warning-box">
+                Bạn có chắc chắn muốn xóa khách hàng này không?
+            </div>
+
+            <div class="info-box">
+
+                <div class="info-row">
+                    <div class="info-label">Mã khách hàng:</div>
+                    <div class="info-value">@Model.MaKhachHang</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Họ tên:</div>
+                    <div class="info-value">@Model.HoTen</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Giới tính:</div>
+                    <div class="info-value">@Model.GioiTinh</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Số điện thoại:</div>
+                    <div class="info-value">@Model.SoDienThoai</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-label">Email:</div>
+                    <div class="info-value">@Model.Email</div>
+                </div>
+
+            </div>
+
+            <form action="@Url.Action("Xoakhachhang", "Quanly")" method="post">
+
+                <input type="hidden"
+                       name="MaKhachHang"
+                       value="@Model.MaKhachHang" />
+
+                <div class="form-submit">
+
+                    <a href="@Url.Action("Khachhang", "Quanly")"
+                       class="btn btn-back">
+                        ← Hủy
+                    </a>
+
+                    <button type="submit" class="btn btn-delete">
+                        🗑️ Xác nhận xóa
+                    </button>
+
+                </div>
+
+            </form>
+        }
+        else
+        {
+            <div class="warning-box">
+                Không tìm thấy thông tin khách hàng.
+            </div>
+
+            <div class="form-submit">
+                <a href="@Url.Action("Khachhang", "Quanly")"
+                   class="btn btn-back">
+                    ← Quay lại
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>

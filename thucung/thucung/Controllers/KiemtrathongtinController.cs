@@ -16,35 +16,46 @@ namespace thucung.Controllers
 
         public IActionResult Dangnhap(string tentk, string matkhau)
         {
-            
-            TempData["tentk"] = tentk;
-            int a = 0;
-            string b = "Tên đăng nhập hoặc mật khẩu không tồn tại!!!";
-            if (tentk != null && tentk != "" && matkhau != null && matkhau != "")
+            if (tentk == null && matkhau == null)
             {
-                var bangtk = _context.TaiKhoan.ToList();
-                for (int i = 0; i < bangtk.Count; i++)
+                return View(model: null);
+            }
+                TempData["tentk"] = tentk;
+                int a = 0;
+                string b = "Tên đăng nhập hoặc mật khẩu không tồn tại!!!";
+                if (tentk != null && tentk != "" && matkhau != null && matkhau != "")
                 {
-                    if (tentk == bangtk[i].TenDangNhap && matkhau == bangtk[i].MatKhau)
+                    var bangtk = _context.TaiKhoan.ToList();
+                    for (int i = 0; i < bangtk.Count; i++)
                     {
-                        a = 1;
-                        break;
+                        if (tentk == bangtk[i].TenDangNhap && matkhau == bangtk[i].MatKhau)
+                        {
+                            a = 1;
+                            break;
+                        }
+                        else
+                        {
+                            a = 0;
+                        }
+                    }
+                    if (a == 1)
+                    {
+                        return RedirectToAction("Quanly", "Quanly");
                     }
                     else
                     {
-                        a = 0;
+                        return View(model: b);
                     }
-                }
-                if (a == 1)
-                {
-                    return RedirectToAction("Quanly", "Quanly");
                 }
                 else
                 {
-                    return View(model: b);
+                    if (tentk == null || tentk == "" || matkhau == null || matkhau == "" || (tentk == null && matkhau == null || tentk == "" && matkhau == ""))
+                    {
+                        b = "vui lòng điền thông tin vào form!!!";
+                        return View(model: b);
+                    }
                 }
-            }
-            return View(model: null);
+                return View(model: null);
         }
         public async Task<IActionResult> Khoiphuc(string email)
         {
@@ -182,28 +193,35 @@ namespace thucung.Controllers
 
                 mataikhoan = "TK" + so.ToString("D3");
             }
+
             var bangtk = _context.TaiKhoan.ToList();
-            bool a = false;
+
+            taikhoan.MaTaiKhoan = mataikhoan;
+            taikhoan.NgayTao = DateTime.Now;
+            taikhoan.PhanQuyen = "QuanLy";
+
+            ModelState.Remove("MaTaiKhoan");
+            ModelState.Remove("NgayTao");
+            ModelState.Remove("PhanQuyen");
+
+            bool a = true;
+
             if (ModelState.IsValid)
             {
-                for(int i = 0; i < bangtk.Count; i++)
+                for (int i = 0; i < bangtk.Count; i++)
                 {
                     if (taikhoan.TenDangNhap == bangtk[i].TenDangNhap)
                     {
                         a = false;
                         break;
                     }
-                    else
-                    {
-                        a = true;
-                    }
                 }
+
                 if (a == true)
                 {
-                    taikhoan.MaTaiKhoan = mataikhoan;
-                    taikhoan.NgayTao = DateTime.Now;
                     _context.TaiKhoan.Add(taikhoan);
                     _context.SaveChanges();
+
                     return RedirectToAction("Quanly", "Quanly");
                 }
                 else
@@ -215,6 +233,7 @@ namespace thucung.Controllers
             {
                 ViewBag.tb = "vui lòng nhập dữ liệu!!!";
             }
+
             return View("Taotk");
         }
 

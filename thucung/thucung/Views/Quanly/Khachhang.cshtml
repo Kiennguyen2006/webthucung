@@ -1,0 +1,302 @@
+﻿@model List<thucung.Models.KhachhangModel>
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .khachhang-page {
+        min-height: 100vh;
+        padding: 25px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .khachhang-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    .khachhang-title {
+        margin: 0;
+        color: #5d4037;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .khachhang-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn-add {
+        background: #f4b942;
+        color: white;
+    }
+
+    .btn-search {
+        background: #8d6e63;
+        color: white;
+    }
+
+    .search-box {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        background: white;
+        padding: 15px;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .search-box input {
+        flex: 1;
+        min-width: 180px;
+        height: 42px;
+        padding: 0 14px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .search-box input:focus {
+        border-color: #f4b942;
+    }
+
+    .table-box {
+        width: 100%;
+        overflow-x: auto;
+        background: white;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .khachhang-table {
+        width: 100%;
+        min-width: 850px;
+        border-collapse: collapse;
+    }
+
+    .khachhang-table th {
+        padding: 15px 12px;
+        background: #f8d477;
+        color: #5d4037;
+        text-align: left;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .khachhang-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .khachhang-table tbody tr:hover {
+        background: #fffaf0;
+    }
+
+    .ma-khachhang {
+        font-weight: bold;
+        color: #8d6e63;
+    }
+
+    .action-list {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 11px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .action-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .detail-btn {
+        background: #e8f5e9;
+        color: #388e3c;
+    }
+
+    .edit-btn {
+        background: #fff3cd;
+        color: #9a6700;
+    }
+
+    .delete-btn {
+        background: #ffebee;
+        color: #c62828;
+    }
+
+    .empty-data {
+        padding: 50px 20px !important;
+        text-align: center;
+        color: #888;
+        font-size: 15px;
+    }
+
+    @@media (max-width: 700px) {
+        .khachhang-page {
+            padding: 15px;
+        }
+
+        .khachhang-title {
+            font-size: 23px;
+        }
+
+        .search-box {
+            flex-direction: column;
+        }
+
+        .search-box input {
+            width: 100%;
+        }
+    }
+</style>
+
+<div class="khachhang-page">
+
+    <div class="khachhang-header">
+        <h2 class="khachhang-title">
+            <span>👤</span> Quản lý khách hàng
+        </h2>
+
+        <div class="khachhang-actions">
+            <a href="@Url.Action("Themkhachhang", "Quanly")" class="btn btn-add">
+                ＋ Thêm khách hàng
+            </a>
+        </div>
+    </div>
+
+    <form action="@Url.Action("Khachhang", "Quanly")" method="get" class="search-box">
+        <input type="text"
+               name="timkiem"
+               placeholder="Nhập mã, họ tên, số điện thoại hoặc email..." />
+
+        <button type="submit" class="btn btn-search">
+            🔍 Tìm kiếm
+        </button>
+    </form>
+
+    <div class="table-box">
+
+        <table class="khachhang-table">
+
+            <thead>
+                <tr>
+                    <th>Mã khách hàng</th>
+                    <th>Họ tên</th>
+                    <th>Giới tính</th>
+                    <th>Số điện thoại</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ma-khachhang">
+                                @item.MaKhachHang
+                            </td>
+
+                            <td>
+                                @item.HoTen
+                            </td>
+
+                            <td>
+                                @item.GioiTinh
+                            </td>
+
+                            <td>
+                                @item.SoDienThoai
+                            </td>
+
+                            <td>
+                                <div class="action-list">
+
+                                    <a href="@Url.Action("Chitietkh", "Quanly", new { id = item.MaKhachHang })"
+                                       class="action-btn detail-btn">
+                                        👁 Chi tiết
+                                    </a>
+
+                                    <a href="@Url.Action("Suakh", "Quanly", new { id = item.MaKhachHang })"
+                                       class="action-btn edit-btn">
+                                        ✏ Sửa
+                                    </a>
+
+                                    <a href="@Url.Action("Xoakh", "Quanly", new { id = item.MaKhachHang })"
+                                       class="action-btn delete-btn">
+                                        🗑 Xóa
+                                    </a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="empty-data">
+                            Chưa có dữ liệu khách hàng
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+

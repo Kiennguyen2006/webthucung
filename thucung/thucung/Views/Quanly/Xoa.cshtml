@@ -1,0 +1,248 @@
+@model thucung.Models.ThucungModel
+
+@{
+    Layout = null;
+}
+
+<div class="delete-page">
+
+    <div class="delete-title">
+        <div class="delete-icon">
+            🗑
+        </div>
+
+        <div>
+            <h2>Xóa thú cưng</h2>
+            <p>Kiểm tra thông tin trước khi xóa</p>
+        </div>
+    </div>
+
+    <div class="delete-warning">
+        Bạn có chắc chắn muốn xóa thú cưng này không?
+    </div>
+
+    <div class="delete-info">
+
+        <div class="delete-item">
+            <div class="delete-label">Mã thú cưng</div>
+            <div class="delete-value">@Model.MaThuCung</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Mã khách hàng</div>
+            <div class="delete-value">@Model.MaKhachHang</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Tên thú cưng</div>
+            <div class="delete-value">@Model.TenThuCung</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Loài thú cưng</div>
+            <div class="delete-value">@Model.LoaiThuCung</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Giống thú cưng</div>
+            <div class="delete-value">@Model.GiongThuCung</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Giới tính</div>
+            <div class="delete-value">@Model.GioiTinh</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Màu lông</div>
+            <div class="delete-value">@Model.MauLong</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Cân nặng</div>
+            <div class="delete-value">@Model.CanNang</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Ảnh</div>
+            <div class="delete-value">@Model.Anh</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Mô tả</div>
+            <div class="delete-value">@Model.MoTa</div>
+        </div>
+
+        <div class="delete-item">
+            <div class="delete-label">Ngày tạo</div>
+            <div class="delete-value">@Model.NgayTao</div>
+        </div>
+
+    </div>
+
+    <div class="delete-buttons">
+
+        <form asp-action="Xoatc"
+              asp-controller="Quanly"
+              method="post">
+
+            <input type="hidden" asp-for="MaThuCung" />
+
+            <button type="submit" class="delete-button">
+                🗑 Xóa thú cưng
+            </button>
+
+        </form>
+        <a href="@Url.Action("Thucung", "Quanly")"
+           class="back-button">
+            ← Quay lại
+        </a>
+
+    </div>
+
+</div>
+
+<style>
+
+    .delete-page {
+        width: 100%;
+        padding: 10px 5px 30px 5px;
+    }
+
+    .delete-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .delete-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 17px;
+        background: #fff0f0;
+        font-size: 27px;
+    }
+
+    .delete-title h2 {
+        margin: 0;
+        color: #29243a;
+        font-size: 27px;
+        font-weight: 800;
+    }
+
+    .delete-title p {
+        margin: 5px 0 0 0;
+        color: #999;
+        font-size: 14px;
+    }
+
+    .delete-warning {
+        padding: 15px 18px;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        background: #fff8e6;
+        border: 1px solid #f2dfaa;
+        color: #856404;
+        font-size: 15px;
+    }
+
+    .delete-info {
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(0,0,0,0.04);
+    }
+
+    .delete-item {
+        display: flex;
+        min-height: 50px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+        .delete-item:last-child {
+            border-bottom: none;
+        }
+
+    .delete-label {
+        width: 220px;
+        padding: 14px 18px;
+        background: #f8f7fc;
+        color: #666;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .delete-value {
+        flex: 1;
+        padding: 14px 18px;
+        color: #444;
+        font-size: 14px;
+    }
+
+    .delete-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 22px;
+    }
+
+        .delete-buttons form {
+            margin: 0;
+        }
+
+    .delete-button,
+    .back-button {
+        height: 42px;
+        padding: 0 18px;
+        border: none;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .delete-button {
+        background: #d64545;
+        color: white;
+    }
+
+        .delete-button:hover {
+            background: #c23838;
+        }
+
+    .back-button {
+        background: #f2f2f5;
+        color: #555;
+    }
+
+        .back-button:hover {
+            background: #e6e6eb;
+        }
+
+    @@media(max - width: 700px)
+
+    {
+
+        .delete-item {
+            display: block;
+        }
+
+        .delete-label {
+            width: 100%;
+        }
+
+        .delete-value {
+            width: 100%;
+        }
+
+        .delete-buttons {
+            flex-wrap: wrap;
+        }
+    }
+
+</style>

@@ -1,0 +1,220 @@
+﻿@model thucung.Models.NhanVienModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .xoanv-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .xoanv-header {
+        margin-bottom: 25px;
+    }
+
+    .xoanv-header h2 {
+        margin: 0 0 8px 0;
+        color: #3f3f3f;
+        font-size: 26px;
+    }
+
+    .xoanv-header p {
+        margin: 0;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .delete-box {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .warning {
+        padding: 15px;
+        margin-bottom: 25px;
+        background: #fff3cd;
+        border-radius: 10px;
+        color: #856404;
+        font-size: 15px;
+    }
+
+    .employee-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 25px;
+    }
+
+    .info-item {
+        padding: 15px;
+        background: #fffdf5;
+        border-radius: 10px;
+    }
+
+    .info-item label {
+        display: block;
+        margin-bottom: 7px;
+        color: #777;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    .info-item span {
+        color: #333;
+        font-size: 15px;
+    }
+
+    .button-list {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 9px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-back {
+        background: #eeeeee;
+        color: #444;
+    }
+
+    .btn-delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    .not-found {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        text-align: center;
+        color: #777;
+    }
+
+    @@media (max-width: 700px) {
+        .employee-info {
+            grid-template-columns: 1fr;
+        }
+
+        .button-list {
+            flex-direction: column;
+        }
+
+        .btn {
+            text-align: center;
+        }
+    }
+</style>
+
+<div class="xoanv-page">
+
+    <div class="xoanv-header">
+        <h2>🗑 Xóa nhân viên</h2>
+        <p>Xác nhận thông tin nhân viên trước khi xóa</p>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="delete-box">
+
+            <div class="warning">
+                Bạn có chắc chắn muốn xóa nhân viên này không?
+                Sau khi xóa, thông tin sẽ không còn trong hệ thống.
+            </div>
+
+            <div class="employee-info">
+
+                <div class="info-item">
+                    <label>Mã nhân viên</label>
+                    <span>@Model.MaNhanVien</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Họ tên</label>
+                    <span>@Model.HoTen</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Giới tính</label>
+                    <span>@Model.GioiTinh</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Số điện thoại</label>
+                    <span>@Model.SoDienThoai</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Email</label>
+                    <span>@Model.Email</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Chuyên môn</label>
+                    <span>@Model.ChuyenMon</span>
+                </div>
+
+            </div>
+
+            <form action="@Url.Action("Xoanhanvien", "Quanly")" method="post">
+
+                <input type="hidden" name="MaNhanVien" value="@Model.MaNhanVien" />
+
+                <div class="button-list">
+
+                    <a href="@Url.Action("Nhanvien", "Quanly")"
+                       class="btn btn-back">
+                        ← Hủy
+                    </a>
+
+                    <button type="submit" class="btn btn-delete">
+                        🗑 Xác nhận xóa
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+        <div class="not-found">
+            Không tìm thấy thông tin nhân viên.
+            <br><br>
+
+            <a href="@Url.Action("Nhanvien", "Quanly")"
+               class="btn btn-back">
+                ← Quay lại
+            </a>
+        </div>
+    }
+
+</div>
