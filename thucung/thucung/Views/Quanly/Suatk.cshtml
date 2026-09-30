@@ -1,0 +1,262 @@
+﻿@model thucung.Models.TaikhoanModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .suatk-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .suatk-header {
+        margin-bottom: 25px;
+    }
+
+        .suatk-header h2 {
+            margin: 0 0 7px 0;
+            font-size: 26px;
+        }
+
+        .suatk-header p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+    .form-box {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .error-message {
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        background: #ffebee;
+        border-radius: 9px;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            background: white;
+        }
+
+            .form-group input:focus,
+            .form-group select:focus {
+                border-color: #e8b923;
+            }
+
+            .form-group input[readonly] {
+                background: #f5f5f5;
+                color: #777;
+            }
+
+    .button-list {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 9px;
+        border: none;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-back {
+        background: #eeeeee;
+        color: #444;
+    }
+
+    .btn-save {
+        background: #f4c542;
+        color: #3f3f3f;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    @@media (max-width: 700px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+            grid-column: auto;
+        }
+
+        .button-list {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="suatk-page">
+
+    <div class="suatk-header">
+        <h2>✏ Sửa tài khoản</h2>
+        <p>Chỉnh sửa thông tin tài khoản trong hệ thống</p>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="form-box">
+
+            @if (ViewBag.tb != null)
+            {
+                <div class="error-message">
+                    @ViewBag.tb
+                </div>
+            }
+
+            <form action="@Url.Action("Suataikhoan", "Quanly")" method="post">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>Mã tài khoản</label>
+
+                        <input type="text"
+                               name="MaTaiKhoan"
+                               value="@Model.MaTaiKhoan"
+                               readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tên đăng nhập</label>
+
+                        <input type="text"
+                               name="TenDangNhap"
+                               value="@Model.TenDangNhap" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mật khẩu</label>
+
+                        <input type="text"
+                               name="MatKhau"
+                               value="@Model.MatKhau" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+
+                        <input type="email"
+                               name="Email"
+                               value="@Model.Email" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phân quyền</label>
+
+                        <select name="PhanQuyen">
+
+                            @if (Model.PhanQuyen == "Chủ shop")
+                            {
+                                <option value="ChuShop" selected>Chủ shop</option>
+                                <option value="QuanLy">Quản lý</option>
+                            }
+                            else
+                            {
+                                <option value="ChuShop">Chủ shop</option>
+                                <option value="QuanLy" selected>Quản lý</option>
+                            }
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ngày tạo</label>
+
+                        <input type="text"
+                               value="@Model.NgayTao.ToString("dd/MM/yyyy HH:mm")"
+                               readonly />
+
+                        <input type="hidden"
+                               name="NgayTao"
+                               value="@Model.NgayTao.ToString("O")" />
+                    </div>
+
+                </div>
+
+                <div class="button-list">
+
+                    <a href="@Url.Action("TaiKhoan", "Quanly")"
+                       class="btn btn-back">
+                        ← Quay lại
+                    </a>
+
+                    <button type="submit" class="btn btn-save">
+                        💾 Lưu thay đổi
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+        <div class="form-box">
+
+            <div class="error-message">
+                Không tìm thấy tài khoản cần sửa.
+            </div>
+
+        </div>
+    }
+
+</div>

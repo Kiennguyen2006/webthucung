@@ -1,0 +1,363 @@
+﻿@model thucung.Models.PhieukhamModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .sua-phieu-page {
+        width: 100%;
+        padding: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .sua-phieu-title {
+        margin-bottom: 20px;
+    }
+
+        .sua-phieu-title h2 {
+            margin: 0;
+            color: #5b4636;
+            font-size: 26px;
+        }
+
+    .sua-phieu-form {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        max-width: 1100px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 18px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form-group label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #5b4636;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                border-color: #e8b84b;
+                box-shadow: 0 0 0 2px rgba(232, 184, 75, 0.15);
+            }
+
+    .form-full {
+        margin-bottom: 18px;
+    }
+
+        .form-full label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #5b4636;
+        }
+
+        .form-full textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+    .ma-phieu {
+        background: #f5f5f5;
+        color: #777;
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .btn-save {
+        border: none;
+        padding: 11px 22px;
+        border-radius: 8px;
+        background: #e8b84b;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .btn-save:hover {
+            background: #d9a936;
+        }
+
+    .btn-cancel {
+        display: inline-block;
+        padding: 11px 22px;
+        border-radius: 8px;
+        background: #eee;
+        color: #555;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-cancel:hover {
+            background: #ddd;
+        }
+
+    .form-error {
+        margin-bottom: 18px;
+        padding: 10px 13px;
+        border-radius: 8px;
+        background: #ffe5e5;
+        color: #c0392b;
+    }
+</style>
+
+<div class="sua-phieu-page">
+
+    <div class="sua-phieu-title">
+        <h2>🩺 Sửa phiếu khám</h2>
+    </div>
+
+    @if (ViewBag.tb != null)
+    {
+        <div class="form-error">
+            @ViewBag.tb
+        </div>
+    }
+
+    <form method="post"
+          action="@Url.Action("Suaphieukhamxl", "Quanly")"
+          class="sua-phieu-form">
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Mã phiếu khám</label>
+
+                <input type="text"
+                       name="MaPhieuKham"
+                       value="@Model.MaPhieuKham"
+                       class="ma-phieu"
+                       readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Ngày khám</label>
+
+                <input type="datetime-local"
+                       name="NgayKham"
+                       value="@Model.NgayKham.ToString("yyyy-MM-ddTHH:mm")" />
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Khách hàng</label>
+
+                <select name="MaKhachHang">
+
+                    <option value="">-- Chọn khách hàng --</option>
+
+                    @foreach (var item in ViewBag.kh)
+                    {
+                        if (Model.MaKhachHang == item.MaKhachHang)
+                        {
+                            <option value="@item.MaKhachHang" selected>
+                                @item.HoTen
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.MaKhachHang">
+                                @item.HoTen
+                            </option>
+                        }
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Thú cưng</label>
+
+                <select name="MaThuCung">
+
+                    <option value="">-- Chọn thú cưng --</option>
+
+                    @foreach (var item in ViewBag.tc)
+                    {
+                        if (Model.MaThuCung == item.MaThuCung)
+                        {
+                            <option value="@item.MaThuCung" selected>
+                                @item.TenThuCung
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.MaThuCung">
+                                @item.TenThuCung
+                            </option>
+                        }
+                    }
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Nhân viên</label>
+
+                <select name="MaNhanVien">
+
+                    <option value="">-- Chọn nhân viên --</option>
+
+                    @foreach (var item in ViewBag.nv)
+                    {
+                        if (Model.MaNhanVien == item.MaNhanVien)
+                        {
+                            <option value="@item.MaNhanVien" selected>
+                                @item.HoTen
+                            </option>
+                        }
+                        else
+                        {
+                            <option value="@item.MaNhanVien">
+                                @item.HoTen
+                            </option>
+                        }
+                    }
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Số tiền</label>
+
+                <input type="number"
+                       name="SoTien"
+                       value="@Model.SoTien"
+                       min="0"
+                       step="0.01" />
+            </div>
+
+        </div>
+
+        <div class="form-full">
+
+            <label>Bệnh tình</label>
+
+            <textarea name="BenhTinh"
+                      placeholder="Nhập bệnh tình...">@Model.BenhTinh</textarea>
+
+        </div>
+
+        <div class="form-full">
+
+            <label>Mô tả triệu chứng</label>
+
+            <textarea name="MoTaTrieuChung"
+                      placeholder="Nhập mô tả triệu chứng...">@Model.MoTaTrieuChung</textarea>
+
+        </div>
+
+        <div class="form-full">
+
+            <label>Kết quả khám</label>
+
+            <textarea name="KetQuaKham"
+                      placeholder="Nhập kết quả khám...">@Model.KetQuaKham</textarea>
+
+        </div>
+
+        <div class="form-full">
+
+            <label>Thông tin thuốc</label>
+
+            <textarea name="ThongTinThuoc"
+                      placeholder="Nhập thông tin thuốc...">@Model.ThongTinThuoc</textarea>
+
+        </div>
+
+        <div class="form-full">
+
+            <label>Mô tả sử dụng dịch vụ</label>
+
+            <textarea name="MoTaSuDungDichVu"
+                      placeholder="Nhập mô tả sử dụng dịch vụ...">@Model.MoTaSuDungDichVu</textarea>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label>Ngày lập</label>
+
+                <input type="datetime-local"
+                       name="NgayLap"
+                       value="@Model.NgayLap.ToString("yyyy-MM-ddTHH:mm")" />
+            </div>
+
+        </div>
+
+        <div class="form-buttons">
+
+            <button type="submit" class="btn-save">
+                💾 Lưu thay đổi
+            </button>
+
+            <a href="@Url.Action("Phieukham", "Quanly")"
+               class="btn-cancel">
+                Hủy
+            </a>
+
+        </div>
+
+    </form>
+
+</div>

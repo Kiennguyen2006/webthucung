@@ -1,0 +1,322 @@
+﻿@model thucung.Models.ThuocModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .sua-thuoc-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .sua-thuoc-header {
+        margin-bottom: 25px;
+    }
+
+    .sua-thuoc-header h2 {
+        margin: 0 0 7px 0;
+        font-size: 26px;
+        color: #3f3f3f;
+    }
+
+    .sua-thuoc-header p {
+        margin: 0;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .form-box {
+        width: 100%;
+        max-width: 850px;
+        background: white;
+        padding: 28px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group-full {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .form-group label,
+    .form-group-full label {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #4a4a4a;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-size: 14px;
+        background: white;
+        color: #3f3f3f;
+    }
+
+    .form-control:focus {
+        border-color: #f4c542;
+    }
+
+    .ma-thuoc {
+        background: #f5f5f5;
+        color: #666;
+        cursor: not-allowed;
+        font-weight: bold;
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .error-message {
+        margin-bottom: 20px;
+        padding: 11px 14px;
+        border-radius: 9px;
+        background: #ffebee;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    .form-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .btn-save {
+        padding: 11px 20px;
+        border: none;
+        border-radius: 9px;
+        background: #f4c542;
+        color: #3f3f3f;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-save:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 20px;
+        border-radius: 9px;
+        background: #eeeeee;
+        color: #444;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn-back:hover {
+        background: #e2e2e2;
+    }
+
+    @@media (max-width: 700px) {
+        .sua-thuoc-page {
+            padding: 20px;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .form-box {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="sua-thuoc-page">
+
+    <div class="sua-thuoc-header">
+        <h2>✏️ Sửa thuốc</h2>
+        <p>Chỉnh sửa thông tin thuốc</p>
+    </div>
+
+    <div class="form-box">
+
+        @if (ViewBag.tb != null)
+        {
+            <div class="error-message">
+                @ViewBag.tb
+            </div>
+        }
+
+        <form action="@Url.Action("Suathuocxl", "Quanly")"
+              method="post">
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Mã thuốc</label>
+
+                    <input type="text"
+                           name="MaThuoc"
+                           class="form-control ma-thuoc"
+                           value="@Model?.MaThuoc"
+                           readonly />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Tên thuốc</label>
+
+                    <input type="text"
+                           name="TenThuoc"
+                           class="form-control"
+                           value="@Model?.TenThuoc" />
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Đơn vị tính</label>
+
+                    <input type="text"
+                           name="DonViTinh"
+                           class="form-control"
+                           value="@Model?.DonViTinh" />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Số lượng tồn</label>
+
+                    <input type="number"
+                           name="SoLuongTon"
+                           class="form-control"
+                           min="0"
+                           value="@Model?.SoLuongTon" />
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Giá</label>
+
+                    <input type="number"
+                           name="Gia"
+                           class="form-control"
+                           min="0"
+                           step="0.01"
+                           value="@Model?.Gia" />
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Hạn sử dụng</label>
+
+                    <input type="date"
+                           name="HanSuDung"
+                           class="form-control"
+                           value="@(Model != null && Model.HanSuDung != DateTime.MinValue ? Model.HanSuDung.ToString("yyyy-MM-dd") : "")" />
+
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label>Trạng thái</label>
+
+                    <select name="TrangThai"
+                            class="form-control">
+
+                        @if (Model != null && Model.TrangThai)
+                        {
+                            <option value="true" selected>Đang sử dụng</option>
+                            <option value="false">Ngừng sử dụng</option>
+                        }
+                        else
+                        {
+                            <option value="true">Đang sử dụng</option>
+                            <option value="false" selected>Ngừng sử dụng</option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                </div>
+
+            </div>
+
+            <div class="form-group-full">
+
+                <label>Mô tả</label>
+
+                <textarea name="MoTa"
+                          class="form-control">@Model?.MoTa</textarea>
+
+            </div>
+
+            <div class="form-buttons">
+
+                <button type="submit"
+                        class="btn-save">
+                    💾 Lưu thay đổi
+                </button>
+
+                <a href="@Url.Action("Thuoc", "Quanly")"
+                   class="btn-back">
+                    ← Quay lại
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

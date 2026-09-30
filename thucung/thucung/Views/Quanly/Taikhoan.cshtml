@@ -1,0 +1,249 @@
+﻿@model List<thucung.Models.TaikhoanModel>
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .taikhoan-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .taikhoan-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .taikhoan-title h2 {
+        margin: 0 0 7px 0;
+        font-size: 26px;
+    }
+
+    .taikhoan-title p {
+        margin: 0;
+        color: #777;
+        font-size: 14px;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 350px;
+        padding: 11px 14px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        font-size: 14px;
+    }
+
+        .search-input:focus {
+            border-color: #e8b923;
+        }
+
+    .search-btn {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 9px;
+        background: #f4c542;
+        color: #3f3f3f;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .search-btn:hover {
+            opacity: 0.85;
+        }
+
+    .table-box {
+        width: 100%;
+        overflow-x: auto;
+        background: white;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .taikhoan-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 850px;
+    }
+
+        .taikhoan-table th {
+            padding: 14px;
+            background: #fff4c7;
+            color: #4a4a4a;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .taikhoan-table td {
+            padding: 14px;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 14px;
+        }
+
+        .taikhoan-table tr:hover {
+            background: #fffdf5;
+        }
+
+    .action-list {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 11px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .detail-btn {
+        background: #e3f2fd;
+        color: #1976d2;
+    }
+
+    .edit-btn {
+        background: #fff3cd;
+        color: #b8860b;
+    }
+
+    .delete-btn {
+        background: #ffebee;
+        color: #c62828;
+    }
+
+    .action-btn:hover {
+        opacity: 0.8;
+    }
+
+    .empty-data {
+        text-align: center;
+        padding: 30px;
+        color: #777;
+    }
+</style>
+
+<div class="taikhoan-page">
+
+    <div class="taikhoan-header">
+
+        <div class="taikhoan-title">
+            <h2>🔐 Quản lý tài khoản</h2>
+            <p>Danh sách các tài khoản trong hệ thống</p>
+        </div>
+
+    </div>
+
+    <form action="@Url.Action("TaiKhoan", "Quanly")" method="get" class="search-box">
+
+        <input type="text"
+               name="timkiem"
+               class="search-input"
+               placeholder="Nhập mã hoặc tên đăng nhập..."
+               value="@Context.Request.Query["timkiem"]" />
+
+        <button type="submit" class="search-btn">
+            🔍 Tìm kiếm
+        </button>
+
+    </form>
+
+    <div class="table-box">
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="taikhoan-table">
+
+                <thead>
+                    <tr>
+                        <th>Mã tài khoản</th>
+                        <th>Tên đăng nhập</th>
+                        <th>Phân quyền</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.MaTaiKhoan
+                            </td>
+
+                            <td>
+                                @item.TenDangNhap
+                            </td>
+
+                            <td>
+                                @item.PhanQuyen
+                            </td>
+
+                            <td>
+                                <div class="action-list">
+
+                                    <a href="@Url.Action("Chitiettk", "Quanly", new { id = item.MaTaiKhoan })"
+                                       class="action-btn detail-btn">
+                                        👁 Chi tiết
+                                    </a>
+
+                                    <a href="@Url.Action("Suatk", "Quanly", new { id = item.MaTaiKhoan })"
+                                       class="action-btn edit-btn">
+                                        ✏ Sửa
+                                    </a>
+
+                                    <a href="@Url.Action("Xoatk", "Quanly", new { id = item.MaTaiKhoan })"
+                                       class="action-btn delete-btn">
+                                        🗑 Xóa
+                                    </a>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <div class="empty-data">
+                Không tìm thấy tài khoản nào.
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,291 @@
+﻿@model thucung.Models.ThuocModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .xoa-thuoc-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .xoa-thuoc-header {
+        margin-bottom: 25px;
+    }
+
+    .xoa-thuoc-header h2 {
+        margin: 0 0 7px 0;
+        font-size: 26px;
+        color: #3f3f3f;
+    }
+
+    .xoa-thuoc-header p {
+        margin: 0;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .delete-box {
+        width: 100%;
+        max-width: 850px;
+        background: white;
+        padding: 28px;
+        border-radius: 14px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .warning {
+        margin-bottom: 25px;
+        padding: 13px 15px;
+        border-radius: 9px;
+        background: #fff3cd;
+        color: #856404;
+        font-size: 14px;
+    }
+
+    .detail-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .detail-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .detail-label {
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #4a4a4a;
+    }
+
+    .detail-value {
+        min-height: 42px;
+        padding: 11px 13px;
+        border: 1px solid #eee;
+        border-radius: 9px;
+        background: #fafafa;
+        font-size: 14px;
+        color: #3f3f3f;
+    }
+
+    .form-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn-delete {
+        padding: 11px 20px;
+        border: none;
+        border-radius: 9px;
+        background: #e53935;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-delete:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 20px;
+        border-radius: 9px;
+        background: #eeeeee;
+        color: #444;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn-back:hover {
+        background: #e2e2e2;
+    }
+
+    @@media (max-width: 700px) {
+        .xoa-thuoc-page {
+            padding: 20px;
+        }
+
+        .detail-row {
+            grid-template-columns: 1fr;
+        }
+
+        .delete-box {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="xoa-thuoc-page">
+
+    <div class="xoa-thuoc-header">
+        <h2>🗑️ Xóa thuốc</h2>
+        <p>Kiểm tra thông tin trước khi xóa thuốc</p>
+    </div>
+
+    <div class="delete-box">
+
+        <div class="warning">
+            Bạn có chắc chắn muốn xóa thuốc này khỏi hệ thống không?
+        </div>
+
+        <form action="@Url.Action("Xoathuocxl", "Quanly")"
+              method="post">
+
+            <input type="hidden"
+                   name="MaThuoc"
+                   value="@Model?.MaThuoc" />
+
+            <div class="detail-row">
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Mã thuốc
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.MaThuoc
+                    </div>
+
+                </div>
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Tên thuốc
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.TenThuoc
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Đơn vị tính
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.DonViTinh
+                    </div>
+
+                </div>
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Số lượng tồn
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.SoLuongTon
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Giá
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.Gia.ToString("N0") VNĐ
+                    </div>
+
+                </div>
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Hạn sử dụng
+                    </div>
+
+                    <div class="detail-value">
+                        @Model?.HanSuDung.ToString("dd/MM/yyyy")
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="detail-row">
+
+                <div class="detail-group">
+
+                    <div class="detail-label">
+                        Trạng thái
+                    </div>
+
+                    <div class="detail-value">
+
+                        @if (Model != null && Model.TrangThai)
+                        {
+                            <span>Đang sử dụng</span>
+                        }
+                        else
+                        {
+                            <span>Ngừng sử dụng</span>
+                        }
+
+                    </div>
+
+                </div>
+
+                <div class="detail-group">
+                </div>
+
+            </div>
+
+            <div class="form-buttons">
+
+                <button type="submit"
+                        class="btn-delete">
+                    🗑️ Xóa thuốc
+                </button>
+
+                <a href="@Url.Action("Thuoc", "Quanly")"
+                   class="btn-back">
+                    ← Quay lại
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

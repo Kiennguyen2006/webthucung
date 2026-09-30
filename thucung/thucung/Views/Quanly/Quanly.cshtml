@@ -23,7 +23,6 @@
         background: #fffdf5;
     }
 
-
     .vet-header {
         position: fixed;
         top: 0;
@@ -168,7 +167,6 @@
         margin: 13px 5px;
     }
 
-
     .vet-main {
         margin-left: 245px;
         padding-top: 78px;
@@ -229,7 +227,6 @@
         margin-top: 8px;
         color: #888;
     }
-
 
     @@media(max-width: 850px) {
         .vet-sidebar {
@@ -341,14 +338,27 @@
             </a>
 
 
-            <a href="@Url.Action("Index", "Lichsu")"
+            <a href="@Url.Action("Phieukham", "Quanly")"
                class="vet-menu-item"
-               data-page="@Url.Action("Index", "Lichsu")">
+               data-page="@Url.Action("Phieukham", "Quanly")">
 
                 <span class="vet-menu-icon">📋</span>
 
                 <span>
                     Phiếu khám
+                </span>
+
+            </a>
+
+
+            <a href="@Url.Action("Thuoc", "Quanly")"
+               class="vet-menu-item"
+               data-page="@Url.Action("Thuoc", "Quanly")">
+
+                <span class="vet-menu-icon">💊</span>
+
+                <span>
+                    Thuốc
                 </span>
 
             </a>
@@ -376,9 +386,9 @@
                 </a>
 
 
-                <a href="@Url.Action("Index", "Taikhoan")"
+                <a href="@Url.Action("TaiKhoan", "Quanly")"
                    class="vet-menu-item"
-                   data-page="@Url.Action("Index", "Taikhoan")">
+                   data-page="@Url.Action("TaiKhoan", "Quanly")">
 
                     <span class="vet-menu-icon">🔐</span>
 
@@ -478,6 +488,7 @@
                 });
 
         }
+
 
         menuItems.forEach(function (item) {
 

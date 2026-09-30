@@ -1,0 +1,347 @@
+﻿@model List<thucung.Models.ThuocModel>
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .thuoc-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .thuoc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+    }
+
+    .thuoc-title h2 {
+        margin: 0 0 7px 0;
+        font-size: 26px;
+        color: #3f3f3f;
+    }
+
+    .thuoc-title p {
+        margin: 0;
+        font-size: 14px;
+        color: #777;
+    }
+
+    .btn-add {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 18px;
+        border-radius: 9px;
+        background: #f4c542;
+        color: #3f3f3f;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn-add:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 360px;
+        padding: 11px 14px;
+        border: 1px solid #ddd;
+        border-radius: 9px;
+        outline: none;
+        background: white;
+        font-size: 14px;
+    }
+
+    .search-input:focus {
+        border-color: #f4c542;
+    }
+
+    .search-btn {
+        padding: 11px 18px;
+        border: none;
+        border-radius: 9px;
+        background: #f4c542;
+        color: #3f3f3f;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .search-btn:hover {
+        opacity: 0.85;
+    }
+
+    .table-box {
+        width: 100%;
+        background: white;
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        overflow-x: auto;
+    }
+
+    .thuoc-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1000px;
+    }
+
+    .thuoc-table th {
+        padding: 14px;
+        background: #fff4c7;
+        color: #4a4a4a;
+        text-align: left;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    .thuoc-table td {
+        padding: 14px;
+        border-bottom: 1px solid #eeeeee;
+        font-size: 14px;
+        vertical-align: middle;
+    }
+
+    .thuoc-table tr:hover {
+        background: #fffdf5;
+    }
+
+    .ma-thuoc {
+        color: #c18d00;
+        font-weight: bold;
+    }
+
+    .gia-thuoc {
+        font-weight: bold;
+    }
+
+    .status-active {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 8px;
+        background: #e8f5e9;
+        color: #2e7d32;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .status-inactive {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 8px;
+        background: #ffebee;
+        color: #c62828;
+        font-size: 13px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .action-list {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+    }
+
+    .action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 11px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .action-btn:hover {
+        opacity: 0.8;
+    }
+
+    .detail-btn {
+        background: #e3f2fd;
+        color: #1976d2;
+    }
+
+    .edit-btn {
+        background: #fff4d6;
+        color: #c48a00;
+    }
+
+    .delete-btn {
+        background: #ffebee;
+        color: #d32f2f;
+    }
+
+    .empty-data {
+        text-align: center;
+        padding: 35px;
+        color: #777;
+        font-size: 14px;
+    }
+</style>
+
+<div class="thuoc-page">
+
+    <div class="thuoc-header">
+
+        <div class="thuoc-title">
+            <h2>💊 Quản lý thuốc</h2>
+            <p>Quản lý thông tin thuốc trong hệ thống</p>
+        </div>
+
+        <a href="@Url.Action("Themthuoc", "Quanly")"
+           class="btn-add">
+            ＋ Thêm thuốc
+        </a>
+
+    </div>
+
+    <form action="@Url.Action("Thuoc", "Quanly")"
+          method="get"
+          class="search-box">
+
+        <input type="text"
+               name="timkiem"
+               class="search-input"
+               placeholder="Nhập mã thuốc hoặc tên thuốc..."
+               value="@Context.Request.Query["timkiem"]" />
+
+        <button type="submit"
+                class="search-btn">
+            🔍 Tìm kiếm
+        </button>
+
+    </form>
+
+    <div class="table-box">
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="thuoc-table">
+
+                <thead>
+                    <tr>
+                        <th>Mã thuốc</th>
+                        <th>Tên thuốc</th>
+                        <th>Đơn vị tính</th>
+                        <th>Số lượng tồn</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                <span class="ma-thuoc">
+                                    @item.MaThuoc
+                                </span>
+                            </td>
+
+                            <td>
+                                @item.TenThuoc
+                            </td>
+
+                            <td>
+                                @item.DonViTinh
+                            </td>
+
+                            <td>
+                                @item.SoLuongTon
+                            </td>
+
+                            <td>
+                                <span class="gia-thuoc">
+                                    @item.Gia.ToString("N0") đ
+                                </span>
+                            </td>
+
+                            <td>
+
+                                @if (item.TrangThai)
+                                {
+                                    <span class="status-active">
+                                        Đang sử dụng
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-inactive">
+                                        Ngừng sử dụng
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                <div class="action-list">
+
+                                    <a href="@Url.Action("Chitietthuoc", "Quanly", new { id = item.MaThuoc })"
+                                       class="action-btn detail-btn">
+                                        👁 Chi tiết
+                                    </a>
+
+                                    <a href="@Url.Action("Suathuoc", "Quanly", new { id = item.MaThuoc })"
+                                       class="action-btn edit-btn">
+                                        ✏ Sửa
+                                    </a>
+
+                                    <a href="@Url.Action("Xoathuoc", "Quanly", new { id = item.MaThuoc })"
+                                       class="action-btn delete-btn">
+                                        🗑 Xóa
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        }
+        else
+        {
+            <div class="empty-data">
+                Không tìm thấy thuốc nào.
+            </div>
+        }
+
+    </div>
+
+</div>

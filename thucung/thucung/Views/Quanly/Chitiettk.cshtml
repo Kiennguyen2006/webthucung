@@ -1,0 +1,185 @@
+﻿@model thucung.Models.TaikhoanModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .taikhoan-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .taikhoan-header {
+        margin-bottom: 25px;
+    }
+
+        .taikhoan-header h2 {
+            margin: 0 0 7px 0;
+            font-size: 26px;
+        }
+
+        .taikhoan-header p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+    .detail-box {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .detail-item {
+        padding: 15px;
+        background: #fffdf5;
+        border-radius: 10px;
+    }
+
+        .detail-item label {
+            display: block;
+            margin-bottom: 8px;
+            color: #777;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .detail-item span {
+            color: #333;
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+    .password {
+        letter-spacing: 2px;
+    }
+
+    .button-list {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 25px;
+    }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 17px;
+        border-radius: 9px;
+        background: #eeeeee;
+        color: #444;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+        .btn-back:hover {
+            opacity: 0.8;
+        }
+
+    .error-message {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 15px;
+        background: #ffebee;
+        border-radius: 10px;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    @@media (max-width: 700px) {
+        .detail-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="taikhoan-page">
+
+    <div class="taikhoan-header">
+        <h2>🔐 Chi tiết tài khoản</h2>
+        <p>Thông tin chi tiết của tài khoản trong hệ thống</p>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="detail-box">
+
+            <div class="detail-grid">
+
+                <div class="detail-item">
+                    <label>Mã tài khoản</label>
+                    <span>@Model.MaTaiKhoan</span>
+                </div>
+
+                <div class="detail-item">
+                    <label>Tên đăng nhập</label>
+                    <span>@Model.TenDangNhap</span>
+                </div>
+
+                <div class="detail-item">
+                    <label>Mật khẩu</label>
+                    <span class="password">@Model.MatKhau</span>
+                </div>
+
+                <div class="detail-item">
+                    <label>Email</label>
+                    <span>@Model.Email</span>
+                </div>
+
+                <div class="detail-item">
+                    <label>Ngày tạo</label>
+                    <span>@Model.NgayTao.ToString("dd/MM/yyyy HH:mm")</span>
+                </div>
+
+                <div class="detail-item">
+                    <label>Phân quyền</label>
+                    <span>@Model.PhanQuyen</span>
+                </div>
+
+            </div>
+
+            <div class="button-list">
+
+                <a href="@Url.Action("TaiKhoan", "Quanly")"
+                   class="btn-back">
+                    ← Quay lại
+                </a>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="error-message">
+            @if (ViewBag.tb != null)
+            {
+                @ViewBag.tb
+            }
+            else
+            {
+                <span>Tài khoản không tồn tại!!</span>
+            }
+        </div>
+    }
+
+</div>

@@ -423,5 +423,308 @@ namespace thucung.Controllers
             }
             return View();
         }
+        public IActionResult TaiKhoan(string timkiem)
+        {
+            if (timkiem != null && timkiem != "")
+            {
+                var bangtk = _context.TaiKhoan.Where(x => x.MaTaiKhoan.Contains(timkiem) || x.TenDangNhap.Contains(timkiem)).ToList();
+                return View(bangtk);
+            }
+            else
+            {
+                var bangtk = _context.TaiKhoan.ToList();
+                return View(bangtk);
+            }
+            return View();
+        }
+        public IActionResult Chitiettk(string id)
+        {
+            if(id==null || id == "")
+            {
+                ViewBag.tb = "Mã chi tiết không tồn tại!!";
+                return View("Taikhoan", "Quanly");
+            }
+            else
+            {
+                var dong = _context.TaiKhoan.FirstOrDefault(x => x.MaTaiKhoan == id);
+                if (dong == null)
+                {
+                    ViewBag.tb = "Tài khoản không tồn tại!!";
+                    return View("TaiKhoan");
+                }
+
+                return View(dong);
+            }
+            return View();
+        }
+        public IActionResult Suatk(string id)
+        {
+            var dong = _context.TaiKhoan.Find(id);
+
+            return View(dong);
+        }
+
+        [HttpPost]
+        public IActionResult Suataikhoan(TaikhoanModel taikhoan)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.TaiKhoan.Update(taikhoan);
+                _context.SaveChanges();
+
+                return RedirectToAction("TaiKhoan", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Vui lòng nhập đầy đủ thông tin hoặc nhập đúng định dạng!!";
+
+                return View("Suatk", taikhoan);
+            }
+        }
+        public IActionResult Xoatk(string id)
+        {
+            var dong = _context.TaiKhoan.Find(id);
+
+            return View(dong);
+        }
+
+        [HttpPost]
+        public IActionResult Xoataikhoan(TaikhoanModel taikhoan)
+        {
+            var dong = _context.TaiKhoan.Find(taikhoan.MaTaiKhoan);
+
+            if (dong != null)
+            {
+                _context.TaiKhoan.Remove(dong);
+                _context.SaveChanges();
+
+                return RedirectToAction("TaiKhoan", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Mã tài khoản không tồn tại!!";
+
+                return View("Xoatk", taikhoan);
+            }
+        }
+        public IActionResult Thuoc(string timkiem)
+        {
+            if (timkiem!=null && timkiem!="")
+            {
+                var bang = _context.Thuoc.Where(x => x.MaThuoc.Contains(timkiem) || x.TenThuoc.Contains(timkiem)).ToList();
+                return View(bang);
+            }
+            else {
+                var bang = _context.Thuoc.ToList();
+                return View(bang); 
+            }
+        }
+        public IActionResult Themthuoc()
+        {
+            var bang = _context.Thuoc.ToList();
+
+            string mathuoc = "TH001";
+
+            if (bang.Count > 0)
+            {
+                var dong = bang
+                    .OrderByDescending(x => x.MaThuoc)
+                    .FirstOrDefault();
+
+                if (dong != null && dong.MaThuoc != null && dong.MaThuoc != "")
+                {
+                    string phanso = dong.MaThuoc.Substring(2);
+
+                    int so = int.Parse(phanso);
+
+                    so = so + 1;
+
+                    mathuoc = "TH" + so.ToString("D3");
+                }
+            }
+
+            var thuoc = new ThuocModel();
+
+            thuoc.MaThuoc = mathuoc;
+
+            return View(thuoc);
+        }
+
+        [HttpPost]
+        public IActionResult Themthuocxl(ThuocModel thuoc)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Thuoc.Add(thuoc);
+                _context.SaveChanges();
+                return RedirectToAction("Thuoc", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Vui lòng nhập đủ thông tin và đúng định dạng!!!";
+                return View("Themthuoc", thuoc);
+            }
+        }
+        public IActionResult Suathuoc(string id)
+        {
+            var dong = _context.Thuoc.Find(id);
+            return View(dong);
+        }
+        [HttpPost]
+        public IActionResult Suathuocxl(ThuocModel thuoc)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Thuoc.Update(thuoc);
+                _context.SaveChanges();
+                return RedirectToAction("Thuoc", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chính xác!!!";
+                return View("Suathuoc", thuoc);
+            }
+        }
+        public IActionResult Chitietthuoc(string id)
+        {
+            var dong = _context.Thuoc.Find(id);
+            return View(dong);
+        }
+        public IActionResult Xoathuoc(string id)
+        {
+            var dong = _context.Thuoc.Find(id);
+            return View(dong);
+        }
+        [HttpPost]
+        public IActionResult Xoathuocxl(ThuocModel thuoc)
+        {
+            var dong = _context.Thuoc.Find(thuoc.MaThuoc);
+            if (dong != null)
+            {
+                _context.Thuoc.Remove(dong);
+                _context.SaveChanges();
+                return RedirectToAction("Thuoc", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Mã xoá không tồn tại!!!";
+                return View("Xoathuocxl", thuoc);
+            }
+        }
+        public IActionResult Phieukham(string timkiem)
+        {
+            if (timkiem != null && timkiem!="")
+            {
+                var bang = _context.PhieuKham.Where(x=>x.MaPhieuKham.Contains(timkiem)||x.MaKhachHang.Contains(timkiem)|| x.MaNhanVien.Contains(timkiem) ||x.BenhTinh.Contains(timkiem)).ToList();
+                return View(bang);
+            }
+            else
+            {
+                var bang = _context.PhieuKham.ToList();
+                return View(bang);
+            }
+        }
+        public IActionResult Themphieukham()
+        {
+            var bangkh = _context.KhachHang.ToList();
+            var bangtc = _context.ThuCung.ToList();
+            var bangnv = _context.NhanVien.ToList();
+            ViewBag.kh = bangkh;
+            ViewBag.tc = bangtc;
+            ViewBag.nv = bangnv;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Themphieukhamxl(PhieukhamModel phieukham)
+        {
+            ModelState.Remove("MaPhieuKham");
+            var bang = _context.PhieuKham.ToList();
+
+            string maphieukham = "PK001";
+
+            if (bang.Count > 0)
+            {
+                var dong = bang
+                    .OrderByDescending(x => x.MaPhieuKham)
+                    .FirstOrDefault();
+
+                if (dong != null && dong.MaPhieuKham != null && dong.MaPhieuKham != "")
+                {
+                    string phanso = dong.MaPhieuKham.Substring(2);
+
+                    int so = int.Parse(phanso);
+
+                    so = so + 1;
+
+                    maphieukham = "PK" + so.ToString("D3");
+                }
+            }
+
+            phieukham.MaPhieuKham = maphieukham;
+            if (ModelState.IsValid)
+            {
+                _context.PhieuKham.Add(phieukham);
+                _context.SaveChanges();
+                return RedirectToAction("Phieukham", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chọn nội dung";
+                return View("Themphieukham", phieukham);
+            }
+        }
+        public IActionResult Suaphieukham(string id)
+        {
+            var bangkh = _context.KhachHang.ToList();
+            var bangtc = _context.ThuCung.ToList();
+            var bangnv = _context.NhanVien.ToList();
+            ViewBag.kh = bangkh;
+            ViewBag.tc = bangtc;
+            ViewBag.nv = bangnv;
+            var thongtincu = _context.PhieuKham.Find(id);
+            return View(thongtincu);
+        }
+        [HttpPost]
+        public IActionResult Suaphieukhamxl(PhieukhamModel phieukham)
+        {
+            ModelState.Remove("MaPhieuKham");
+            if (ModelState.IsValid)
+            {
+                _context.PhieuKham.Update(phieukham);
+                _context.SaveChanges();
+                return RedirectToAction("Phieukham", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chọn nội dung";
+                return View("Themphieukham", phieukham);
+            }
+        }
+        public IActionResult Chitietphieukham(string id)
+        {
+            var thongtincu = _context.PhieuKham.Find(id);
+            return View(thongtincu);
+        }
+        public IActionResult Xoaphieukham(string id)
+        {
+            var thongtincu = _context.PhieuKham.Find(id);
+            return View(thongtincu);
+        }
+        [HttpPost]
+        public IActionResult Xoaphieukhamxl(PhieukhamModel phieukham)
+        {
+            var dongxoa = _context.PhieuKham.Find(phieukham.MaPhieuKham);
+            if (dongxoa != null)
+            {
+                _context.PhieuKham.Remove(dongxoa);
+                _context.SaveChanges();
+                return RedirectToAction("Phieukham", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "mã phiêu khám không tồn tại!!!";
+                return View("Xoaphieukham", phieukham);
+            }
+        }
     }
 }

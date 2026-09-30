@@ -1,0 +1,224 @@
+﻿@model thucung.Models.TaikhoanModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .xoatk-page {
+        width: 100%;
+        min-height: 100%;
+        padding: 30px;
+        background: #fffdf5;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .xoatk-header {
+        margin-bottom: 25px;
+    }
+
+        .xoatk-header h2 {
+            margin: 0 0 7px 0;
+            font-size: 26px;
+        }
+
+        .xoatk-header p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+    .delete-box {
+        max-width: 750px;
+        margin: 0 auto;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    }
+
+    .warning {
+        margin-bottom: 25px;
+        padding: 15px;
+        background: #fff3cd;
+        border-radius: 10px;
+        color: #856404;
+        font-size: 14px;
+    }
+
+    .error-message {
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        background: #ffebee;
+        border-radius: 9px;
+        color: #c62828;
+        font-size: 14px;
+    }
+
+    .account-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 25px;
+    }
+
+    .info-item {
+        padding: 15px;
+        background: #fffdf5;
+        border-radius: 10px;
+    }
+
+        .info-item label {
+            display: block;
+            margin-bottom: 7px;
+            color: #777;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .info-item span {
+            color: #333;
+            font-size: 15px;
+            word-break: break-word;
+        }
+
+    .button-list {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 18px;
+        border-radius: 9px;
+        border: none;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .btn-back {
+        background: #eeeeee;
+        color: #444;
+    }
+
+    .btn-delete {
+        background: #e53935;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    @@media (max-width: 700px) {
+        .account-info {
+            grid-template-columns: 1fr;
+        }
+
+        .button-list {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="xoatk-page">
+
+    <div class="xoatk-header">
+        <h2>🗑 Xóa tài khoản</h2>
+        <p>Xác nhận thông tin tài khoản trước khi xóa</p>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="delete-box">
+
+            <div class="warning">
+                Bạn có chắc chắn muốn xóa tài khoản này không?
+                Sau khi xóa, tài khoản sẽ không còn trong hệ thống.
+            </div>
+
+            @if (ViewBag.tb != null)
+            {
+                <div class="error-message">
+                    @ViewBag.tb
+                </div>
+            }
+
+            <div class="account-info">
+
+                <div class="info-item">
+                    <label>Mã tài khoản</label>
+                    <span>@Model.MaTaiKhoan</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Tên đăng nhập</label>
+                    <span>@Model.TenDangNhap</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Email</label>
+                    <span>@Model.Email</span>
+                </div>
+
+                <div class="info-item">
+                    <label>Phân quyền</label>
+                    <span>@Model.PhanQuyen</span>
+                </div>
+
+            </div>
+
+            <form action="@Url.Action("Xoataikhoan", "Quanly")" method="post">
+
+                <input type="hidden"
+                       name="MaTaiKhoan"
+                       value="@Model.MaTaiKhoan" />
+
+                <div class="button-list">
+
+                    <a href="@Url.Action("TaiKhoan", "Quanly")"
+                       class="btn btn-back">
+                        ← Hủy
+                    </a>
+
+                    <button type="submit" class="btn btn-delete">
+                        🗑 Xác nhận xóa
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+        <div class="delete-box">
+
+            <div class="error-message">
+                @if (ViewBag.tb != null)
+                {
+                    @ViewBag.tb
+                }
+                else
+                {
+                    <span>Tài khoản không tồn tại!!</span>
+                }
+            </div>
+
+        </div>
+    }
+
+</div>
+}

@@ -1,0 +1,282 @@
+﻿@model List<thucung.Models.PhieukhamModel>
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .phieukham-page {
+        width: 100%;
+        padding: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .phieukham-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .phieukham-title h2 {
+            margin: 0;
+            color: #5b4636;
+            font-size: 26px;
+        }
+
+    .btn-add {
+        display: inline-block;
+        padding: 10px 16px;
+        border-radius: 8px;
+        background: #e8b84b;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+        .btn-add:hover {
+            background: #d9a936;
+            transform: translateY(-1px);
+        }
+
+    .phieukham-search {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+        .phieukham-search input {
+            width: 350px;
+            padding: 11px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+            .phieukham-search input:focus {
+                border-color: #e8b84b;
+                box-shadow: 0 0 0 2px rgba(232, 184, 75, 0.15);
+            }
+
+    .btn-search {
+        padding: 11px 20px;
+        border: none;
+        border-radius: 8px;
+        background: #e8b84b;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+        .btn-search:hover {
+            background: #d9a936;
+        }
+
+    .phieukham-table-box {
+        width: 100%;
+        overflow-x: auto;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .phieukham-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1050px;
+    }
+
+        .phieukham-table th {
+            background: #fff4d6;
+            color: #5b4636;
+            padding: 14px 12px;
+            text-align: left;
+            font-size: 14px;
+            border-bottom: 1px solid #eadfca;
+            white-space: nowrap;
+        }
+
+        .phieukham-table td {
+            padding: 13px 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .phieukham-table tr:hover {
+            background: #fffaf0;
+        }
+
+    .btn-detail {
+        display: inline-block;
+        padding: 8px 13px;
+        border-radius: 7px;
+        background: #f0c75e;
+        color: #4b3a28;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+        margin-right: 5px;
+    }
+
+        .btn-detail:hover {
+            background: #e5b743;
+            transform: translateY(-1px);
+        }
+
+    .btn-edit {
+        display: inline-block;
+        padding: 8px 13px;
+        border-radius: 7px;
+        background: #8fcf8f;
+        color: #285c28;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+        margin-right: 5px;
+    }
+
+        .btn-edit:hover {
+            background: #79bd79;
+            transform: translateY(-1px);
+        }
+
+    .btn-delete {
+        display: inline-block;
+        padding: 8px 13px;
+        border-radius: 7px;
+        background: #e98b8b;
+        color: #721c1c;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+        .btn-delete:hover {
+            background: #dc7474;
+            transform: translateY(-1px);
+        }
+
+    .phieukham-empty {
+        padding: 35px;
+        text-align: center;
+        color: #888;
+        font-size: 15px;
+    }
+
+    .phieukham-money {
+        font-weight: bold;
+    }
+</style>
+
+<div class="phieukham-page">
+
+    <div class="phieukham-title">
+        <h2>🩺 Quản lý phiếu khám</h2>
+
+        <a href="@Url.Action("Themphieukham", "Quanly")"
+           class="btn-add">
+            ➕ Thêm phiếu khám
+        </a>
+    </div>
+
+    <form method="get"
+          action="@Url.Action("Phieukham", "Quanly")"
+          class="phieukham-search">
+
+        <input type="text"
+               name="timkiem"
+               value="@Context.Request.Query["timkiem"]"
+               placeholder="Tìm mã phiếu, mã khách hàng, mã nhân viên, bệnh tình..." />
+
+        <button type="submit" class="btn-search">
+            🔍 Tìm kiếm
+        </button>
+    </form>
+
+    <div class="phieukham-table-box">
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="phieukham-table">
+                <thead>
+                    <tr>
+                        <th>Mã phiếu khám</th>
+                        <th>Mã khách hàng</th>
+                        <th>Mã thú cưng</th>
+                        <th>Mã nhân viên</th>
+                        <th>Ngày khám</th>
+                        <th>Bệnh tình</th>
+                        <th>Số tiền</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaPhieuKham</td>
+                            <td>@item.MaKhachHang</td>
+                            <td>@item.MaThuCung</td>
+                            <td>@item.MaNhanVien</td>
+                            <td>@item.NgayKham.ToString("dd/MM/yyyy")</td>
+
+                            <td>
+                                @if (item.BenhTinh != null && item.BenhTinh != "")
+                                {
+                                    @item.BenhTinh
+                                }
+                                else
+                                {
+                                    <span>Chưa có</span>
+                                }
+                            </td>
+
+                            <td class="phieukham-money">
+                                @item.SoTien.ToString("N0") VNĐ
+                            </td>
+
+                            <td>
+                                <a href="@Url.Action("Chitietphieukham", "Quanly", new { id = item.MaPhieuKham })"
+                                   class="btn-detail">
+                                    👁️ Chi tiết
+                                </a>
+
+                                <a href="@Url.Action("Suaphieukham", "Quanly", new { id = item.MaPhieuKham })"
+                                   class="btn-edit">
+                                    ✏️ Sửa
+                                </a>
+
+                                <a href="@Url.Action("Xoaphieukham", "Quanly", new { id = item.MaPhieuKham })"
+                                   class="btn-delete">
+                                    🗑️ Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="phieukham-empty">
+                Không tìm thấy phiếu khám nào.
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,324 @@
+﻿@model thucung.Models.PhieukhamModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .chi-tiet-phieu-page {
+        width: 100%;
+        padding: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .chi-tiet-title {
+        margin-bottom: 20px;
+    }
+
+        .chi-tiet-title h2 {
+            margin: 0;
+            color: #5b4636;
+            font-size: 26px;
+        }
+
+    .chi-tiet-box {
+        max-width: 1100px;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .thong-tin-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 18px;
+    }
+
+    .thong-tin-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .thong-tin-item label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #5b4636;
+        }
+
+    .thong-tin-value {
+        min-height: 42px;
+        padding: 11px 13px;
+        background: #fffaf0;
+        border: 1px solid #eee2c8;
+        border-radius: 8px;
+        line-height: 20px;
+    }
+
+    .thong-tin-full {
+        margin-bottom: 18px;
+    }
+
+        .thong-tin-full label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #5b4636;
+        }
+
+    .thong-tin-noi-dung {
+        min-height: 90px;
+        padding: 13px;
+        background: #fffaf0;
+        border: 1px solid #eee2c8;
+        border-radius: 8px;
+        line-height: 22px;
+        white-space: pre-wrap;
+    }
+
+    .ma-phieu {
+        font-weight: bold;
+        color: #b37b00;
+    }
+
+    .chi-tiet-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .btn-edit {
+        display: inline-block;
+        padding: 11px 20px;
+        border-radius: 8px;
+        background: #e8b84b;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-edit:hover {
+            background: #d9a936;
+        }
+
+    .btn-back {
+        display: inline-block;
+        padding: 11px 20px;
+        border-radius: 8px;
+        background: #eee;
+        color: #555;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-back:hover {
+            background: #ddd;
+        }
+
+    .khong-co-du-lieu {
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        text-align: center;
+        color: #888;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+</style>
+
+<div class="chi-tiet-phieu-page">
+
+    <div class="chi-tiet-title">
+        <h2>🩺 Chi tiết phiếu khám</h2>
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="chi-tiet-box">
+
+            <div class="thong-tin-row">
+
+                <div class="thong-tin-item">
+                    <label>Mã phiếu khám</label>
+
+                    <div class="thong-tin-value ma-phieu">
+                        @Model.MaPhieuKham
+                    </div>
+                </div>
+
+                <div class="thong-tin-item">
+                    <label>Ngày khám</label>
+
+                    <div class="thong-tin-value">
+                        @Model.NgayKham.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="thong-tin-row">
+
+                <div class="thong-tin-item">
+                    <label>Mã khách hàng</label>
+
+                    <div class="thong-tin-value">
+                        @Model.MaKhachHang
+                    </div>
+                </div>
+
+                <div class="thong-tin-item">
+                    <label>Mã thú cưng</label>
+
+                    <div class="thong-tin-value">
+                        @Model.MaThuCung
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="thong-tin-row">
+
+                <div class="thong-tin-item">
+                    <label>Mã nhân viên</label>
+
+                    <div class="thong-tin-value">
+                        @Model.MaNhanVien
+                    </div>
+                </div>
+
+                <div class="thong-tin-item">
+                    <label>Số tiền</label>
+
+                    <div class="thong-tin-value">
+                        @Model.SoTien.ToString("N0") VNĐ
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="thong-tin-full">
+
+                <label>Bệnh tình</label>
+
+                <div class="thong-tin-noi-dung">
+                    @if (Model.BenhTinh != null && Model.BenhTinh != "")
+                    {
+                        @Model.BenhTinh
+                    }
+                    else
+                    {
+                        <span>Chưa có thông tin</span>
+                    }
+                </div>
+
+            </div>
+
+            <div class="thong-tin-full">
+
+                <label>Mô tả triệu chứng</label>
+
+                <div class="thong-tin-noi-dung">
+                    @if (Model.MoTaTrieuChung != null && Model.MoTaTrieuChung != "")
+                    {
+                        @Model.MoTaTrieuChung
+                    }
+                    else
+                    {
+                        <span>Chưa có thông tin</span>
+                    }
+                </div>
+
+            </div>
+
+            <div class="thong-tin-full">
+
+                <label>Kết quả khám</label>
+
+                <div class="thong-tin-noi-dung">
+                    @if (Model.KetQuaKham != null && Model.KetQuaKham != "")
+                    {
+                        @Model.KetQuaKham
+                    }
+                    else
+                    {
+                        <span>Chưa có thông tin</span>
+                    }
+                </div>
+
+            </div>
+
+            <div class="thong-tin-full">
+
+                <label>Thông tin thuốc</label>
+
+                <div class="thong-tin-noi-dung">
+                    @if (Model.ThongTinThuoc != null && Model.ThongTinThuoc != "")
+                    {
+                        @Model.ThongTinThuoc
+                    }
+                    else
+                    {
+                        <span>Chưa có thông tin</span>
+                    }
+                </div>
+
+            </div>
+
+            <div class="thong-tin-full">
+
+                <label>Mô tả sử dụng dịch vụ</label>
+
+                <div class="thong-tin-noi-dung">
+                    @if (Model.MoTaSuDungDichVu != null && Model.MoTaSuDungDichVu != "")
+                    {
+                        @Model.MoTaSuDungDichVu
+                    }
+                    else
+                    {
+                        <span>Chưa có thông tin</span>
+                    }
+                </div>
+
+            </div>
+
+            <div class="thong-tin-row">
+
+                <div class="thong-tin-item">
+                    <label>Ngày lập</label>
+
+                    <div class="thong-tin-value">
+                        @Model.NgayLap.ToString("dd/MM/yyyy HH:mm")
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chi-tiet-buttons">
+
+                <a href="@Url.Action("Suaphieukham", "Quanly", new { id = Model.MaPhieuKham })"
+                   class="btn-edit">
+                    ✏️ Sửa phiếu
+                </a>
+
+                <a href="@Url.Action("Phieukham", "Quanly")"
+                   class="btn-back">
+                    ← Quay lại
+                </a>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <div class="khong-co-du-lieu">
+            Không tìm thấy phiếu khám.
+        </div>
+    }
+
+</div>

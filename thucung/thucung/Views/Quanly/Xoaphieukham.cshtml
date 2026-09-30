@@ -1,0 +1,233 @@
+﻿@model thucung.Models.PhieukhamModel
+
+@{
+    Layout = null;
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .xoa-phieu-page {
+        width: 100%;
+        padding: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #3f3f3f;
+    }
+
+    .xoa-phieu-title {
+        margin-bottom: 20px;
+    }
+
+        .xoa-phieu-title h2 {
+            margin: 0;
+            color: #5b4636;
+            font-size: 26px;
+        }
+
+    .xoa-phieu-box {
+        max-width: 700px;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .canh-bao {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        background: #fff4d6;
+        color: #765c16;
+        line-height: 22px;
+    }
+
+    .thong-tin {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .thong-tin-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .thong-tin-item label {
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #5b4636;
+        }
+
+        .thong-tin-item input {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f5f5f5;
+            color: #666;
+            outline: none;
+            font-size: 14px;
+        }
+
+    .ma-phieu {
+        font-weight: bold;
+        color: #b37b00 !important;
+    }
+
+    .form-error {
+        padding: 11px 13px;
+        margin-bottom: 18px;
+        border-radius: 8px;
+        background: #ffe5e5;
+        color: #c0392b;
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-delete {
+        border: none;
+        padding: 11px 22px;
+        border-radius: 8px;
+        background: #d9534f;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .btn-delete:hover {
+            background: #c43f3b;
+        }
+
+    .btn-cancel {
+        display: inline-block;
+        padding: 11px 22px;
+        border-radius: 8px;
+        background: #eee;
+        color: #555;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .btn-cancel:hover {
+            background: #ddd;
+        }
+
+    .khong-co-du-lieu {
+        padding: 30px;
+        background: white;
+        border-radius: 12px;
+        text-align: center;
+        color: #888;
+    }
+</style>
+
+<div class="xoa-phieu-page">
+
+    <div class="xoa-phieu-title">
+        <h2>🗑️ Xóa phiếu khám</h2>
+    </div>
+
+    @if (Model != null)
+    {
+        @if (ViewBag.tb != null)
+        {
+            <div class="form-error">
+                @ViewBag.tb
+            </div>
+        }
+
+        <div class="xoa-phieu-box">
+
+            <div class="canh-bao">
+                Bạn có chắc chắn muốn xóa phiếu khám này không?
+                Dữ liệu sau khi xóa sẽ không thể khôi phục.
+            </div>
+
+            <form method="post"
+                  action="@Url.Action("Xoaphieukhamxl", "Quanly")">
+
+                <div class="thong-tin">
+
+                    <div class="thong-tin-item">
+                        <label>Mã phiếu khám</label>
+
+                        <input type="text"
+                               name="MaPhieuKham"
+                               value="@Model.MaPhieuKham"
+                               class="ma-phieu"
+                               readonly />
+                    </div>
+
+                    <div class="thong-tin-item">
+                        <label>Ngày khám</label>
+
+                        <input type="text"
+                               value="@Model.NgayKham.ToString("dd/MM/yyyy HH:mm")"
+                               readonly />
+                    </div>
+
+                    <div class="thong-tin-item">
+                        <label>Mã khách hàng</label>
+
+                        <input type="text"
+                               value="@Model.MaKhachHang"
+                               readonly />
+                    </div>
+
+                    <div class="thong-tin-item">
+                        <label>Mã thú cưng</label>
+
+                        <input type="text"
+                               value="@Model.MaThuCung"
+                               readonly />
+                    </div>
+
+                    <div class="thong-tin-item">
+                        <label>Mã nhân viên</label>
+
+                        <input type="text"
+                               value="@Model.MaNhanVien"
+                               readonly />
+                    </div>
+
+                    <div class="thong-tin-item">
+                        <label>Số tiền</label>
+
+                        <input type="text"
+                               value="@Model.SoTien.ToString("N0") VNĐ"
+                               readonly />
+                    </div>
+
+                </div>
+
+                <div class="form-buttons">
+
+                    <button type="submit" class="btn-delete">
+                        🗑️ Xác nhận xóa
+                    </button>
+
+                    <a href="@Url.Action("Phieukham", "Quanly")"
+                       class="btn-cancel">
+                        Hủy
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+        <div class="khong-co-du-lieu">
+            Không tìm thấy phiếu khám cần xóa.
+        </div>
+    }
+
+</div>
