@@ -53,9 +53,9 @@
         transition: 0.2s;
     }
 
-    .btn:hover {
-        transform: translateY(-2px);
-    }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
 
     .btn-back {
         background: #8d6e63;
@@ -104,13 +104,13 @@
         gap: 20px;
     }
 
-    .detail-image img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 12px;
-        border: 1px solid #ddd;
-    }
+        .detail-image img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
 
     .no-image {
         width: 150px;
@@ -159,9 +159,9 @@
             width: 100%;
         }
 
-        .header-actions .btn {
-            flex: 1;
-        }
+            .header-actions .btn {
+                flex: 1;
+            }
     }
 </style>
 
@@ -174,13 +174,6 @@
         </h2>
 
         <div class="header-actions">
-
-            @@if (Model != null)
-{
-    <div class="warning">
-        Bạn có chắc chắn muốn xóa nhân viên này không?
-    </div>
-}
 
             <a href="@Url.Action("Nhanvien", "Quanly")"
                class="btn btn-back">
@@ -205,7 +198,6 @@
                     @Model.MaNhanVien
                 </div>
 
-
                 <div class="detail-label">
                     Họ tên
                 </div>
@@ -213,7 +205,6 @@
                 <div class="detail-value">
                     @Model.HoTen
                 </div>
-
 
                 <div class="detail-label">
                     Ngày sinh
@@ -230,7 +221,6 @@
                     }
                 </div>
 
-
                 <div class="detail-label">
                     Giới tính
                 </div>
@@ -238,7 +228,6 @@
                 <div class="detail-value">
                     @Model.GioiTinh
                 </div>
-
 
                 <div class="detail-label">
                     Số điện thoại
@@ -248,7 +237,6 @@
                     @Model.SoDienThoai
                 </div>
 
-
                 <div class="detail-label">
                     Email
                 </div>
@@ -256,7 +244,6 @@
                 <div class="detail-value">
                     @Model.Email
                 </div>
-
 
                 <div class="detail-label">
                     Địa chỉ
@@ -266,7 +253,6 @@
                     @Model.DiaChi
                 </div>
 
-
                 <div class="detail-label">
                     Chuyên môn
                 </div>
@@ -275,7 +261,6 @@
                     @Model.ChuyenMon
                 </div>
 
-
                 <div class="detail-label">
                     Bằng cấp
                 </div>
@@ -283,7 +268,6 @@
                 <div class="detail-value">
                     @Model.BangCap
                 </div>
-
 
                 <div class="detail-label">
                     Ngày vào làm
@@ -299,7 +283,6 @@
                         <span>Chưa có</span>
                     }
                 </div>
-
 
                 <div class="detail-label">
                     Ảnh
@@ -322,9 +305,7 @@
                             Chưa có ảnh
                         </div>
                     }
-
                 </div>
-
 
                 <div class="detail-label">
                     Mô tả

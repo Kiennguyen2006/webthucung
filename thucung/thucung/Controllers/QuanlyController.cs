@@ -2,6 +2,7 @@
 using thucung.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
 namespace thucung.Controllers
 {
     public class QuanlyController : Controller
@@ -14,19 +15,23 @@ namespace thucung.Controllers
             _context = context;
             _env = env;
         }
+
         public IActionResult Quanly()
         {
-            string tentk = TempData["tentk"]?.ToString();
+            string? tentk = TempData["tentk"]?.ToString();
 
             if (tentk == null || tentk == "")
             {
                 return RedirectToAction("Dangnhap", "Kiemtrathongtin");
             }
+
             var quyen = _context.TaiKhoan
-        .Where(x => x.TenDangNhap == tentk)
-        .Select(x => x.PhanQuyen) 
-        .FirstOrDefault();
+                .Where(x => x.TenDangNhap == tentk)
+                .Select(x => x.PhanQuyen)
+                .FirstOrDefault();
+
             ViewBag.PhanQuyen = quyen;
+
             return View();
         }
 
@@ -38,16 +43,22 @@ namespace thucung.Controllers
             }
             else
             {
-                ViewBag.bangthucung = _context.ThuCung.Where(x => x.MaThuCung == timkiem || x.TenThuCung.Contains(timkiem)).ToList();
+                ViewBag.bangthucung = _context.ThuCung
+                    .Where(x => x.MaThuCung == timkiem || x.TenThuCung.Contains(timkiem))
+                    .ToList();
             }
+
             return View();
         }
+
         public IActionResult Themthucung()
         {
             var bangkh = _context.KhachHang.ToList();
             ViewBag.thongtinkhachhang = bangkh;
+
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Themtc(ThucungModel thucung, IFormFile anhFile)
         {
@@ -55,16 +66,19 @@ namespace thucung.Controllers
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(anhFile.FileName);
                 string uploadDir = Path.Combine(_env.WebRootPath, "images");
+
                 if (!Directory.Exists(uploadDir))
                 {
                     Directory.CreateDirectory(uploadDir);
                 }
 
                 string filePath = Path.Combine(uploadDir, fileName);
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await anhFile.CopyToAsync(stream);
                 }
+
                 thucung.Anh = fileName;
             }
 
@@ -85,14 +99,18 @@ namespace thucung.Controllers
             so++;
 
             string maThuCungMoi = "TC" + so.ToString("D3");
+
             thucung.MaThuCung = maThuCungMoi;
             thucung.NgayTao = DateTime.Now;
+
             ModelState.Remove("MaThuCung");
             ModelState.Remove("Anh");
             ModelState.Remove("MaKhachHang");
+
             if (ModelState.IsValid)
             {
                 _context.ThuCung.Add(thucung);
+
                 try
                 {
                     _context.SaveChanges();
@@ -106,30 +124,35 @@ namespace thucung.Controllers
                         "\nLỗi = " + ex.GetBaseException().Message
                     );
                 }
+
                 return RedirectToAction("Thucung", "Quanly");
             }
-            else {
+            else
+            {
                 ViewBag.tb = "Vui lòng nhập đủ dữ liệu";
-                return View();
+                return View("Themthucung",thucung);
             }
-            return View();
         }
+
         public IActionResult Chitiet(string id)
         {
             var dongthongtin = _context.ThuCung
-                .FirstOrDefault(x => x.MaThuCung.Equals(id));
+                .FirstOrDefault(x => x.MaThuCung == id);
 
             return View(dongthongtin);
         }
+
         public IActionResult Sua(string id)
         {
             var bangkh = _context.KhachHang.ToList();
             ViewBag.thongtinkhachhang = bangkh;
+
             var dongthongtin = _context.ThuCung
-                .FirstOrDefault(x => x.MaThuCung.Equals(id));
+                .FirstOrDefault(x => x.MaThuCung == id);
 
             return View(dongthongtin);
         }
+
         [HttpPost]
         public async Task<IActionResult> Suatc(ThucungModel thucung, IFormFile anhFile)
         {
@@ -137,38 +160,57 @@ namespace thucung.Controllers
             {
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(anhFile.FileName);
                 string uploadDir = Path.Combine(_env.WebRootPath, "images");
+
                 if (!Directory.Exists(uploadDir))
                 {
                     Directory.CreateDirectory(uploadDir);
                 }
+
                 string filePath = Path.Combine(uploadDir, fileName);
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await anhFile.CopyToAsync(stream);
                 }
 
-                
                 thucung.Anh = fileName;
             }
+
             ModelState.Remove("MaThuCung");
             ModelState.Remove("Anh");
+
             if (ModelState.IsValid)
             {
                 _context.ThuCung.Update(thucung);
                 _context.SaveChanges();
+
                 return RedirectToAction("Thucung", "Quanly");
             }
-            return View();
+            else
+            {
+                var bangkh = _context.KhachHang.ToList();
+
+                ViewBag.thongtinkhachhang = bangkh;
+                ViewBag.tb = "Vui lòng nhập đầy đủ thông tin!";
+
+                return View("Sua", thucung);
+            }
         }
+
         public IActionResult Xoa(string id)
         {
-            var bang = _context.ThuCung.FirstOrDefault(x => x.MaThuCung == id);
+            var bang = _context.ThuCung
+                .FirstOrDefault(x => x.MaThuCung == id);
+
             return View(bang);
         }
+
         [HttpPost]
-        public IActionResult Xoatc(ThucungModel thucung )
+        public IActionResult Xoatc(ThucungModel thucung)
         {
-                var dong = _context.ThuCung.FirstOrDefault(x => x.MaThuCung == thucung.MaThuCung);
+            var dong = _context.ThuCung
+                .FirstOrDefault(x => x.MaThuCung == thucung.MaThuCung);
+
             if (dong != null)
             {
                 _context.ThuCung.Remove(dong);
@@ -179,24 +221,30 @@ namespace thucung.Controllers
 
             return View("Thucung");
         }
+
         public IActionResult Khachhang(string timkiem)
         {
             if (timkiem != null && timkiem != "")
             {
-                var bangkh = _context.KhachHang.Where(x => x.MaKhachHang.Contains(timkiem) || x.HoTen.Contains(timkiem)).ToList();
+                var bangkh = _context.KhachHang
+                    .Where(x => x.MaKhachHang.Contains(timkiem) || x.HoTen.Contains(timkiem))
+                    .ToList();
+
                 return View(bangkh);
             }
             else
             {
                 var bangkh = _context.KhachHang.ToList();
+
                 return View(bangkh);
             }
-            return View();
         }
+
         public IActionResult Themkhachhang()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult Themkh(KhachhangModel khachhang)
         {
@@ -217,80 +265,114 @@ namespace thucung.Controllers
             so++;
 
             string maKhachHangMoi = "KH" + so.ToString("D3");
+
             khachhang.MaKhachHang = maKhachHangMoi;
             khachhang.NgayTao = DateTime.Now;
+
             ModelState.Remove("MaKhachHang");
             ModelState.Remove("NgayTao");
+
             if (ModelState.IsValid)
             {
                 _context.KhachHang.Add(khachhang);
                 _context.SaveChanges();
+
                 return RedirectToAction("Khachhang", "Quanly");
             }
             else
             {
+                var bang = _context.KhachHang.ToList();
+
+                ViewBag.thongtinkhachhang = bang;
                 ViewBag.tb = "Vui lòng nhập đầy đủ thông tin và đúng định dạng!";
             }
+
             return View("Themkhachhang", khachhang);
         }
-        public IActionResult Chitetkh(string id)
+
+        public IActionResult Chitietkh(string id)
         {
-            var bang = _context.KhachHang.FirstOrDefault(x => x.MaKhachHang == id);
+            var bang = _context.KhachHang
+                .FirstOrDefault(x => x.MaKhachHang == id);
+
             return View(bang);
         }
+
         public IActionResult Suakh(string id)
         {
-            var dong = _context.KhachHang.FirstOrDefault(x=>x.MaKhachHang==id);
+            var dong = _context.KhachHang
+                .FirstOrDefault(x => x.MaKhachHang == id);
+
             return View(dong);
         }
+
         [HttpPost]
         public IActionResult Suakhachhang(KhachhangModel khachhang)
         {
             ModelState.Remove("MaKhachHang");
             ModelState.Remove("NgayTao");
+
             if (ModelState.IsValid)
             {
                 _context.KhachHang.Update(khachhang);
                 _context.SaveChanges();
+
                 return RedirectToAction("Khachhang", "Quanly");
             }
             else
             {
+                var bangkh = _context.KhachHang.ToList();
+
+                ViewBag.thongtinkhachhang = bangkh;
                 ViewBag.tb = "Vui lòng nhập đầy đủ thông tin và đúng định dạng!";
             }
+
             return View("Suakh", khachhang);
         }
+
         public IActionResult Xoakh(string id)
         {
-            var dong = _context.KhachHang.FirstOrDefault(x => x.MaKhachHang == id);
+            var dong = _context.KhachHang
+                .FirstOrDefault(x => x.MaKhachHang == id);
+
             return View(dong);
         }
+
         [HttpPost]
         public IActionResult Xoakhachhang(KhachhangModel khachhang)
         {
-            var dong = _context.KhachHang.FirstOrDefault(x => x.MaKhachHang == khachhang.MaKhachHang);
-            if ( dong != null &&  dong != null)
+            var dong = _context.KhachHang
+                .FirstOrDefault(x => x.MaKhachHang == khachhang.MaKhachHang);
+
+            if (dong != null)
             {
                 _context.KhachHang.Remove(dong);
                 _context.SaveChanges();
+
                 return RedirectToAction("Khachhang", "Quanly");
             }
+
             return View();
         }
+
         public IActionResult Nhanvien(string timkiem)
         {
             if (timkiem == null || timkiem == "")
             {
                 var bang = _context.NhanVien.ToList();
+
                 return View(bang);
             }
             else
             {
-                var bang = _context.NhanVien.Where(x=>x.MaNhanVien.Contains(timkiem) || x.HoTen.Contains(timkiem)).ToList();
+                var bang = _context.NhanVien
+                    .Where(x => x.MaNhanVien.Contains(timkiem) || x.HoTen.Contains(timkiem))
+                    .ToList();
+
                 return View(bang);
             }
-            return View();
         }
+
         public IActionResult Themnv()
         {
             return View();
@@ -352,17 +434,24 @@ namespace thucung.Controllers
             else
             {
                 ViewBag.tb = "Thông tin chưa được nhập đủ hoặc thông tin không đúng!";
+
                 return View("Themnv", nhanVien);
             }
         }
+
         public IActionResult Chitietnv(string id)
         {
-            var dong = _context.NhanVien.FirstOrDefault(x => x.MaNhanVien == id);
+            var dong = _context.NhanVien
+                .FirstOrDefault(x => x.MaNhanVien == id);
+
             return View(dong);
         }
+
         public IActionResult Suanv(string id)
         {
-            var dong = _context.NhanVien.FirstOrDefault(x => x.MaNhanVien == id);
+            var dong = _context.NhanVien
+                .FirstOrDefault(x => x.MaNhanVien == id);
+
             return View(dong);
         }
 
@@ -406,57 +495,72 @@ namespace thucung.Controllers
                 return View("Suanv", nhanVien);
             }
         }
+
         public IActionResult Xoanv(string id)
         {
             var dong = _context.NhanVien.Find(id);
+
             return View(dong);
         }
+
         [HttpPost]
         public IActionResult Xoanhanvien(NhanVienModel nhanvien)
         {
             var dong = _context.NhanVien.Find(nhanvien.MaNhanVien);
+
             if (dong != null)
             {
                 _context.NhanVien.Remove(dong);
                 _context.SaveChanges();
+
                 return RedirectToAction("Nhanvien", "Quanly");
             }
+
             return View();
         }
+
         public IActionResult TaiKhoan(string timkiem)
         {
             if (timkiem != null && timkiem != "")
             {
-                var bangtk = _context.TaiKhoan.Where(x => x.MaTaiKhoan.Contains(timkiem) || x.TenDangNhap.Contains(timkiem)).ToList();
+                var bangtk = _context.TaiKhoan
+                    .Where(x => x.MaTaiKhoan.Contains(timkiem) || x.TenDangNhap.Contains(timkiem))
+                    .ToList();
+
                 return View(bangtk);
             }
             else
             {
                 var bangtk = _context.TaiKhoan.ToList();
+
                 return View(bangtk);
             }
-            return View();
         }
+
         public IActionResult Chitiettk(string id)
         {
-            if(id==null || id == "")
+            if (id == null || id == "")
             {
                 ViewBag.tb = "Mã chi tiết không tồn tại!!";
-                return View("Taikhoan", "Quanly");
+
+                return View("Taikhoan");
             }
             else
             {
-                var dong = _context.TaiKhoan.FirstOrDefault(x => x.MaTaiKhoan == id);
+                var dong = _context.TaiKhoan
+                    .FirstOrDefault(x => x.MaTaiKhoan == id);
+
                 if (dong == null)
                 {
                     ViewBag.tb = "Tài khoản không tồn tại!!";
+
                     return View("TaiKhoan");
                 }
 
                 return View(dong);
             }
-            return View();
         }
+
         public IActionResult Suatk(string id)
         {
             var dong = _context.TaiKhoan.Find(id);
@@ -481,6 +585,7 @@ namespace thucung.Controllers
                 return View("Suatk", taikhoan);
             }
         }
+
         public IActionResult Xoatk(string id)
         {
             var dong = _context.TaiKhoan.Find(id);
@@ -507,18 +612,25 @@ namespace thucung.Controllers
                 return View("Xoatk", taikhoan);
             }
         }
+
         public IActionResult Thuoc(string timkiem)
         {
-            if (timkiem!=null && timkiem!="")
+            if (timkiem != null && timkiem != "")
             {
-                var bang = _context.Thuoc.Where(x => x.MaThuoc.Contains(timkiem) || x.TenThuoc.Contains(timkiem)).ToList();
+                var bang = _context.Thuoc
+                    .Where(x => x.MaThuoc.Contains(timkiem) || x.TenThuoc.Contains(timkiem))
+                    .ToList();
+
                 return View(bang);
             }
-            else {
+            else
+            {
                 var bang = _context.Thuoc.ToList();
-                return View(bang); 
+
+                return View(bang);
             }
         }
+
         public IActionResult Themthuoc()
         {
             var bang = _context.Thuoc.ToList();
@@ -557,19 +669,24 @@ namespace thucung.Controllers
             {
                 _context.Thuoc.Add(thuoc);
                 _context.SaveChanges();
+
                 return RedirectToAction("Thuoc", "Quanly");
             }
             else
             {
                 ViewBag.tb = "Vui lòng nhập đủ thông tin và đúng định dạng!!!";
+
                 return View("Themthuoc", thuoc);
             }
         }
+
         public IActionResult Suathuoc(string id)
         {
             var dong = _context.Thuoc.Find(id);
+
             return View(dong);
         }
+
         [HttpPost]
         public IActionResult Suathuocxl(ThuocModel thuoc)
         {
@@ -577,67 +694,91 @@ namespace thucung.Controllers
             {
                 _context.Thuoc.Update(thuoc);
                 _context.SaveChanges();
+
                 return RedirectToAction("Thuoc", "Quanly");
             }
             else
             {
                 ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chính xác!!!";
+
                 return View("Suathuoc", thuoc);
             }
         }
+
         public IActionResult Chitietthuoc(string id)
         {
             var dong = _context.Thuoc.Find(id);
+
             return View(dong);
         }
+
         public IActionResult Xoathuoc(string id)
         {
             var dong = _context.Thuoc.Find(id);
+
             return View(dong);
         }
+
         [HttpPost]
         public IActionResult Xoathuocxl(ThuocModel thuoc)
         {
             var dong = _context.Thuoc.Find(thuoc.MaThuoc);
+
             if (dong != null)
             {
                 _context.Thuoc.Remove(dong);
                 _context.SaveChanges();
+
                 return RedirectToAction("Thuoc", "Quanly");
             }
             else
             {
                 ViewBag.tb = "Mã xoá không tồn tại!!!";
+
                 return View("Xoathuocxl", thuoc);
             }
         }
+
         public IActionResult Phieukham(string timkiem)
         {
-            if (timkiem != null && timkiem!="")
+            if (timkiem != null && timkiem != "")
             {
-                var bang = _context.PhieuKham.Where(x=>x.MaPhieuKham.Contains(timkiem)||x.MaKhachHang.Contains(timkiem)|| x.MaNhanVien.Contains(timkiem) ||x.BenhTinh.Contains(timkiem)).ToList();
+                var bang = _context.PhieuKham
+                    .Where(x =>
+                        x.MaPhieuKham.Contains(timkiem) ||
+                        x.MaKhachHang.Contains(timkiem) ||
+                        x.MaNhanVien.Contains(timkiem) ||
+                        x.BenhTinh.Contains(timkiem))
+                    .ToList();
+
                 return View(bang);
             }
             else
             {
                 var bang = _context.PhieuKham.ToList();
+
                 return View(bang);
             }
         }
+
         public IActionResult Themphieukham()
         {
             var bangkh = _context.KhachHang.ToList();
             var bangtc = _context.ThuCung.ToList();
             var bangnv = _context.NhanVien.ToList();
+
             ViewBag.kh = bangkh;
             ViewBag.tc = bangtc;
             ViewBag.nv = bangnv;
+
             return View();
         }
+
         [HttpPost]
         public IActionResult Themphieukhamxl(PhieukhamModel phieukham)
         {
             ModelState.Remove("MaPhieuKham");
+
             var bang = _context.PhieuKham.ToList();
 
             string maphieukham = "PK001";
@@ -661,68 +802,102 @@ namespace thucung.Controllers
             }
 
             phieukham.MaPhieuKham = maphieukham;
+
             if (ModelState.IsValid)
             {
                 _context.PhieuKham.Add(phieukham);
                 _context.SaveChanges();
+
                 return RedirectToAction("Phieukham", "Quanly");
             }
             else
             {
+                var bangkh = _context.KhachHang.ToList();
+                var bangtc = _context.ThuCung.ToList();
+                var bangnv = _context.NhanVien.ToList();
+
+                ViewBag.kh = bangkh;
+                ViewBag.tc = bangtc;
+                ViewBag.nv = bangnv;
+
                 ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chọn nội dung";
+
                 return View("Themphieukham", phieukham);
             }
         }
+
         public IActionResult Suaphieukham(string id)
         {
             var bangkh = _context.KhachHang.ToList();
             var bangtc = _context.ThuCung.ToList();
             var bangnv = _context.NhanVien.ToList();
+
             ViewBag.kh = bangkh;
             ViewBag.tc = bangtc;
             ViewBag.nv = bangnv;
+
             var thongtincu = _context.PhieuKham.Find(id);
+
             return View(thongtincu);
         }
+
         [HttpPost]
         public IActionResult Suaphieukhamxl(PhieukhamModel phieukham)
         {
             ModelState.Remove("MaPhieuKham");
+
             if (ModelState.IsValid)
             {
                 _context.PhieuKham.Update(phieukham);
                 _context.SaveChanges();
+
                 return RedirectToAction("Phieukham", "Quanly");
             }
             else
             {
+                var bangkh = _context.KhachHang.ToList();
+                var bangtc = _context.ThuCung.ToList();
+                var bangnv = _context.NhanVien.ToList();
+
+                ViewBag.kh = bangkh;
+                ViewBag.tc = bangtc;
+                ViewBag.nv = bangnv;
                 ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chọn nội dung";
+
                 return View("Themphieukham", phieukham);
             }
         }
+
         public IActionResult Chitietphieukham(string id)
         {
             var thongtincu = _context.PhieuKham.Find(id);
+
             return View(thongtincu);
         }
+
         public IActionResult Xoaphieukham(string id)
         {
             var thongtincu = _context.PhieuKham.Find(id);
+
             return View(thongtincu);
         }
+
         [HttpPost]
         public IActionResult Xoaphieukhamxl(PhieukhamModel phieukham)
         {
             var dongxoa = _context.PhieuKham.Find(phieukham.MaPhieuKham);
+
             if (dongxoa != null)
             {
                 _context.PhieuKham.Remove(dongxoa);
                 _context.SaveChanges();
+
                 return RedirectToAction("Phieukham", "Quanly");
             }
             else
             {
                 ViewBag.tb = "mã phiêu khám không tồn tại!!!";
+
                 return View("Xoaphieukham", phieukham);
             }
         }

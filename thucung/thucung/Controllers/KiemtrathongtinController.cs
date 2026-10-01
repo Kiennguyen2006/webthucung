@@ -160,7 +160,7 @@ namespace thucung.Controllers
             }
             if (matkhau == nhaplaimatkhau)
             {
-                var dongmuonsua = _context.TaiKhoan.FirstOrDefault(x => x.Email == TempData["email"]);
+                var dongmuonsua = _context.TaiKhoan.FirstOrDefault(x => x.Email.Equals(TempData["email"]));
                 dongmuonsua.MatKhau = matkhau;
                 _context.SaveChanges();
                 return RedirectToAction("Quanly", "Quanly");

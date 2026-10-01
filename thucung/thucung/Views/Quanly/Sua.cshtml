@@ -80,6 +80,17 @@
         width: 100%;
     }
 
+    .pet-form-message {
+        margin-bottom: 22px;
+        padding: 13px 16px;
+        border-radius: 12px;
+        background: #fff4f4;
+        border: 1px solid #f1b8b8;
+        color: #c43d3d;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
     .pet-form-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -257,38 +268,68 @@
             width: 100%;
         }
     }
+
+    .pet-form-message {
+        margin-bottom: 22px;
+        padding: 13px 16px;
+        border-radius: 12px;
+        background: #fff4f4;
+        border: 1px solid #f1b8b8;
+        color: #c43d3d;
+        font-size: 14px;
+        font-weight: 600;
+    }
 </style>
 
 <div class="pet-edit-page">
+
     <div class="pet-edit-container">
 
         <div class="pet-edit-header">
+
             <div class="pet-edit-title">
+
                 <div class="pet-edit-title-icon">
                     🐾
                 </div>
 
                 <div>
                     <h1>Sửa thông tin thú cưng</h1>
-                    <p>Cập nhật thông tin cho thú cưng trong hệ thống K.M.N.A PET</p>
+
+                    <p>
+                        Cập nhật thông tin cho thú cưng trong hệ thống K.M.N.A PET
+                    </p>
                 </div>
+
             </div>
 
             <div class="pet-code">
+
                 <span>Mã thú cưng:</span>
+
                 <span class="pet-code-badge">
                     @Model.MaThuCung
                 </span>
+
             </div>
+
         </div>
 
         <div class="pet-edit-card">
+
+            @if (ViewBag.tb != null && ViewBag.tb != "")
+            {
+                <div class="pet-form-message">
+                    ⚠️ @ViewBag.tb
+                </div>
+            }
 
             <form asp-action="Suatc"
                   asp-controller="Quanly"
                   method="post"
                   enctype="multipart/form-data"
-                  class="pet-form">
+                  class="pet-form"
+                  novalidate>
 
                 <input type="hidden"
                        asp-for="MaThuCung" />
@@ -296,6 +337,7 @@
                 <div class="pet-form-grid">
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Mã khách hàng
                         </label>
@@ -318,9 +360,11 @@
                             }
 
                         </select>
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Tên thú cưng
                         </label>
@@ -328,9 +372,11 @@
                         <input asp-for="TenThuCung"
                                class="pet-form-input"
                                placeholder="Nhập tên thú cưng" />
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Loài thú cưng
                         </label>
@@ -338,9 +384,11 @@
                         <input asp-for="LoaiThuCung"
                                class="pet-form-input"
                                placeholder="Ví dụ: Chó, Mèo..." />
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Giống thú cưng
                         </label>
@@ -348,9 +396,11 @@
                         <input asp-for="GiongThuCung"
                                class="pet-form-input"
                                placeholder="Nhập giống" />
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Giới tính
                         </label>
@@ -371,9 +421,11 @@
                             </option>
 
                         </select>
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Màu lông
                         </label>
@@ -381,9 +433,11 @@
                         <input asp-for="MauLong"
                                class="pet-form-input"
                                placeholder="Nhập màu lông" />
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Cân nặng
                         </label>
@@ -393,9 +447,11 @@
                                step="0.01"
                                class="pet-form-input"
                                placeholder="Nhập cân nặng" />
+
                     </div>
 
                     <div class="pet-form-group">
+
                         <label class="pet-form-label">
                             Ngày tạo
                         </label>
@@ -403,6 +459,7 @@
                         <input asp-for="NgayTao"
                                type="datetime-local"
                                class="pet-form-input" />
+
                     </div>
 
                     <div class="pet-form-group full">
@@ -466,4 +523,5 @@
         </div>
 
     </div>
+
 </div>

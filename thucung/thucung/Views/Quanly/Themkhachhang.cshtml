@@ -54,9 +54,9 @@
         transition: 0.2s;
     }
 
-    .btn:hover {
-        transform: translateY(-2px);
-    }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
 
     .btn-save {
         background: #f4b942;
@@ -88,45 +88,45 @@
         gap: 7px;
     }
 
-    .form-group.full {
-        grid-column: 1 / -1;
-    }
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
 
-    .form-group label {
-        color: #5d4037;
-        font-size: 14px;
-        font-weight: bold;
-    }
+        .form-group label {
+            color: #5d4037;
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 11px 13px;
-        border: 1px solid #ddd;
-        border-radius: 9px;
-        outline: none;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        color: #3f3f3f;
-        background: white;
-    }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            outline: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #3f3f3f;
+            background: white;
+        }
 
-    .form-group input,
-    .form-group select {
-        height: 42px;
-    }
+        .form-group input,
+        .form-group select {
+            height: 42px;
+        }
 
-    .form-group textarea {
-        min-height: 100px;
-        resize: vertical;
-    }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
 
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-        border-color: #f4b942;
-    }
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                border-color: #f4b942;
+            }
 
     .form-note {
         margin-top: 20px;
@@ -174,9 +174,9 @@
             flex-direction: column;
         }
 
-        .form-submit .btn {
-            width: 100%;
-        }
+            .form-submit .btn {
+                width: 100%;
+            }
     }
 </style>
 
@@ -186,12 +186,6 @@
         <h2 class="khachhang-title">
             <span>👤</span> Thêm khách hàng
         </h2>
-
-        <div class="khachhang-actions">
-            <a href="@Url.Action("Khachhang", "Quanly")" class="btn btn-back">
-                ← Quay lại
-            </a>
-        </div>
     </div>
 
     <div class="form-box">
@@ -277,13 +271,15 @@
             </div>
 
             <div class="form-submit">
+
                 <a href="@Url.Action("Khachhang", "Quanly")" class="btn btn-back">
-                    Hủy
+                    ← Quay lại
                 </a>
 
                 <button type="submit" class="btn btn-save">
                     💾 Lưu khách hàng
                 </button>
+
             </div>
 
         </form>

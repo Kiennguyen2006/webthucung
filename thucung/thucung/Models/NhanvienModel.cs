@@ -6,17 +6,36 @@ namespace thucung.Models
     public class NhanVienModel
     {
         [Key]
-        public string MaNhanVien { get; set; }
-        public string HoTen { get; set; }
+        public string MaNhanVien { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
+        public string HoTen { get; set; } = "";
+
         public DateTime? NgaySinh { get; set; }
-        public string GioiTinh { get; set; }
-        public string SoDienThoai { get; set; }
-        public string Email { get; set; }
-        public string DiaChi { get; set; }
-        public string ChuyenMon { get; set; }
-        public string BangCap { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập giới tính")]
+        public string GioiTinh { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        public string SoDienThoai { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập email")]
+        public string Email { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập địa chỉ")]
+        public string DiaChi { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập chuyên môn")]
+        public string ChuyenMon { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập bằng cấp")]
+        public string BangCap { get; set; } = "";
+
         public DateTime? NgayVaoLam { get; set; }
-        public string Anh { get; set; }
-        public string MoTa { get; set; }
+
+        public string Anh { get; set; } = "";
+
+        [Required(ErrorMessage = "Vui lòng nhập mô tả")]
+        public string MoTa { get; set; } = "";
     }
 }

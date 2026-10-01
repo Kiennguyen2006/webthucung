@@ -14,295 +14,211 @@
     }
 
     .add-pet-header {
-
         display: flex;
-
         align-items: center;
-
         gap: 15px;
-
         margin-bottom: 25px;
     }
 
-
     .add-pet-icon {
-
         width: 55px;
         height: 55px;
-
         display: flex;
-
         align-items: center;
         justify-content: center;
-
         border-radius: 17px;
-
-        background: linear-gradient(
-            135deg,
-            #5429b8,
-            #8051e8
-        );
-
+        background: linear-gradient( 135deg, #5429b8, #8051e8 );
         color: white;
-
         font-size: 27px;
-
-        box-shadow:
-            0 7px 18px rgba(84, 41, 184, 0.22);
+        box-shadow: 0 7px 18px rgba(84, 41, 184, 0.22);
     }
 
-
     .add-pet-title {
-
         margin: 0;
-
         font-size: 27px;
-
         color: #29243a;
-
         font-weight: 800;
     }
 
-
     .add-pet-subtitle {
-
         margin-top: 5px;
-
         color: #999;
-
         font-size: 14px;
     }
 
-
     .pet-form-card {
-
         background: white;
-
         border: 1px solid #eee;
-
         border-radius: 18px;
-
         padding: 28px;
-
-        box-shadow:
-            0 7px 25px rgba(0,0,0,0.05);
+        box-shadow: 0 7px 25px rgba(0,0,0,0.05);
     }
 
-
     .pet-form {
-
         display: grid;
-
         grid-template-columns: 1fr 1fr;
-
         gap: 20px;
     }
 
+    .pet-form-message {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 16px;
+        margin-bottom: 2px;
+        border-radius: 10px;
+        background: #fff7e6;
+        border: 1px solid #f3d79b;
+        color: #8a5a00;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .pet-form-message-icon {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #ffe5a8;
+        font-size: 16px;
+    }
+
+    .pet-form-message-text {
+        line-height: 20px;
+    }
 
     .pet-form-group {
-
         display: flex;
-
         flex-direction: column;
-
         gap: 7px;
     }
 
-
-    .pet-form-group.full {
-
-        grid-column: 1 / -1;
-    }
-
+        .pet-form-group.full {
+            grid-column: 1 / -1;
+        }
 
     .pet-form-label {
-
         font-size: 14px;
-
         font-weight: 700;
-
         color: #444;
     }
-
 
     .pet-form-input,
     .pet-form-select,
     .pet-form-textarea {
-
         width: 100%;
-
         border: 1px solid #ddd;
-
         border-radius: 10px;
-
         padding: 11px 13px;
-
         outline: none;
-
         font-family: Arial, Helvetica, sans-serif;
-
         font-size: 14px;
-
         background: white;
     }
 
-
     .pet-form-input,
     .pet-form-select {
-
         height: 43px;
     }
 
-
     .pet-form-textarea {
-
         min-height: 110px;
-
         resize: vertical;
     }
 
-
-    .pet-form-input:focus,
-    .pet-form-select:focus,
-    .pet-form-textarea:focus {
-
-        border-color: #5429b8;
-
-        box-shadow:
-            0 0 0 3px rgba(84,41,184,0.08);
-    }
-
+        .pet-form-input:focus,
+        .pet-form-select:focus,
+        .pet-form-textarea:focus {
+            border-color: #5429b8;
+            box-shadow: 0 0 0 3px rgba(84,41,184,0.08);
+        }
 
     .pet-form-required {
-
         color: #e33;
-
         margin-left: 3px;
     }
 
-
     .pet-form-error {
-
         color: #d33;
-
         font-size: 12px;
     }
 
-
     .pet-form-buttons {
-
         grid-column: 1 / -1;
-
         display: flex;
-
         justify-content: flex-end;
-
         align-items: center;
-
         gap: 10px;
-
         margin-top: 8px;
-
         padding-top: 20px;
-
         border-top: 1px solid #eee;
     }
 
-
     .pet-back-button {
-
         height: 43px;
-
         padding: 0 18px;
-
         border: none;
-
         border-radius: 10px;
-
         background: #f1f1f4;
-
         color: #555;
-
         font-weight: 600;
-
         cursor: pointer;
     }
 
-
-    .pet-back-button:hover {
-
-        background: #e7e7eb;
-    }
-
+        .pet-back-button:hover {
+            background: #e7e7eb;
+        }
 
     .pet-submit-button {
-
         height: 43px;
-
         padding: 0 21px;
-
         border: none;
-
         border-radius: 10px;
-
-        background: linear-gradient(
-            135deg,
-            #5429b8,
-            #743be0
-        );
-
+        background: linear-gradient( 135deg, #5429b8, #743be0 );
         color: white;
-
         font-weight: bold;
-
         cursor: pointer;
-
-        box-shadow:
-            0 6px 15px rgba(84,41,184,0.2);
+        box-shadow: 0 6px 15px rgba(84,41,184,0.2);
     }
 
-
-    .pet-submit-button:hover {
-
-        transform: translateY(-1px);
-
-        box-shadow:
-            0 9px 18px rgba(84,41,184,0.25);
-    }
-
+        .pet-submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 9px 18px rgba(84,41,184,0.25);
+        }
 
     @@media(max-width: 700px) {
 
         .pet-form {
-
             grid-template-columns: 1fr;
         }
 
         .pet-form-group.full {
+            grid-column: auto;
+        }
 
+        .pet-form-message {
             grid-column: auto;
         }
 
         .pet-form-buttons {
-
             grid-column: auto;
-
             flex-direction: column;
         }
 
         .pet-back-button,
         .pet-submit-button {
-
             width: 100%;
         }
-
     }
 
 </style>
 
 
 <div class="add-pet-page">
-
 
     <div class="add-pet-header">
 
@@ -335,12 +251,23 @@
 
             @Html.AntiForgeryToken()
 
-            @{
-                    if(ViewBag.tb!=""&& ViewBag.tb != null)
-                    {
-                        <p>@ViewBag.tb</p>
-                    }
+
+            @if (ViewBag.tb != null && ViewBag.tb != "")
+            {
+                <div class="pet-form-message">
+
+                    <div class="pet-form-message-icon">
+                        ⚠
+                    </div>
+
+                    <div class="pet-form-message-text">
+                        @ViewBag.tb
+                    </div>
+
+                </div>
             }
+
+
             <div class="pet-form-group">
 
                 <label class="pet-form-label">
@@ -351,24 +278,24 @@
                 </label>
 
 
-               <select asp-for="MaKhachHang"
-        class="pet-form-select">
+                <select asp-for="MaKhachHang"
+                        class="pet-form-select">
 
-    <option value="">
-        -- Chọn khách hàng --
-    </option>
+                    <option value="">
+                        -- Chọn khách hàng --
+                    </option>
 
-    @if (ViewBag.thongtinkhachhang != null)
-    {
-        foreach (var kh in ViewBag.thongtinkhachhang)
-        {
-            <option value="@kh.MaKhachHang">
-                @kh.HoTen
-            </option>
-        }
-    }
+                    @if (ViewBag.thongtinkhachhang != null)
+                    {
+                        foreach (var kh in ViewBag.thongtinkhachhang)
+                        {
+                            <option value="@kh.MaKhachHang">
+                                @kh.HoTen
+                            </option>
+                        }
+                    }
 
-</select>
+                </select>
 
 
                 <span asp-validation-for="MaKhachHang"
@@ -376,6 +303,8 @@
                 </span>
 
             </div>
+
+
             <div class="pet-form-group">
 
                 <label class="pet-form-label">
@@ -396,6 +325,7 @@
                 </span>
 
             </div>
+
 
             <div class="pet-form-group">
 
@@ -489,12 +419,14 @@
                 </label>
 
 
-                <input asp-for="Anh" type="file"
+                <input asp-for="Anh"
+                       type="file"
                        class="pet-form-input"
                        name="anhFile"
                        placeholder="Tên hoặc đường dẫn ảnh" />
 
             </div>
+
 
             <div class="pet-form-group full">
 
@@ -509,8 +441,8 @@
 
             </div>
 
-            <div class="pet-form-buttons">
 
+            <div class="pet-form-buttons">
 
                 <button type="button"
                         class="pet-back-button"
@@ -527,7 +459,6 @@
                     ＋ Thêm thú cưng
 
                 </button>
-
 
             </div>
 
