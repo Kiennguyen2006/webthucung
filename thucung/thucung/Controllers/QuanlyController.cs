@@ -901,5 +901,129 @@ namespace thucung.Controllers
                 return View("Xoaphieukham", phieukham);
             }
         }
+        public IActionResult Hoadon(string timkiem)
+        {
+            if(timkiem!=null && timkiem!="")
+            {
+                var bang=_context.HoaDon.Where(x => x.MaHoaDon.Contains(timkiem) || x.MaPhieuKham.Contains(timkiem)).ToList();
+                ViewBag.banghoadon = bang;
+                return View();
+            }
+            else
+            {
+                var bang = _context.HoaDon.ToList();
+                ViewBag.banghoadon = bang;
+                return View(bang);
+            }
+        }
+        public IActionResult Themhoadon()
+        {
+            var bang = _context.PhieuKham.ToList();
+            ViewBag.thongtin= bang;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Themhd(HoaDonModel hoaDon)
+        {
+            string mahoadon = "";
+
+            var hoadoncu = _context.HoaDon
+                .OrderByDescending(x => x.MaHoaDon)
+                .FirstOrDefault();
+
+            if (hoadoncu != null)
+            {
+                string phanchu = "";
+                string phanso = "";
+
+                foreach (char kytu in hoadoncu.MaHoaDon)
+                {
+                    if (char.IsLetter(kytu))
+                    {
+                        phanchu = phanchu + kytu;
+                    }
+                    else
+                    {
+                        phanso = phanso + kytu;
+                    }
+                }
+
+                int so = int.Parse(phanso);
+                so = so + 1;
+
+                mahoadon = phanchu + so.ToString("D3");
+            }
+            ModelState.Remove("MaHoaDon");
+            hoaDon.MaHoaDon = mahoadon;
+            if (ModelState.IsValid)
+            {
+                _context.HoaDon.Add(hoaDon);
+                _context.SaveChanges();
+                return RedirectToAction("Hoadon", "Quanly");
+            }
+            else
+            {
+                var bang = _context.PhieuKham.ToList();
+                ViewBag.thongtin= bang;
+                ViewBag.tb = "Vui lòng nhập đầy đủ thông tin!";
+                return View("Themhoadon", hoaDon);
+            }
+        }
+        public IActionResult Chitiethoadon(string id)
+        {
+            var bang = _context.HoaDon.Find(id);
+            ViewBag.thongtincu = bang;
+            return View();
+        }
+        public IActionResult Suahoadon(string id)
+        {
+            var bang = _context.PhieuKham.ToList();
+            ViewBag.thongtin= bang;
+            var thongtincu = _context.HoaDon.Find(id);
+            ViewBag.cu = thongtincu;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Suahd(HoaDonModel hoaDon)
+        {
+            ModelState.Remove("MaHoaDon");
+            if (ModelState.IsValid)
+            {
+                _context.HoaDon.Update(hoaDon);
+                _context.SaveChanges();
+                return RedirectToAction("Hoadon", "Quanly");
+            }
+            else
+            {
+                var bang = _context.PhieuKham.ToList();
+                ViewBag.thongtin = bang;
+                ViewBag.tb = "Vui lòng nhập đầy đủ thông tin!";
+                return View("Suahoadon", hoaDon);
+            }
+        }
+        public IActionResult Xoahoadon(string id)
+        {
+            var bang = _context.HoaDon.Find(id);
+            ViewBag.bang = bang;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Xoahd(HoaDonModel hoaDon)
+        {
+            ModelState.Remove("MaHoaDon");
+            var dong = _context.HoaDon.Find(hoaDon.MaHoaDon);
+            if (dong!=null)
+            {
+                _context.HoaDon.Remove(dong);
+                _context.SaveChanges();
+                return RedirectToAction("Hoadon", "Quanly");
+            }
+            else
+            {
+                ViewBag.tb = "Vui lòng nhập đầy đủ thông tin!";
+                return View("Xoahoadon", hoaDon);
+            }
+        }
+        
     }
 }

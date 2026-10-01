@@ -1,4 +1,5 @@
-﻿@{
+﻿```cshtml
+@{
     ViewData["Title"] = "K.M.N.A PET";
 }
 
@@ -303,7 +304,7 @@
 
     </header>
 
-
+ 
     <aside class="vet-sidebar">
 
         <div class="vet-menu-title">
@@ -324,7 +325,7 @@
 
             </a>
 
-
+ 
             <a href="@Url.Action("Khachhang", "Quanly")"
                class="vet-menu-item"
                data-page="@Url.Action("Khachhang", "Quanly")">
@@ -337,7 +338,7 @@
 
             </a>
 
-
+ 
             <a href="@Url.Action("Phieukham", "Quanly")"
                class="vet-menu-item"
                data-page="@Url.Action("Phieukham", "Quanly")">
@@ -350,7 +351,20 @@
 
             </a>
 
+ 
+            <a href="@Url.Action("HoaDon", "Quanly")"
+               class="vet-menu-item"
+               data-page="@Url.Action("HoaDon", "Quanly")">
 
+                <span class="vet-menu-icon">🧾</span>
+
+                <span>
+                    Hóa đơn
+                </span>
+
+            </a>
+
+ 
             <a href="@Url.Action("Thuoc", "Quanly")"
                class="vet-menu-item"
                data-page="@Url.Action("Thuoc", "Quanly")">
@@ -363,7 +377,7 @@
 
             </a>
 
-
+ 
             @if (ViewBag.phanquyen == "ChuShop")
             {
                 <div class="vet-menu-line"></div>
@@ -372,7 +386,7 @@
                     HỆ THỐNG
                 </div>
 
-
+ 
                 <a href="@Url.Action("Nhanvien", "Quanly")"
                    class="vet-menu-item"
                    data-page="@Url.Action("Nhanvien", "Quanly")">
@@ -385,7 +399,7 @@
 
                 </a>
 
-
+ 
                 <a href="@Url.Action("TaiKhoan", "Quanly")"
                    class="vet-menu-item"
                    data-page="@Url.Action("TaiKhoan", "Quanly")">
@@ -403,7 +417,7 @@
 
     </aside>
 
-
+ 
     <main class="vet-main">
 
         <div class="vet-content" id="page-content">
@@ -426,22 +440,23 @@
 
 </div>
 
-
+ 
 <script>
 
+ 
     document.addEventListener("DOMContentLoaded", function () {
 
         var menuItems = document.querySelectorAll(".vet-menu-item");
         var content = document.getElementById("page-content");
 
-
+ 
         function loadPage(url) {
 
             if (url == null || url == "") {
                 return;
             }
 
-
+ 
             content.innerHTML = `
                 <div class="page-loading">
                     <div class="loading-icon">🐾</div>
@@ -449,7 +464,7 @@
                 </div>
             `;
 
-
+ 
             fetch(url)
                 .then(function (response) {
 
@@ -489,7 +504,7 @@
 
         }
 
-
+ 
         menuItems.forEach(function (item) {
 
             item.addEventListener("click", function (event) {
@@ -502,16 +517,15 @@
                     return;
                 }
 
-
+ 
                 menuItems.forEach(function (menu) {
 
                     menu.classList.remove("active");
 
                 });
 
-
+ 
                 item.classList.add("active");
-
 
                 loadPage(url);
 
@@ -519,7 +533,7 @@
 
         });
 
-
+ 
         content.addEventListener("click", function (event) {
 
             var link = event.target.closest("a");
@@ -528,28 +542,28 @@
                 return;
             }
 
-
+ 
             var url = link.getAttribute("href");
 
-
+ 
             if (url == null || url == "" || url == "#") {
                 return;
             }
 
-
+ 
             if (link.target == "_blank") {
                 return;
             }
 
-
+ 
             event.preventDefault();
 
-
+ 
             loadPage(url);
 
         });
 
-
+ 
         content.addEventListener("click", function (event) {
 
             var button = event.target.closest("[data-page]");
@@ -558,36 +572,34 @@
                 return;
             }
 
-
+ 
             var url = button.getAttribute("data-page");
-
 
             if (url == null || url == "") {
                 return;
             }
 
-
+ 
             event.preventDefault();
-
 
             loadPage(url);
 
         });
 
-
+ 
         content.addEventListener("submit", function (event) {
 
             var form = event.target;
 
-
+ 
             if (form.tagName.toLowerCase() != "form") {
                 return;
             }
 
-
+ 
             event.preventDefault();
 
-
+ 
             var method = form.method;
 
             if (method == null || method == "") {
@@ -596,18 +608,18 @@
 
             method = method.toLowerCase();
 
-
+ 
             var url = form.action;
 
-
+ 
             if (url == null || url == "") {
                 url = window.location.href;
             }
 
-
+ 
             var formData = new FormData(form);
 
-
+ 
             if (method == "get") {
 
                 var params = new URLSearchParams(formData);
@@ -627,13 +639,13 @@
 
                 }
 
-
+ 
                 loadPage(url);
 
                 return;
             }
 
-
+ 
             content.innerHTML = `
                 <div class="page-loading">
 
@@ -648,7 +660,7 @@
                 </div>
             `;
 
-
+ 
             fetch(url, {
                 method: "POST",
                 body: formData
@@ -691,22 +703,20 @@
 
         });
 
-
         var firstPetPage =
             document.querySelector(
                 '.vet-menu-item[data-page*="Thucung"]'
             );
 
-
+ 
         if (firstPetPage != null) {
 
             firstPetPage.classList.add("active");
 
-
             var firstUrl =
                 firstPetPage.getAttribute("data-page");
 
-
+ 
             if (firstUrl != null && firstUrl != "") {
 
                 loadPage(firstUrl);
@@ -718,3 +728,4 @@
     });
 
 </script>
+```

@@ -1,0 +1,221 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xóa hóa đơn</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #fffdf5;
+            color: #3f3f3f;
+        }
+
+        .xoahoadon-page {
+            padding: 30px;
+        }
+
+        .xoahoadon-box {
+            max-width: 650px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .xoahoadon-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #5429b8;
+            margin-bottom: 25px;
+        }
+
+        .xoahoadon-warning {
+            background: #fff4d6;
+            border: 1px solid #f0d48a;
+            color: #8a6500;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .xoahoadon-info {
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .xoahoadon-row {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .xoahoadon-row:last-child {
+            border-bottom: none;
+        }
+
+        .xoahoadon-label {
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .xoahoadon-value {
+            flex: 1;
+        }
+
+        .xoahoadon-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-xoa {
+            border: none;
+            background: #dc3545;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .btn-xoa:hover {
+            background: #b02a37;
+        }
+
+        .btn-huy {
+            text-decoration: none;
+            background: #eeeeee;
+            color: #333;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .btn-huy:hover {
+            background: #dddddd;
+        }
+
+        .tb {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 10px;
+            background: #ffe2e2;
+            color: #b00020;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="xoahoadon-page">
+        <div class="xoahoadon-box">
+
+            <div class="xoahoadon-title">
+                Xóa hóa đơn
+            </div>
+
+            <div class="xoahoadon-warning">
+                Bạn có chắc chắn muốn xóa hóa đơn này không?
+            </div>
+
+            @if (ViewBag.bang != null)
+            {
+                <div class="xoahoadon-info">
+
+                    <div class="xoahoadon-row">
+                        <div class="xoahoadon-label">Mã hóa đơn:</div>
+                        <div class="xoahoadon-value">@ViewBag.bang.MaHoaDon</div>
+                    </div>
+
+                    <div class="xoahoadon-row">
+                        <div class="xoahoadon-label">Mã phiếu khám:</div>
+                        <div class="xoahoadon-value">@ViewBag.bang.MaPhieuKham</div>
+                    </div>
+
+                    <div class="xoahoadon-row">
+                        <div class="xoahoadon-label">Ngày lập:</div>
+                        <div class="xoahoadon-value">
+                            @ViewBag.bang.NgayLap.ToString("dd/MM/yyyy HH:mm")
+                        </div>
+                    </div>
+
+                    <div class="xoahoadon-row">
+                        <div class="xoahoadon-label">Tổng tiền:</div>
+                        <div class="xoahoadon-value">
+                            @ViewBag.bang.TongTien.ToString("N0") VNĐ
+                        </div>
+                    </div>
+
+                    <div class="xoahoadon-row">
+                        <div class="xoahoadon-label">Ghi chú:</div>
+                        <div class="xoahoadon-value">
+                            @ViewBag.bang.GhiChu
+                        </div>
+                    </div>
+
+                </div>
+
+                <form method="post" action="@Url.Action("Xoahd", "Quanly")">
+
+                    <input type="hidden"
+                           name="MaHoaDon"
+                           value="@ViewBag.bang.MaHoaDon" />
+
+                    <div class="xoahoadon-actions">
+
+                        <button type="submit" class="btn-xoa">
+                            Xóa hóa đơn
+                        </button>
+
+                        <a href="@Url.Action("Hoadon", "Quanly")"
+                           class="btn-huy">
+                            Hủy
+                        </a>
+
+                    </div>
+
+                </form>
+            }
+            else
+            {
+                <div class="tb">
+                    Không tìm thấy hóa đơn cần xóa!
+                </div>
+
+                <div class="xoahoadon-actions">
+                    <a href="@Url.Action("Hoadon", "Quanly")"
+                       class="btn-huy">
+                        Quay lại
+                    </a>
+                </div>
+            }
+
+            @if (ViewBag.tb != null)
+            {
+                <div class="tb">
+                    @ViewBag.tb
+                </div>
+            }
+
+        </div>
+    </div>
+</body>
+</html>

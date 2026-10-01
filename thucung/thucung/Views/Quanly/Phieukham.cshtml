@@ -175,10 +175,6 @@
         color: #888;
         font-size: 15px;
     }
-
-    .phieukham-money {
-        font-weight: bold;
-    }
 </style>
 
 <div class="phieukham-page">
@@ -219,7 +215,6 @@
                         <th>Mã nhân viên</th>
                         <th>Ngày khám</th>
                         <th>Bệnh tình</th>
-                        <th>Số tiền</th>
                         <th>Thao tác</th>
                     </tr>
                 </thead>
@@ -243,10 +238,6 @@
                                 {
                                     <span>Chưa có</span>
                                 }
-                            </td>
-
-                            <td class="phieukham-money">
-                                @item.SoTien.ToString("N0") VNĐ
                             </td>
 
                             <td>

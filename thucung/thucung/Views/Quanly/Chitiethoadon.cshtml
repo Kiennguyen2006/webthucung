@@ -1,0 +1,180 @@
+﻿```cshtml
+@{
+    Layout = null;
+    ViewData["Title"] = "Chi tiết hóa đơn";
+}
+
+<style>
+    .hoadon-detail-box {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    .hoadon-detail-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #5429b8;
+        margin-bottom: 25px;
+    }
+
+    .hoadon-detail-row {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+    }
+
+    .hoadon-detail-label {
+        width: 180px;
+        font-weight: 700;
+        color: #666;
+    }
+
+    .hoadon-detail-value {
+        flex: 1;
+        color: #444;
+    }
+
+    .hoadon-money {
+        font-weight: bold;
+        color: #5429b8;
+        font-size: 17px;
+    }
+
+    .hoadon-buttons {
+        margin-top: 25px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .hoadon-btn {
+        padding: 11px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .hoadon-edit {
+        background: #fff1d5;
+        color: #996500;
+    }
+
+    .hoadon-back {
+        background: #eee;
+        color: #555;
+    }
+
+    .hoadon-error {
+        padding: 15px;
+        background: #ffe8e8;
+        color: #c03939;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="hoadon-detail-box">
+
+    <div class="hoadon-detail-title">
+        👁 Chi tiết hóa đơn
+    </div>
+
+    @if (ViewBag.thongtincu != null)
+    {
+        var hoaDon = ViewBag.thongtincu;
+
+        <div class="hoadon-detail-row">
+
+            <div class="hoadon-detail-label">
+                Mã hóa đơn
+            </div>
+
+            <div class="hoadon-detail-value">
+                @hoaDon.MaHoaDon
+            </div>
+
+        </div>
+
+
+        <div class="hoadon-detail-row">
+
+            <div class="hoadon-detail-label">
+                Mã phiếu khám
+            </div>
+
+            <div class="hoadon-detail-value">
+                @hoaDon.MaPhieuKham
+            </div>
+
+        </div>
+
+
+        <div class="hoadon-detail-row">
+
+            <div class="hoadon-detail-label">
+                Ngày lập
+            </div>
+
+            <div class="hoadon-detail-value">
+                @hoaDon.NgayLap.ToString("dd/MM/yyyy HH:mm")
+            </div>
+
+        </div>
+
+
+        <div class="hoadon-detail-row">
+
+            <div class="hoadon-detail-label">
+                Tổng tiền
+            </div>
+
+            <div class="hoadon-detail-value hoadon-money">
+                @hoaDon.TongTien.ToString("N0") VNĐ
+            </div>
+
+        </div>
+
+
+        <div class="hoadon-detail-row">
+
+            <div class="hoadon-detail-label">
+                Ghi chú
+            </div>
+
+            <div class="hoadon-detail-value">
+                @hoaDon.GhiChu
+            </div>
+
+        </div>
+
+
+        <div class="hoadon-buttons">
+
+            <a href="@Url.Action("Suahoadon", "Quanly", new { id = hoaDon.MaHoaDon })"
+               class="hoadon-btn hoadon-edit">
+
+                ✏ Sửa
+
+            </a>
+
+            <a href="@Url.Action("Hoadon", "Quanly")"
+               class="hoadon-btn hoadon-back">
+
+                ↩ Quay lại
+
+            </a>
+
+        </div>
+    }
+    else
+    {
+        <div class="hoadon-error">
+            Không tìm thấy hóa đơn.
+        </div>
+    }
+
+</div>
+```

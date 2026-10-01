@@ -44,9 +44,6 @@ namespace thucung.Models
         [StringLength(1000)]
         public string? MoTaSuDungDichVu { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal SoTien { get; set; }
 
         [Required]
         public DateTime NgayLap { get; set; }

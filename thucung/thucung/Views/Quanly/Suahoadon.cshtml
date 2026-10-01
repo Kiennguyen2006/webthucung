@@ -1,0 +1,236 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Sửa hóa đơn";
+}
+
+<style>
+    .hoadon-form-box {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 18px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
+
+    .hoadon-form-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #5429b8;
+        margin-bottom: 25px;
+    }
+
+    .hoadon-group {
+        margin-bottom: 18px;
+    }
+
+    .hoadon-group label {
+        display: block;
+        margin-bottom: 7px;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .hoadon-group input,
+    .hoadon-group select,
+    .hoadon-group textarea {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hoadon-group input:focus,
+    .hoadon-group select:focus,
+    .hoadon-group textarea:focus {
+        border-color: #5429b8;
+        box-shadow: 0 0 0 3px rgba(84,41,184,0.08);
+    }
+
+    .hoadon-group textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .hoadon-code-input {
+        background: #f5f5f5;
+    }
+
+    .hoadon-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .hoadon-btn {
+        padding: 11px 18px;
+        border-radius: 10px;
+        border: none;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .hoadon-save {
+        background: linear-gradient(135deg, #5429b8, #743be0);
+        color: white;
+    }
+
+    .hoadon-back {
+        background: #eee;
+        color: #555;
+    }
+
+    .hoadon-error {
+        margin-bottom: 18px;
+        padding: 12px;
+        background: #ffe8e8;
+        color: #c03939;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="hoadon-form-box">
+
+    <div class="hoadon-form-title">
+        ✏️ Sửa hóa đơn
+    </div>
+
+    @if (ViewBag.tb != null)
+    {
+        <div class="hoadon-error">
+            @ViewBag.tb
+        </div>
+    }
+
+    @if (ViewBag.cu != null)
+    {
+        var hoaDon = ViewBag.cu;
+
+        <form action="@Url.Action("Suahd", "Quanly")"
+              method="post">
+
+            <div class="hoadon-group">
+
+                <label>
+                    Mã hóa đơn
+                </label>
+
+                <input type="text"
+                       name="MaHoaDon"
+                       value="@hoaDon.MaHoaDon"
+                       class="hoadon-code-input"
+                       readonly>
+
+            </div>
+
+
+            <div class="hoadon-group">
+
+                <label>
+                    Mã phiếu khám
+                </label>
+
+                <select name="MaPhieuKham" required>
+
+                    <option value="">
+                        -- Chọn phiếu khám --
+                    </option>
+
+                    @if (ViewBag.thongtin != null)
+                    {
+                        foreach (var phieu in ViewBag.thongtin)
+                        {
+                            if (phieu.MaPhieuKham == hoaDon.MaPhieuKham)
+                            {
+                                <option value="@phieu.MaPhieuKham" selected>
+                                    @phieu.MaPhieuKham
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@phieu.MaPhieuKham">
+                                    @phieu.MaPhieuKham
+                                </option>
+                            }
+                        }
+                    }
+
+                </select>
+
+            </div>
+
+
+            <div class="hoadon-group">
+
+                <label>
+                    Ngày lập
+                </label>
+
+                <input type="datetime-local"
+                       name="NgayLap"
+                       value="@hoaDon.NgayLap.ToString("yyyy-MM-ddTHH:mm")"
+                       required>
+
+            </div>
+
+
+            <div class="hoadon-group">
+
+                <label>
+                    Tổng tiền
+                </label>
+
+                <input type="number"
+                       name="TongTien"
+                       value="@hoaDon.TongTien"
+                       min="0"
+                       step="1000"
+                       required>
+
+            </div>
+
+
+            <div class="hoadon-group">
+
+                <label>
+                    Ghi chú
+                </label>
+
+                <textarea name="GhiChu">@hoaDon.GhiChu</textarea>
+
+            </div>
+
+
+            <div class="hoadon-buttons">
+
+                <button type="submit"
+                        class="hoadon-btn hoadon-save">
+
+                    💾 Lưu thay đổi
+
+                </button>
+
+                <a href="@Url.Action("Hoadon", "Quanly")"
+                   class="hoadon-btn hoadon-back">
+
+                    ↩ Quay lại
+
+                </a>
+
+            </div>
+
+        </form>
+    }
+    else
+    {
+        <div class="hoadon-error">
+            Không tìm thấy hóa đơn cần sửa.
+        </div>
+    }
+
+</div>

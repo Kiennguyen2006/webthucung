@@ -1,0 +1,360 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Hóa đơn";
+}
+
+<style>
+    .hoadon-page {
+        width: 100%;
+    }
+
+    .hoadon-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+
+    .hoadon-title {
+        font-size: 27px;
+        font-weight: bold;
+        color: #5429b8;
+    }
+
+    .hoadon-subtitle {
+        margin-top: 5px;
+        color: #888;
+        font-size: 14px;
+    }
+
+    .hoadon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 10px 16px;
+        border-radius: 10px;
+        text-decoration: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .hoadon-btn-add {
+        background: linear-gradient(135deg, #5429b8, #743be0);
+        color: white;
+    }
+
+    .hoadon-search {
+        background: white;
+        padding: 18px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        margin-bottom: 20px;
+    }
+
+    .hoadon-search-form {
+        display: flex;
+        gap: 10px;
+    }
+
+    .hoadon-search-input {
+        flex: 1;
+        padding: 11px 14px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .hoadon-search-input:focus {
+        border-color: #5429b8;
+    }
+
+    .hoadon-search-btn {
+        background: #5429b8;
+        color: white;
+    }
+
+    .hoadon-reset-btn {
+        background: #eee;
+        color: #555;
+    }
+
+    .hoadon-table-box {
+        background: white;
+        border-radius: 16px;
+        overflow-x: auto;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+    }
+
+    .hoadon-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+    }
+
+    .hoadon-table th {
+        background: #f6f2ff;
+        color: #5429b8;
+        padding: 15px 12px;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    .hoadon-table td {
+        padding: 14px 12px;
+        border-top: 1px solid #eee;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .hoadon-table tr:hover {
+        background: #faf8ff;
+    }
+
+    .hoadon-code {
+        font-weight: bold;
+        color: #5429b8;
+    }
+
+    .hoadon-money {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .hoadon-actions {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .hoadon-action {
+        padding: 7px 10px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .hoadon-detail {
+        background: #eee8ff;
+        color: #5429b8;
+    }
+
+    .hoadon-edit {
+        background: #fff2d6;
+        color: #9b6800;
+    }
+
+    .hoadon-delete {
+        background: #ffe5e5;
+        color: #c03939;
+    }
+
+    .hoadon-empty {
+        padding: 60px 20px;
+        text-align: center;
+        color: #888;
+    }
+
+    .hoadon-empty-icon {
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .hoadon-empty-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #666;
+    }
+
+    @@media(max-width: 650px) {
+        .hoadon-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hoadon-search-form {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="hoadon-page">
+
+    <div class="hoadon-header">
+
+        <div>
+            <div class="hoadon-title">
+                🧾 Hóa đơn
+            </div>
+
+            <div class="hoadon-subtitle">
+                Quản lý hóa đơn của hệ thống
+            </div>
+        </div>
+
+        <a href="@Url.Action("Themhoadon", "Quanly")"
+           class="hoadon-btn hoadon-btn-add">
+
+            ➕ Thêm hóa đơn
+
+        </a>
+
+    </div>
+
+
+    <div class="hoadon-search">
+
+        <form action="@Url.Action("Hoadon", "Quanly")"
+              method="get"
+              class="hoadon-search-form">
+
+            <input type="text"
+                   name="timkiem"
+                   value="@ViewBag.timkiem"
+                   class="hoadon-search-input"
+                   placeholder="🔍 Tìm mã hóa đơn hoặc mã phiếu khám">
+
+            <button type="submit"
+                    class="hoadon-btn hoadon-search-btn">
+
+                🔍 Tìm kiếm
+
+            </button>
+
+            <a href="@Url.Action("Hoadon", "Quanly")"
+               class="hoadon-btn hoadon-reset-btn">
+
+                ↻ Làm mới
+
+            </a>
+
+        </form>
+
+    </div>
+
+
+    <div class="hoadon-table-box">
+
+        @if (ViewBag.banghoadon != null)
+        {
+            var bang = ViewBag.banghoadon;
+
+            if (bang.Count > 0)
+            {
+                <table class="hoadon-table">
+
+                    <thead>
+                        <tr>
+                            <th>Mã hóa đơn</th>
+                            <th>Mã phiếu khám</th>
+                            <th>Ngày lập</th>
+                            <th>Tổng tiền</th>
+                            <th>Ghi chú</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var hoaDon in bang)
+                        {
+                            <tr>
+
+                                <td class="hoadon-code">
+                                    @hoaDon.MaHoaDon
+                                </td>
+
+                                <td>
+                                    @hoaDon.MaPhieuKham
+                                </td>
+
+                                <td>
+                                    @hoaDon.NgayLap.ToString("dd/MM/yyyy HH:mm")
+                                </td>
+
+                                <td class="hoadon-money">
+                                    @hoaDon.TongTien.ToString("N0") VNĐ
+                                </td>
+
+                                <td>
+                                    @hoaDon.GhiChu
+                                </td>
+
+                                <td>
+
+                                    <div class="hoadon-actions">
+
+                                        <a href="@Url.Action("Chitiethoadon", "Quanly", new { id = hoaDon.MaHoaDon })"
+                                           class="hoadon-action hoadon-detail">
+
+                                            👁 Chi tiết
+
+                                        </a>
+
+                                        <a href="@Url.Action("Suahoadon", "Quanly", new { id = hoaDon.MaHoaDon })"
+                                           class="hoadon-action hoadon-edit">
+
+                                            ✏ Sửa
+
+                                        </a>
+
+                                        <a href="@Url.Action("Xoahoadon", "Quanly", new { id = hoaDon.MaHoaDon })"
+                                           class="hoadon-action hoadon-delete">
+
+                                            🗑 Xóa
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            }
+            else
+            {
+                <div class="hoadon-empty">
+
+                    <div class="hoadon-empty-icon">
+                        🧾
+                    </div>
+
+                    <div class="hoadon-empty-title">
+                        Không tìm thấy hóa đơn
+                    </div>
+
+                    <div>
+                        Không có dữ liệu phù hợp với nội dung tìm kiếm.
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <div class="hoadon-empty">
+
+                <div class="hoadon-empty-icon">
+                    🧾
+                </div>
+
+                <div class="hoadon-empty-title">
+                    Chưa có dữ liệu hóa đơn
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+</div>

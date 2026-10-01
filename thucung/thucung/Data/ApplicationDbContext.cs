@@ -14,4 +14,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<NhanVienModel> NhanVien { get; set; }
     public DbSet<ThuocModel> Thuoc { get; set; }
     public DbSet<PhieukhamModel> PhieuKham { get; set; }
+         public DbSet<HoaDonModel> HoaDon { get; set; }
 }
