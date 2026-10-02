@@ -1,128 +1,40 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KMNA - Thế giới Thú cưng</title>
+    <title>NKK Pet - Intro</title>
     <link rel="stylesheet" href="~/css/intro.css" asp-append-version="true" />
+    <!-- CDN Three.js chuẩn WebGL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body class="intro-body">
-    <div id="intro-world"
-         class="intro-world"
+
+    <div id="intro-world" 
+         class="intro-world" 
          data-home-url="@Url.Action("Dangnhap", "Kiemtrathongtin")"
+         data-bf1="@Url.Content("~/images/butterfly-1.png")"
+         data-bf2="@Url.Content("~/images/butterfly-2.png")"
+         data-bf3="@Url.Content("~/images/butterfly-3.png")">
 
-        <!-- Sky & Sun Scene -->
-        <div class="intro-sky" aria-hidden="true">
-            <div class="intro-sun-wrap">
-                <div class="intro-sun-glow"></div>
-                <div class="intro-sun-rays"></div>
-                <div class="intro-sun"></div>
-            </div>
+        <canvas id="intro-canvas"></canvas>
 
-            <!-- Parallax Clouds using cloud.svg -->
-            <div class="intro-cloud-layer intro-cloud-layer-far">
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c1" alt="Mây" />
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c2" alt="Mây" />
-            </div>
-            <div class="intro-cloud-layer intro-cloud-layer-mid">
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c3" alt="Mây" />
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c4" alt="Mây" />
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c5" alt="Mây" />
-            </div>
-            <div class="intro-cloud-layer intro-cloud-layer-near">
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c6" alt="Mây" />
-                <img src="~/intro/images/cloud.svg" class="intro-cloud-img c7" alt="Mây" />
-            </div>
+        <div class="intro-brand" id="intro-brand">
+            <h1 class="brand-title">NKK PET WORLD</h1>
+            <p class="brand-subtitle">Thế Giới Thú Cưng Huyền Diệu</p>
         </div>
 
-        <!-- Field Scene with multiple grass layers & wildflowers -->
-        <div class="intro-field" aria-hidden="true">
-            <div class="intro-hill intro-hill-far"></div>
-            <div class="intro-hill intro-hill-mid"></div>
-
-            <div class="intro-grass-band intro-grass-far">
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ xa" />
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ xa" />
-            </div>
-            <div class="intro-grass-band intro-grass-mid">
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ vừa" />
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ vừa" />
-            </div>
-            <div class="intro-grass-band intro-grass-near">
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ gần" />
-                <img src="~/intro/images/grass.svg" class="grass-img" alt="Cỏ gần" />
-            </div>
-
-            <!-- Sparkling nature particles -->
-            <span class="intro-sparkle sp1"></span>
-            <span class="intro-sparkle sp2"></span>
-            <span class="intro-sparkle sp3"></span>
-            <span class="intro-sparkle sp4"></span>
-        </div>
-
-        <!-- Animals / Actors Scene with Cute High Quality SVGs -->
-        <div class="intro-actors" aria-hidden="true">
-            <!-- Joyful Corgi / Dog -->
-            <div class="actor actor-dog">
-                <div class="actor-motion">
-                    <img src="~/intro/images/dog-running.svg" class="pet-img dog-img" alt="Chú chó tinh nghịch" />
-                </div>
-            </div>
-
-            <!-- Cute Ginger Cat -->
-            <div class="actor actor-cat">
-                <div class="actor-motion">
-                    <img src="~/intro/images/cat-running.svg" class="pet-img cat-img" alt="Mèo con vui vẻ" />
-                </div>
-            </div>
-
-            <!-- Fluffy White Bunny -->
-            <div class="actor actor-bunny">
-                <div class="actor-motion">
-                    <img src="~/intro/images/rabbit-running.svg" class="pet-img bunny-img" alt="Thỏ con nhảy nhót" />
-                </div>
-            </div>
-
-            <!-- Colorful 3D Butterflies -->
-            <div class="actor actor-butterfly bf-1">
-                <div class="actor-motion">
-                    <img src="~/intro/images/butterfly.svg" class="butterfly-img" alt="Bướm xanh bay lượn" />
-                </div>
-            </div>
-            <div class="actor actor-butterfly bf-2">
-                <div class="actor-motion">
-                    <img src="~/intro/images/butterfly.svg" class="butterfly-img bf-pink" alt="Bướm hồng bay lượn" />
-                </div>
-            </div>
-            <div class="actor actor-butterfly bf-3">
-                <div class="actor-motion">
-                    <img src="~/intro/images/butterfly.svg" class="butterfly-img bf-gold" alt="Bướm vàng bay lượn" />
-                </div>
-            </div>
-        </div>
-
-        <!-- 3D Cartoon Magical Door with KMNA Bone Sign -->
-        <div class="intro-door-scene" aria-hidden="true">
-            <div class="door-light-beam"></div>
-            <div class="door-wrapper">
-                <img src="~/intro/images/door.svg" class="door-img" alt="Cửa hàng thú cưng KMNA" />
-            </div>
-        </div>
-
-        <!-- Expanding Warm Light Wash -->
-        <div class="intro-light-wash"></div>
-
-        <!-- Interactive Skip Button -->
         <button type="button" class="intro-skip" id="intro-skip">
             <span>Bỏ qua</span>
             <svg class="skip-arrow" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z"/>
+                <path d="M5 13h11.86l-5.43 5.43 1.42 1.42L21.14 12l-8.29-7.85-1.42 1.42 5.43 5.43H5v2z" />
             </svg>
         </button>
+
+        <div class="intro-light-wash" id="light-wash"></div>
     </div>
 
     <script src="~/js/intro.js" asp-append-version="true"></script>

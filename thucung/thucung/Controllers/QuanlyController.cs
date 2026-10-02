@@ -129,6 +129,8 @@ namespace thucung.Controllers
             }
             else
             {
+                var bangkh = _context.KhachHang.ToList();
+                ViewBag.thongtinkhachhang = bangkh;
                 ViewBag.tb = "Vui lòng nhập đủ dữ liệu";
                 return View("Themthucung",thucung);
             }
@@ -864,7 +866,7 @@ namespace thucung.Controllers
                 ViewBag.nv = bangnv;
                 ViewBag.tb = "vui lòng nhập đầy đủ thông tin và chọn nội dung";
 
-                return View("Themphieukham", phieukham);
+                return View("Suaphieukham", phieukham);
             }
         }
 
